@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 用户相关的行为组件 -->
+
+
+<!-- 实例化Action组件 -->
+<!--    <bean id="modelAction" scope="prototype" class="com.vega.education.action.ModelAction">
+        <property name="serviceManager" ref="serviceManager"></property>
+    </bean>
+ --> 
+</beans>
