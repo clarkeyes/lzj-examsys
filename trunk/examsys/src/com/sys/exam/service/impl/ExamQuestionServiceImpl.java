@@ -1,6 +1,7 @@
 package com.sys.exam.service.impl;
 
 import com.sys.exam.service.ExamQuestionService;
+import com.sys.exam.service.ManagerService;
 
 
 /**
@@ -9,7 +10,23 @@ import com.sys.exam.service.ExamQuestionService;
 
 public class ExamQuestionServiceImpl implements ExamQuestionService
 {
+    private ManagerService managerService;
 
+    /**
+     * @return Returns the managerService.
+     */
+    public ManagerService getManagerService()
+    {
+        return managerService;
+    }
+
+    /**
+     * @param managerService The managerService to set.
+     */
+    public void setManagerService(ManagerService managerService)
+    {
+        this.managerService = managerService;
+    }
     
 
 }
