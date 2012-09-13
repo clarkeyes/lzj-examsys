@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="managerService"
+		class="com.sys.exam.service.impl.ManagerServiceImpl">
+		<property name="examDao" ref="examDao" />
+		<property name="examQuestionDao" ref="examQuestionDao" />
+		<property name="optionsDao" ref="optionsDao" />
+		<property name="questionBaseDao" ref="questionBaseDao" />
+		<property name="questionCategoryDao" ref="questionCategoryDao" />
+		<property name="questionsDao" ref="questionsDao"></property>
+		<property name="userDao" ref="userDao" />
+		<property name="userExamDao" ref="userExamDao" />
+		<property name="userGroupDao" ref="userGroupDao" />
+		<property name="userGroupRelDao" ref="userGroupRelDao" />
+		<property name="userQuestionDao" ref="userQuestionDao" />
+	</bean>
+
+
+	<bean id="examQuestionService"
+		class="com.sys.exam.service.impl.ExamQuestionServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="examService"
+		class="com.sys.exam.service.impl.ExamServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="optionsService"
+		class="com.sys.exam.service.impl.OptionsServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="questionBaseService"
+		class="com.sys.exam.service.impl.QuestionBaseServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="questionCategoryService"
+		class="com.sys.exam.service.impl.QuestionCategoryServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="questionsService"
+		class="com.sys.exam.service.impl.QuestionsServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="qserExamService"
+		class="com.sys.exam.service.impl.UserExamServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="qserGroupService"
+		class="com.sys.exam.service.impl.UserGroupServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="qserQuestionService"
+		class="com.sys.exam.service.impl.UserQuestionServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
+	<bean id="userService"
+		class="com.sys.exam.service.impl.UserServiceImpl">
+		<property name="managerService" ref="managerService" />
+	</bean>
 
 
 
 </beans>
- 

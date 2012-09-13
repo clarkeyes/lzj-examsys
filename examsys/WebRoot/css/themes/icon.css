@@ -1,0 +1,162 @@
+.icon-add {
+	background: url('icons/add.png') no-repeat;
+}
+
+.icon-edit {
+	background: url('icons/pencil.gif') no-repeat;
+}
+
+.icon-remove {
+	background: url('icons/edit_remove.gif') no-repeat;
+}
+
+.icon-migrate {
+	background: url('icons/migrate.gif') no-repeat;
+}
+
+.icon-save {
+	background: url('icons/filesave.png') no-repeat;
+}
+
+.icon-cut {
+	background: url('icons/cut.png') no-repeat;
+}
+
+.icon-ok {
+	background: url('icons/ok.gif') no-repeat;
+}
+
+.icon-no {
+	background: url('icons/no.gif') no-repeat;
+}
+
+.icon-cancel {
+	background: url('icons/cancel.gif') no-repeat;
+}
+
+.icon-reload {
+	background: url('icons/reload.gif') no-repeat;
+}
+
+.icon-search {
+	background: url('icons/search.png') no-repeat;
+}
+
+.icon-print {
+	background: url('icons/print.png') no-repeat;
+}
+
+.icon-help {
+	background: url('icons/help.gif') no-repeat;
+}
+
+.icon-undo {
+	background: url('icons/undo.png') no-repeat;
+}
+
+.icon-redo {
+	background: url('icons/redo.png') no-repeat;
+}
+
+.icon-back {
+	background: url('icons/back.png') no-repeat;
+}
+
+.icon-ok {
+	background: url("icons/accept.png") no-repeat;
+}
+
+.icon-cancel {
+	background: url("icons/cancel1.png") no-repeat;
+}
+
+.icon-center {
+	background: url('icons/center.png') no-repeat;
+}
+
+.icon-cab {
+	background: url('icons/cab.jpg') no-repeat;
+}
+
+.icon-phy {
+	background: url('icons/enable_server.jpg') no-repeat;
+}
+
+.icon-phy-down {
+	background: url('icons/down_server.jpg') no-repeat;
+}
+
+.icon-vm {
+	background: url('icons/vm.jpg') no-repeat;
+}
+
+.icon-vm-down {
+	background: url('icons/vmdown.jpg') no-repeat;
+}
+
+.icon_cab {
+	background: url('icons/cab.PNG') no-repeat;
+}
+
+.icon_checkedphyMachine {
+	background: url('icons/checkedphyMachine.jpg') no-repeat;
+}
+
+.icon_phyMachine {
+	background: url('icons/phyMachine.JPG') no-repeat;
+}
+
+.icon_running_vm {
+	background: url('icons/running_vm.PNG') no-repeat;
+}
+
+.icon_shutdown_vm {
+	background: url('icons/shutdown_vm.PNG') no-repeat;
+}
+
+.icon_addto {
+	background: url('icons/addto.png') no-repeat;
+}
+
+.icon_delete {
+	background: url('icons/delete.png') no-repeat;
+}
+
+.icon_remove {
+	background: url('icons/remove.png') no-repeat;
+}
+
+.icon_remove1 {
+	background: url('icons/remove1.png') no-repeat;
+}
+
+.icon_stop {
+	background: url('icons/stop.png') no-repeat;
+}
+
+.icon_stop1 {
+	background: url('icons/stop1.png') no-repeat;
+}
+
+.icon_update {
+	background: url('icons/update.png') no-repeat;
+}
+
+.icon_import {
+	background: url('icons/import.png') no-repeat;
+}
+
+.icon_addtime {
+	background: url('icons/addtime.png') no-repeat;
+}
+
+.icon_quick {
+	background: url('icons/quick.png') no-repeat;
+}
+
+.icon_drop {
+	background: url('icons/drop.png') no-repeat;
+}
+.icon_download {
+	background: url('icons/download.png') no-repeat;
+}
