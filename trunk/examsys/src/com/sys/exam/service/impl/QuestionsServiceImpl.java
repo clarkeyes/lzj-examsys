@@ -1,5 +1,6 @@
 package com.sys.exam.service.impl;
 
+import com.sys.exam.database.bean.Questions;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionsService;
 
@@ -27,6 +28,13 @@ public class QuestionsServiceImpl implements QuestionsService
     public void setManagerService(ManagerService managerService)
     {
         this.managerService = managerService;
+    }
+    
+    @Override
+    public void saveQuestion(Questions que)
+    {
+        managerService.getQuestionsDao().save(que);
+        
     }
 
 }
