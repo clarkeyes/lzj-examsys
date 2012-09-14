@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="examsys"
+  name="examsyssvn"
   id="myeclipse.1347373188781"
   context-root="/examsys"
   j2ee-spec="5.0"
-  archive="examsys.war">
+  archive="examsyssvn.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

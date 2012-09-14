@@ -70,7 +70,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.1.6.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-3.8-20120326.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-scratchpad-3.8-20120326.jar"/>
-	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.hibernate.MYECLIPSE_HIBERNATE3_1_CORE"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.3-bin.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
