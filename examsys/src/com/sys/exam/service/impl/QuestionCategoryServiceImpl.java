@@ -1,5 +1,6 @@
 package com.sys.exam.service.impl;
 
+import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionCategoryService;
 
@@ -28,5 +29,15 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService
     public void setManagerService(ManagerService managerService)
     {
         this.managerService = managerService;
+    }
+    
+    @Override
+    public void saveOne(QuestionCategory qcnew)
+    {
+       if (null!=qcnew)
+    {
+        managerService.getQuestionCategoryDao().save(qcnew);
+    }//end if
+        
     }
 }

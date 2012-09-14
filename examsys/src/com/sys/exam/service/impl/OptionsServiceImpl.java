@@ -1,5 +1,8 @@
 package com.sys.exam.service.impl;
 
+import java.util.Set;
+
+import com.sys.exam.database.bean.Options;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.OptionsService;
 
@@ -26,6 +29,13 @@ public class OptionsServiceImpl implements OptionsService
     public void setManagerService(ManagerService managerService)
     {
         this.managerService = managerService;
+    }
+    
+    @Override
+    public void saveSet(Set<Options> setOptions)
+    {
+        managerService.getOptionsDao().saveOrUpdateAll(setOptions);
+        
     }
 
 }
