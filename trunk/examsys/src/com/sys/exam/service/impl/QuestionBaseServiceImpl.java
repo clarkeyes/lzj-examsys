@@ -34,8 +34,10 @@ public class QuestionBaseServiceImpl implements QuestionBaseService
 
 	@Override
 	public List<QuestionBase> findQbList() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from QuestionBase qb");
+		List<QuestionBase> qbList=managerService.getQuestionBaseDao().find(hsql.toString());
+		return qbList;
 	}
 
 }

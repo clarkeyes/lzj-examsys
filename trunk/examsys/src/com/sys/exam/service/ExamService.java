@@ -1,6 +1,11 @@
 package com.sys.exam.service;
 
+import java.util.List;
+
 import com.sys.exam.database.Pager;
+import com.sys.exam.database.bean.QuestionCategory;
+import com.sys.exam.database.model.QuesType;
+import com.sys.exam.database.model.QcModel;
 
 
 /**
@@ -16,6 +21,17 @@ public interface ExamService
 	 * @throws Exception
 	 */
 	Pager findExamList(Pager pager)throws Exception;
+
+	/**添加考试
+	 * @param examName 考试名称
+	 * @param qbId 题库id
+	 * @param qcs 题目分类比例
+	 * @param typeList 题型个数和分值
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String addExam(String examName, Long qbId, List<QcModel> qcs,
+			List<QuesType> typeList)throws Exception;
 
    
 

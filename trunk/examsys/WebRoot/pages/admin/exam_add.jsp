@@ -8,6 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/themes/icon.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate_pack.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/validate_regex.js"></script>
+		<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/exam_add.js"></script>
 	<script type="text/javascript">
 		$(function(){
 		    $("#ks").addClass("current");
@@ -37,7 +40,7 @@
 				<section class="column width6 first">
 					<span class="msg" id="message">
 					</span>
-					<form id="addVlanForm"action="vlanAdd.action" method="post">
+					<form id="addExamForm" method="post">
 					    <fieldset>
 				    <legend>所需字段</legend>
 				    	<p>
@@ -57,43 +60,31 @@
 				    	<s:iterator value="qcList" var="qc" status="st">
 				    		<p>
 								<label class="required">${qc.qcName}:</label><br/>
-								<input type="text" id="qcRatio" name="qcs[${st}].qcRatio" value="${qc.qcRatio}" class="required minInput"/>%
-								<input type="hidden" id="qcId" name="qcs[${st}].qcId" value="${qc.qcId}" class="required minInput"/>
+								<input type="text" id="qcRatio" name="qcs[${st.index}].qcRatio" value="${qc.qcRatio}" class="required minInput"/>%
+								<input type="hidden" id="qcId" name="qcs[${st.index}].qcId" value="${qc.qcId}" class="required minInput"/>
 							</p>
 				    	</s:iterator>
-			    		<p>
-							<label class="required">政治理论:</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>%
-						</p>
-						<p>
-							<label class="required">公安工作与部队建设：</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>%
-						</p>
-						<p>
-							<label class="required">法律法规：</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>%
-						</p>
 						<label class="required" style="color:93BB3A" id="classMsg">题型</label>
 						<p>
 							<label class="required">单项选择题：</label><br/>
-							<input type="text" id="singleNum" name="typeList[0].num" class="required minInput"/>个
-							<input type="text" id="singleScore" name="typeList[0].score" class="required minInput"/>分
-							<input type="hidden" id="singleType" name="typeList[0].type" value="0" class="required minInput"/>
+							<input type="text" id="queNum" name="typeList[0].num" class="required minInput"/>个
+							<input type="text" id="queScore" name="typeList[0].score" class="required minInput"/>分
+							<input type="hidden" id="queType" name="typeList[0].type" value="1" class="required minInput"/>
 						</p>
 						<p>
 							<label class="required">多项选择题：</label><br/>
-							<input type="text" id="multipleNum" name="typeList[1].num" class="required minInput"/>个
-							<input type="text" id=multipleScore"" name="typeList[1].score" value="" class="required minInput"/>分
-							<input type="hidden" id="multipleType" name="typeList[1].type" value="1" class="required minInput"/>
+							<input type="text" id="queNum" name="typeList[1].num" class="required minInput"/>个
+							<input type="text" id="queScore" name="typeList[1].score" value="" class="required minInput"/>分
+							<input type="hidden" id="queType" name="typeList[1].type" value="2" class="required minInput"/>
 						</p>
 						<p>
 							<label class="required">判断题：</label><br/>
-							<input type="text" id="judgeNum" name="typeList[2].num" class="required minInput"/>个
-							<input type="text" id="judgeScore" name="typeList[2].score" class="required minInput"/>分
-							<input type="hidden" id="judgeType" name="typeList[2].type" value="2" class="required minInput"/>
+							<input type="text" id="queNum" name="typeList[2].num" class="required minInput"/>个
+							<input type="text" id="queScore" name="typeList[2].score" class="required minInput"/>分
+							<input type="hidden" id="judgeType" name="typeList[2].type" value="3" class="required minInput"/>
 						</p>
 						<p class="box">
-							<input type="button" value="生成试卷" id="send" class="btn btn-green big"/>
+							<input type="submit" value="生成试卷" id="addExamButton" class="btn btn-green big"/>
 						</p>
 						</fieldset>
 					    

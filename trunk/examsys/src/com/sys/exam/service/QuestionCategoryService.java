@@ -14,7 +14,11 @@ public interface QuestionCategoryService
 
     void saveOne(QuestionCategory qcnew);
 
-	List<QuestionCategory> findQcList();
+	/**查找所有的试题分类
+	 * @return
+	 * @throws Exception
+	 */
+	List<QuestionCategory> findQcList()throws Exception;
 
    
 
