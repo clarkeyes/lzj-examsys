@@ -24,6 +24,12 @@
 	<bean id="toExamAddAction" scope="prototype" class="com.sys.exam.action.admin.ToExamAddAction" parent="modelAction"></bean>
 	<!-- 添加考试 -->
 	<bean id="addExamAction" scope="prototype" class="com.sys.exam.action.admin.AddExamAction" parent="modelAction"></bean>
+	<!-- 删除考试 -->
+	<bean id="deleteExamAction" scope="prototype" class="com.sys.exam.action.admin.DeleteExamAction" parent="modelAction"></bean>
+	<!-- 进入导入用户组界面 -->
+	<bean id="toImportUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ToImportUserGroupAction" parent="modelAction"></bean>
+	<!-- 导入用户组 -->
+	<bean id="importUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserGroupAction" parent="modelAction"></bean>
 	
 		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
 	
