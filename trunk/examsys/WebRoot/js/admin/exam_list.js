@@ -9,16 +9,16 @@ $(function(){
 		sortName: '',
 		sortOrder: 'asc',
 		remoteSort: false,
-		idField:'',
+		idField:'examId',
 		columns:[[
 			{field:'examName',title:'名称',width:100},
 			{field:'examTime',title:'时长',width:80},
 			{field:'userNum',title:'人数',width:100},
 			{field:'opt',title:'操作',width:200,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
-					return 	'<a href="javascript:;" onclick="importUser();">导入用户组</a>&nbsp;'
-					+'|&nbsp;<a href="javascript:;" onclick="checkSocre();">查看成绩</a>&nbsp;'
-					+'|&nbsp;<a href="javascript:;" onclick="deleteExam();">删除</a>&nbsp;';
+					return 	'<a href="javascript:;" onclick="toImportUserGroup('+rec.examId+');">导入用户组</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="checkSocre('+rec.examId+');">查看成绩</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="deleteExam('+rec.examId+');">删除</a>&nbsp;';
 				}
 			}
 		]],
@@ -38,3 +38,27 @@ $(function(){
  	});
  
 });
+//删除考试
+function deleteExam(examId){
+	$.messager.confirm("系统消息","确认删除？",function(bool)
+	{
+		if(bool){
+			$.post(
+				"../admin/deleteExam.action",
+				{"examId":examId},
+				function(data){
+					if(data.result == "success"){
+						$.messager.alert("系统消息","删除成功","info");
+						$('#examList').datagrid('reload');
+					}else if(data.result != null){
+						$.messager.alert("系统消息",data.result,"error");
+					}
+			});
+		}
+	});
+}
+//导入用户组
+function toImportUserGroup(examId){
+	window.location="../admin/toImportUserGroup.action?examId="+examId;
+	window.event.returnValue=false;
+}
