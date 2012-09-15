@@ -8,6 +8,7 @@ package com.sys.exam.database.model;
  *
  */
 public class ExamModel {
+	private Long examId;
 	/**考试名称*/
 	private String examName;
 	/**时长*/
@@ -31,6 +32,12 @@ public class ExamModel {
 	}
 	public void setUserNum(int userNum) {
 		this.userNum = userNum;
+	}
+	public Long getExamId() {
+		return examId;
+	}
+	public void setExamId(Long examId) {
+		this.examId = examId;
 	}
 	
 }
