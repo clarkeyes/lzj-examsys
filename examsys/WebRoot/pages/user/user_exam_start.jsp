@@ -30,22 +30,32 @@
 		<!-- Wrapper -->
 		<div class="wrapper" >
 			<div class="page-content">
-				 <h3 class="title-article">
+			
+			<s:iterator value="listUserExams"  var="lue">
+			
+			<s:form action="userExamContent.action" method="post" id="uecform">
+			<s:hidden value="lue.ueId" name="ueId"></s:hidden>
+			<h3 class="title-article">
 					<span class="editarticle">
-						未完成
+					请注意考场纪律
 					</span>
 					<strong>
-						基础语言测试
+						考试名称：${lue.exam.examName  }
 					</strong>
 					<div class="pub-type">
-						<span class="timestamp">时长：90分钟 </span>
+						<span class="timestamp">考试时长：${lue.exam.examTime  }分钟 </span>
 					</div>
 				</h3>
+				</s:form>
 				<div class="wrapper-login" style=" text-align: center;">
 				<p>
 					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam();"/>
 				</p>
 				</div>
+			</s:iterator>
+			
+			
+				 
 			</div>
 		</div>
 		</div>

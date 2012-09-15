@@ -25,4 +25,6 @@
 	<!-- 添加考试 -->
 	<bean id="addExamAction" scope="prototype" class="com.sys.exam.action.admin.AddExamAction" parent="modelAction"></bean>
 	
+		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
+	
 </beans>
