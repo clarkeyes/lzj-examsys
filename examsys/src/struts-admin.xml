@@ -39,5 +39,28 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 删除考试 -->
+		<action name="deleteExam" class="deleteExamAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 进入导入用户组界面 -->
+		<action name="toImportUserGroup" class="toImportUserGroupAction">
+			<result name="success">usergroup_import.jsp</result>
+			<result name="input">usergroup_import.jsp</result>
+		</action>
+		<!-- 导入用户组 -->
+		<action name="importUserGroup" class="importUserGroupAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>
