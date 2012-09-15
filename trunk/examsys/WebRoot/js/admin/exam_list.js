@@ -62,3 +62,8 @@ function toImportUserGroup(examId){
 	window.location="../admin/toImportUserGroup.action?examId="+examId;
 	window.event.returnValue=false;
 }
+//查看考试对应的用户成绩
+function checkSocre(examId){
+	window.location="../admin/userscore_list.jsp?examId="+examId;
+	window.event.returnValue=false;
+}

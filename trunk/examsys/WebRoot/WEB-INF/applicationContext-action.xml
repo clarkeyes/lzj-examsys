@@ -30,7 +30,16 @@
 	<bean id="toImportUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ToImportUserGroupAction" parent="modelAction"></bean>
 	<!-- 导入用户组 -->
 	<bean id="importUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserGroupAction" parent="modelAction"></bean>
+	<!-- 查看考试用户成绩列表 -->
+	<bean id="userScoreListAction" scope="prototype" class="com.sys.exam.action.admin.UserScoreListAction" parent="modelAction"></bean>
+	<!-- 进入输入成绩界面 -->
+	<bean id="toUserScoreAddAction" scope="prototype" class="com.sys.exam.action.admin.ToUserScoreAddAction" parent="modelAction"></bean>
+	<!-- 输入成绩 -->
+	<bean id="addUserScoreAction" scope="prototype" class="com.sys.exam.action.admin.AddUserScoreAction" parent="modelAction"></bean>
+	<!-- 开启选中用户的考试 -->
+	<bean id="startUserExamAction" scope="prototype" class="com.sys.exam.action.admin.StartUserExamAction" parent="modelAction"></bean>
 	
+<!-- 考试用户action -->	
 		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
 	
 </beans>
