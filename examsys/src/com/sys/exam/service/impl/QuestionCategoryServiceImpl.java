@@ -1,5 +1,7 @@
 package com.sys.exam.service.impl;
 
+import java.util.List;
+
 import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionCategoryService;
@@ -40,4 +42,10 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService
     }//end if
         
     }
+
+	@Override
+	public List<QuestionCategory> findQcList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

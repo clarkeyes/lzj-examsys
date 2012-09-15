@@ -8,8 +8,17 @@
 
 
 <!-- 实例化Action组件 -->
-<!--    <bean id="modelAction" scope="prototype" class="com.vega.education.action.ModelAction">
+   <bean id="modelAction" scope="prototype" class="com.sys.exam.action.ModelAction">
         <property name="serviceManager" ref="serviceManager"></property>
     </bean>
- --> 
+    <!-- 用户登录 -->
+	<bean id="loginAction" scope="prototype" class="com.sys.exam.action.login.LoginAction" parent="modelAction"></bean>
+	<!-- 用户退出 -->
+	<bean id="logoutAction" scope="prototype" class="com.sys.exam.action.login.LogoutAction" parent="modelAction"></bean>
+	<!-- 获取登录用户名 -->
+	<bean id="headAction" scope="prototype" class="com.sys.exam.action.login.HeadAction" parent="modelAction"></bean>
+<!-- 管理员用户action -->	
+	<!-- 考试列表 -->
+	<bean id="examListAction" scope="prototype" class="com.sys.exam.action.admin.ExamListAction" parent="modelAction"></bean>
+	
 </beans>

@@ -1,7 +1,12 @@
 package com.sys.exam.service.impl;
 
+
+import java.util.List;
+
+import com.sys.exam.database.bean.User;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserService;
+import com.sys.exam.util.EncryptUtil;
 
 
 /**
@@ -27,6 +32,30 @@ public class UserServiceImpl implements UserService
     public void setManagerService(ManagerService managerService)
     {
         this.managerService = managerService;
-    }  
+    }
+
+	@Override
+	public User verifyUser(User loginuser) throws Exception {
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from User user where user.userAccount=");
+		hsql.append(loginuser.getUserAccount());
+		List<User> userList=managerService.getUserDao().find(hsql.toString());
+		User user_db=null;//从数据库中查找到的user
+		if(userList.size()>0){
+			user_db=userList.get(0);
+		}
+        if(user_db!=null){
+        	//将用户提交的密码进行md5加密
+        	String password=EncryptUtil.md5Encrypt(loginuser.getUserPassword());
+        	String password_db=user_db.getUserPassword();
+        	if(password_db.equals(password)){//验证用户输入的密码是否正确
+        		return user_db;
+        	}
+            return null;
+        }else
+        {
+            return null;
+        }
+	}  
 
 }

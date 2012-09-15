@@ -3,6 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
+	<bean id="serviceManager" class="com.sys.exam.service.impl.ServiceManager">
+		<property name="examQuestionService" ref="examQuestionService" />
+		<property name="examService" ref="examService" />
+		<property name="optionsService" ref="optionsService" />
+		<property name="questionBaseService" ref="questionBaseService" />
+		<property name="questionCategoryService" ref="questionCategoryService" />
+		<property name="questionsService" ref="questionsService" />
+		<property name="userExamService" ref="userExamService" />
+		<property name="userGroupService" ref="userGroupService" />
+		<property name="userQuestionService" ref="userQuestionService" />
+		<property name="userService" ref="userService" />
+	</bean>
 	<bean id="managerService"
 		class="com.sys.exam.service.impl.ManagerServiceImpl">
 		<property name="examDao" ref="examDao" />
@@ -43,15 +55,15 @@
 		class="com.sys.exam.service.impl.QuestionsServiceImpl">
 		<property name="managerService" ref="managerService" />
 	</bean>
-	<bean id="qserExamService"
+	<bean id="userExamService"
 		class="com.sys.exam.service.impl.UserExamServiceImpl">
 		<property name="managerService" ref="managerService" />
 	</bean>
-	<bean id="qserGroupService"
+	<bean id="userGroupService"
 		class="com.sys.exam.service.impl.UserGroupServiceImpl">
 		<property name="managerService" ref="managerService" />
 	</bean>
-	<bean id="qserQuestionService"
+	<bean id="userQuestionService"
 		class="com.sys.exam.service.impl.UserQuestionServiceImpl">
 		<property name="managerService" ref="managerService" />
 	</bean>

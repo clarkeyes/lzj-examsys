@@ -1,5 +1,7 @@
 package com.sys.exam.service;
 
+import java.util.List;
+
 import com.sys.exam.database.bean.QuestionCategory;
 
 
@@ -11,6 +13,8 @@ public interface QuestionCategoryService
 {
 
     void saveOne(QuestionCategory qcnew);
+
+	List<QuestionCategory> findQcList();
 
    
 

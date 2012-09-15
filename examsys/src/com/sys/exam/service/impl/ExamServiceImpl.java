@@ -1,5 +1,8 @@
 package com.sys.exam.service.impl;
 
+import java.util.List;
+
+import com.sys.exam.database.Pager;
 import com.sys.exam.service.ExamService;
 import com.sys.exam.service.ManagerService;
 
@@ -27,6 +30,14 @@ public class ExamServiceImpl implements ExamService
     {
         this.managerService = managerService;
     }
+
+	@Override
+	public Pager findExamList(Pager pager) throws Exception {
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from Exam exam");
+		Pager p=managerService.getExamDao().getPager(hsql.toString(), pager.getCurrentPage(), pager.getPageSize());
+		return p;
+	}
    
 
 }
