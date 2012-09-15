@@ -118,6 +118,12 @@ public class UserExamServiceImpl implements UserExamService
         
         return ret;
     }
+
+	@Override
+	public String addUserExam(Long examId, Long userGroupId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
     
     @Override

@@ -70,6 +70,13 @@ public class ExamServiceImpl implements ExamService
         return p;
     }
 
+
+	@Override
+	public String deleteExam(Long examId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+   
     @Override
     public String addExam(String examName, Long qbId, List<QcModel> qcs,
             List<QuesType> typeList) throws Exception

@@ -34,6 +34,14 @@ public interface UserExamService
       */
     boolean updateGradeJudging(UserExam ue);
 
+	/**给指定考试导入用户组
+	 * @param examId 考试id
+	 * @param userGroupId 用户组id
+	 * @return null:成功，其他为失败信息
+	 * @throws Exception
+	 */
+	String addUserExam(Long examId, Long userGroupId)throws Exception;
+
     /**
       * 关于方法的描述：根据用户获得可用的考试列表
       * @param user  用户实体

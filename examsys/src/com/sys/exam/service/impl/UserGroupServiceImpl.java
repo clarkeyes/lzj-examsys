@@ -1,5 +1,8 @@
 package com.sys.exam.service.impl;
 
+import java.util.List;
+
+import com.sys.exam.database.bean.UserGroup;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserGroupService;
 
@@ -28,4 +31,10 @@ public class UserGroupServiceImpl implements UserGroupService
     {
         this.managerService = managerService;
     }
+
+	@Override
+	public List<UserGroup> findUgList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
