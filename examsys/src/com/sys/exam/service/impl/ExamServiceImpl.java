@@ -1,10 +1,21 @@
 package com.sys.exam.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.sys.common.logtool.LoggerTool;
 import com.sys.exam.database.Pager;
+import com.sys.exam.database.bean.Exam;
+import com.sys.exam.database.bean.ExamQuestion;
+import com.sys.exam.database.bean.QuestionCategory;
+import com.sys.exam.database.bean.Questions;
+import com.sys.exam.database.model.ExamModel;
+import com.sys.exam.database.model.QcModel;
+import com.sys.exam.database.model.QuesType;
 import com.sys.exam.service.ExamService;
 import com.sys.exam.service.ManagerService;
+import com.sys.exam.util.Constant;
+import com.sys.exam.util.DateOperator;
 
 
 /**
@@ -35,8 +46,93 @@ public class ExamServiceImpl implements ExamService
 	public Pager findExamList(Pager pager) throws Exception {
 		StringBuilder hsql=new StringBuilder();
 		hsql.append("from Exam exam");
-		Pager p=managerService.getExamDao().getPager(hsql.toString(), pager.getCurrentPage(), pager.getPageSize());
+		List<Exam> examList=managerService.getExamDao().find(hsql.toString());
+		List<ExamModel> examModelList=new ArrayList<ExamModel>();
+		for(Exam exam:examList){
+			ExamModel em=new ExamModel();
+			em.setExamName(exam.getExamName());
+			em.setExamTime(exam.getExamTime());
+			if(null!=exam.getUserExams()){
+				em.setUserNum(exam.getUserExams().size());
+			}
+			examModelList.add(em);
+		}
+		//分页
+        int pageBegin = (pager.getCurrentPage()-1)*pager.getPageSize();
+        int pageEnd = pageBegin+pager.getPageSize();
+        int total = examModelList.size();
+        if(pageEnd>total) pageEnd = total;
+		Pager p=new Pager(total,pager.getPageSize());
+		p.setElements(examModelList.subList(pageBegin, pageEnd));
 		return p;
+	}
+
+	@Override
+	public String addExam(String examName, Long qbId,
+			List<QcModel> qcs, List<QuesType> typeList)
+			throws Exception {
+		String ret=null;
+		//TODO 判断各种题型数量是否超过题库中数量
+		//创建考试
+		Exam exam=new Exam();
+		exam.setExamName(examName);
+		exam.setExamTime(Constant.EXAM_TIME);
+		exam.setExamCreateTime(DateOperator.getCurrentTime(Constant.DATE_FORMAT));
+		List<ExamQuestion> eqTotalList=new ArrayList<ExamQuestion>();
+		//抽取各种题型的各种分类的题
+		for(QuesType qt:typeList){
+			int typeNum=qt.getNum();
+			for(int index=qcs.size()-1;index>=0;index--){
+				float totalQcRatio=0f;
+				for(QcModel qc1:qcs){
+					totalQcRatio=totalQcRatio+qc1.getQcRatio();
+				}
+				if(0!=totalQcRatio){
+					QcModel qc=qcs.get(index);
+					int qcNum=(int)((qc.getQcRatio()/totalQcRatio)*typeNum);//一种题型、一个分类的题目数量
+					StringBuilder hsql=new StringBuilder();
+					hsql.append("from Questions que where que.quesType=");
+					hsql.append(qt.getType());
+					hsql.append(" and que.questionCategory.qcId=");
+					hsql.append(qc.getQcId());
+					List<Questions> queList=managerService.getQuestionsDao().find(hsql.toString());
+					if(queList.size()>qcNum){//抽取
+						int num=queList.size();
+						for(int i=0;i<qcNum;i++){
+							int rad=(int)(Math.round(Math.random()*num));
+							ExamQuestion eq=new ExamQuestion();
+							eq.setEqValue(qt.getScore());
+							eq.setQuestions(queList.get(rad));
+							eq.setExam(exam);
+							eqTotalList.add(eq);
+							//去重
+							queList.remove(rad);
+							num--;
+						}
+						typeNum=typeNum-qcNum;
+						LoggerTool.m_logger.info("----------------------------"+qcNum);
+					}else{
+						for(Questions que:queList){
+							ExamQuestion eq=new ExamQuestion();
+							eq.setEqValue(qt.getScore());
+							eq.setQuestions(que);
+							eq.setExam(exam);
+							eqTotalList.add(eq);
+						}
+						typeNum=typeNum-queList.size();
+						LoggerTool.m_logger.info("----------------------------9999"+queList.size());
+					}
+					qcs.remove(index);
+				}else{
+					break;
+				}
+				
+			}
+		}
+		//添加到数据库
+		managerService.getExamDao().save(exam);
+		managerService.getExamQuestionDao().saveOrUpdateAll(eqTotalList);
+		return ret;
 	}
    
 

@@ -14,9 +14,11 @@ $(function(){
 			{field:'examName',title:'名称',width:100},
 			{field:'examTime',title:'时长',width:80},
 			{field:'userNum',title:'人数',width:100},
-			{field:'opt',title:'操作',width:70,align:'left',
+			{field:'opt',title:'操作',width:200,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
-					return 	'<a href="javascript:;" onclick="importUser();">导入用户组</a>&nbsp;&nbsp;&nbsp;&nbsp;';
+					return 	'<a href="javascript:;" onclick="importUser();">导入用户组</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="checkSocre();">查看成绩</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="deleteExam();">删除</a>&nbsp;';
 				}
 			}
 		]],

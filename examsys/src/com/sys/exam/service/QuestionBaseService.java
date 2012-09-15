@@ -12,7 +12,11 @@ import com.sys.exam.database.bean.QuestionBase;
 public interface QuestionBaseService 
 {
 
-	List<QuestionBase> findQbList();
+	/**查找题库列表
+	 * @return
+	 * @throws Exception
+	 */
+	List<QuestionBase> findQbList()throws Exception;
 
    
 

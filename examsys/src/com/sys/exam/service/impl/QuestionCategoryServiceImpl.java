@@ -45,7 +45,9 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService
 
 	@Override
 	public List<QuestionCategory> findQcList() {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from QuestionCategory qc");
+		List<QuestionCategory> qcList=managerService.getQuestionCategoryDao().find(hsql.toString());
+		return qcList;
 	}
 }

@@ -56,7 +56,10 @@ public class Constant{
     /**题库的ID*/
     public static  int QUESTION_BASE_ID=1;
     
-    
+    /**考试时长*/
+    public static  int EXAM_TIME=90;
+    /**日期时间格式*/
+    public static  String DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
    
     
     static{

@@ -25,5 +25,19 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 进入添加考试页面 -->
+		<action name="toExamAdd" class="toExamAddAction">
+			<result name="success">exam_add.jsp</result>
+			<result name="input">exam_add.jsp</result>
+		</action>
+		<!-- 添加考试 -->
+		<action name="addExam" class="addExamAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>

@@ -20,5 +20,9 @@
 <!-- 管理员用户action -->	
 	<!-- 考试列表 -->
 	<bean id="examListAction" scope="prototype" class="com.sys.exam.action.admin.ExamListAction" parent="modelAction"></bean>
+	<!-- 进入添加考试页面 -->
+	<bean id="toExamAddAction" scope="prototype" class="com.sys.exam.action.admin.ToExamAddAction" parent="modelAction"></bean>
+	<!-- 添加考试 -->
+	<bean id="addExamAction" scope="prototype" class="com.sys.exam.action.admin.AddExamAction" parent="modelAction"></bean>
 	
 </beans>
