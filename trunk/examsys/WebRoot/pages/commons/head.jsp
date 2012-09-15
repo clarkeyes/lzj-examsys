@@ -68,7 +68,7 @@ $(document).ready(function(){
 				<!-- Top navigation -->
 				<div id="topnav">
 					欢迎您
-					<b id="headUserName">${session.user.userFullName}</b>
+					<b id="headUserName"></b>
 					<span>|</span>
 					<a href="#" id="loginOut">退出</a>
 					<br />
