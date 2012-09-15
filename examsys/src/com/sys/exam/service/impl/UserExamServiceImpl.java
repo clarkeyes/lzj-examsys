@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.sys.common.logtool.LoggerTool;
 import com.sys.common.system.CommonUtil;
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.ExamQuestion;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.User;
@@ -139,4 +140,29 @@ public class UserExamServiceImpl implements UserExamService
         
         return listues;
     }
+
+	@Override
+	public Pager findUserScoreList(Long examId, Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserExam findUeById(Long ueId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updateUeGrade(Long ueId, Float ueGrade) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String updateUesState(List<Long> ueIdList, int ueState)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="examName">
+		<field-validator type="required">
+		    <param name="trim">true</param>
+			<message>请输入成绩</message>
+		</field-validator>
+		<field-validator type="regex">
+		    <param name="expression"><![CDATA[(\d+\56{0,1}\d{0,2})]]></param>
+			<message>请输入数字类成绩</message>
+		</field-validator>
+		
+	</field>
+	
+</validators>
+
+
+ 

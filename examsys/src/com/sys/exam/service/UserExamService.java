@@ -2,6 +2,7 @@ package com.sys.exam.service;
 
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
 
@@ -48,6 +49,37 @@ public interface UserExamService
       * @return 用户考试列表
       */
     List<UserExam> getAvaiExam(User user);
+
+	/**分页查找指定考试的用户信息、状态、成绩等
+	 * @param examId 考试id
+	 * @param pager 分页信息
+	 * @return
+	 * @throws Exception
+	 */
+	Pager findUserScoreList(Long examId, Pager pager)throws Exception;
+
+	/**查找指定id的用户考试
+	 * @param ueId 用户考试
+	 * @return
+	 * @throws Exception
+	 */
+	UserExam findUeById(Long ueId)throws Exception;
+
+	/**输入用户考试成绩
+	 * @param ueId 用户考试id
+	 * @param ueGrade 成绩
+	 * @return null:成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String updateUeGrade(Long ueId, Float ueGrade)throws Exception;
+
+	/**修改选中用户考试的状态为指定状态
+	 * @param ueIdList 选中的用户考试
+	 * @param ueState 状态
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String updateUesState(List<Long> ueIdList, int ueState)throws Exception;
 
     
 }

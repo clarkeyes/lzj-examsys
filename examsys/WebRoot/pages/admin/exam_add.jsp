@@ -9,8 +9,8 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate_pack.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/js/validate_regex.js"></script>
-		<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/exam_add.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/validate_regex.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/exam_add.js"></script>
 	<script type="text/javascript">
 		$(function(){
 		    $("#ks").addClass("current");

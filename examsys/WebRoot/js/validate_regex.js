@@ -5,15 +5,14 @@ jQuery.validator.addMethod( "intNumber",function(value,element){
             return true;    
      } ,  "  <font color='red'>请输入正整数</font>" );     
 
+//验证成绩
+jQuery.validator.addMethod( "avaiScore",function(value,element){      
+            var pattern =/^\d+\56{0,1}\d{0,2}$/;   
+            if(!pattern.test(value)){return false;}  
+            return true;    
+     } ,  "  <font color='red'>请输入正整数</font>" );     
 
-//验证类别（新建类别和选择类别只能二选一）
-jQuery.validator.addMethod( "chooseOne",function(value,element){      
-            if( ( $("#newClassInput").val()==""&&$("#classListSelect").val()!="" ) || ( $("#classListSelect").val()==""&&$("#newClassInput").val()!="" ) )
-            {return true;}
-            else{
-            return false;
-            }
-     } ,  "  <font color='red'>新建类别和选择类别只能二选一</font>" );     
+
 
 //验证合法名称，可以是汉字的，可以为空
 jQuery.validator.addMethod( "avaiNameAndNull",function(value,element){      

@@ -24,7 +24,7 @@
 			<h1>
 			</h1>
 			<!-- Quick search box -->
-			<form action="" method="get">
+			<form id="ueIdForm">
 				 
 			</form>
 		</div>
@@ -35,6 +35,7 @@
 		<!-- Wrapper -->
 		<div class="wrapper" >
 			<div class="page-content">
+				<input type="hidden" id="examId" name="examId" value="${examId}"/>
 				<table id="userScoreList"></table>
 			</div>
 			

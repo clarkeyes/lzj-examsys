@@ -62,5 +62,37 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 查看考试用户成绩列表 -->
+		<action name="userScoreList" class="userScoreListAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 进入输入成绩界面 -->
+		<action name="toUserScoreAdd" class="toUserScoreAddAction">
+			<result name="success">userscore_add.jsp</result>
+			<result name="input">userscore_add.jsp</result>
+		</action>
+		<!-- 输入成绩 -->
+		<action name="addUserScore" class="addUserScoreAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 开启选中用户的考试 -->
+		<action name="startUserExam" class="startUserExamAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>
