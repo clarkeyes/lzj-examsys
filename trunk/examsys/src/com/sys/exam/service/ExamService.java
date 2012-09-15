@@ -33,6 +33,13 @@ public interface ExamService
 	String addExam(String examName, Long qbId, List<QcModel> qcs,
 			List<QuesType> typeList)throws Exception;
 
+	/**考试满足删除条件则删除考试
+	 * @param examId 考试id
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String deleteExam(Long examId)throws Exception;
+
    
 
 }
