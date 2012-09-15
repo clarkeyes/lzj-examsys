@@ -37,8 +37,11 @@ public class UserServiceImpl implements UserService
 	@Override
 	public User verifyUser(User loginuser) throws Exception {
 		StringBuilder hsql=new StringBuilder();
-		hsql.append("from User user where user.userAccount=");
+		hsql.append("from User user where user.userAccount='");
 		hsql.append(loginuser.getUserAccount());
+		hsql.append("' or user.userName='");
+		hsql.append(loginuser.getUserAccount());
+		hsql.append("'");
 		List<User> userList=managerService.getUserDao().find(hsql.toString());
 		User user_db=null;//从数据库中查找到的user
 		if(userList.size()>0){
