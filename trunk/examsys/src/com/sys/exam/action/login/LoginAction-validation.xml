@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="loginuser.userAccount">
+		<field-validator type="requiredstring">
+		    <param name="trim">true</param>
+			<message>请输入账号</message>
+		</field-validator>
+		<field-validator type="regex">
+		    <param name="expression"><![CDATA[([\w|\u4e00-\u9fa5]{1,25})]]></param>
+			<message>账号只能是数字、字母、下划线和汉字，且长度小于25</message>
+		</field-validator>
+		
+	</field>
+	<field name="loginuser.userPassword">
+		<field-validator type="requiredstring">
+		    <param name="trim">true</param>
+			<message>请输入密码</message>
+		</field-validator>
+		<field-validator type="regex">
+		    <param name="expression"><![CDATA[(\w{6,25})]]></param>
+			<message>密码只能是数字、字母、下划线，且长度在6到25之间</message>
+		</field-validator>
+	</field>
+	
+</validators>
+
+
+ 

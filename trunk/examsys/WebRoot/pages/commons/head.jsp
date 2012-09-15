@@ -27,22 +27,29 @@
 	$("#head h1").show("slow");
 //-->
 $(document).ready(function(){
-	$('#btnCancel').click(function(){closePwd();})
+	$("#admin-menu").hide();
 	//用户退出登录
 	 $('#loginOut').click(function() {
 	     $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
 	
 	         if (r) {
-	             location.href = '/vmmaster/logout.action';
+	             location.href = '/examsys/logout.action';
 	         }
 	     });
 	 });
 	 //欢迎用户
  	$.post(
- 		"/vmmaster/head.action",
+ 		"/examsys/head.action",
  		function(data){
  			if(data.userName!=null){
  				$("#headUserName").html(data.userName);
+ 			}
+ 			if(data.userRole==0){//管理员
+ 				/*var menu='<li id="ks"><a href="<%=request.getContextPath()%>/pages/admin/exam_list.jsp">考试</a></li>'
+ 				+'<li id="yhgl"><a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a></li>'
+ 				+'<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>';
+ 				$("#admin-menu").html(menu);*/
+ 				$("#admin-menu").show();
  			}
  		}
  	);
@@ -69,18 +76,12 @@ $(document).ready(function(){
 				</div>
 				<!-- End of Top navigation -->
 				<!-- Main navigation -->
-				<!-- 超级管理员 -->
+				<!-- 管理员 -->
 					<div id="menu" class="page-content">
-						<ul class="sf-menu">
-							<li id="ks">
-								<a href="<%=request.getContextPath()%>/pages/admin/exam_list.jsp">考试</a>
-							</li>
-							<li id="yhgl">
-								<a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a>
-							</li>
-							<li id="yhz">
-								<a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a>
-							</li>
+						<ul class="sf-menu" id="admin-menu">
+							<li id="ks"><a href="<%=request.getContextPath()%>/pages/admin/exam_list.jsp">考试</a></li>
+							<li id="yhgl"><a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a></li>
+							<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>
 						</ul>
 					</div>
 				

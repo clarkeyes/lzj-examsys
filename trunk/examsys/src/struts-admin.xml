@@ -5,7 +5,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="login-package" extends="json-default">
+	<package name="admin-package" extends="json-default" namespace="/pages/admin">
 		<interceptors>  
             <interceptor-stack name="default">  
                 <interceptor-ref name="exception">  
@@ -16,25 +16,12 @@
             </interceptor-stack>  
         </interceptors>  
         <default-interceptor-ref name="default"></default-interceptor-ref> 
-		<!-- 用户登录 -->
-		<action name="login" class="loginAction">
-			<result name="manager" type="json">
-				<param name="ignoreHierarchy">false</param>
-			</result>
-			<result name="commonUser" type="json">
+		<!-- 考试列表 -->
+		<action name="examList" class="examListAction">
+			<result name="success" type="json">
 				<param name="ignoreHierarchy">false</param>
 			</result>
 			<result name="input" type="json">
-                <param name="ignoreHierarchy">false</param>
-            </result>
-		</action>
-		<!-- 退出 -->
-		<action name="logout" class="logoutAction">
-		    <result name="success">login.jsp</result>
-		</action>
-		<!-- 登录用户 -->
-		<action name="head" class="headAction">
-		    <result name="success" type="json">
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>

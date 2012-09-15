@@ -11,5 +11,5 @@
    	  	<constant name="struts.objectFactory" value="spring"/>
 		<!-- 文件包含-->
         <include file="struts-login.xml" />
-        
+        <include file="struts-admin.xml" />
 </struts>

@@ -72,7 +72,7 @@
 						</label>
 						<label class="error" id="userNameError"></label>
 						<br />
-						<input type="text" name="loginuser.userName" id="userName"
+						<input type="text" name="loginuser.userAccount" id="userAccount"
 							class="full" />
 					</div>
 					<div>

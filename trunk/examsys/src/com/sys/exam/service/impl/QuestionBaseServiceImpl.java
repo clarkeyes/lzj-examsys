@@ -1,5 +1,8 @@
 package com.sys.exam.service.impl;
 
+import java.util.List;
+
+import com.sys.exam.database.bean.QuestionBase;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionBaseService;
 
@@ -28,5 +31,11 @@ public class QuestionBaseServiceImpl implements QuestionBaseService
     {
         this.managerService = managerService;
     }
+
+	@Override
+	public List<QuestionBase> findQbList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

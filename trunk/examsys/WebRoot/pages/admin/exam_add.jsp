@@ -40,7 +40,27 @@
 					<form id="addVlanForm"action="vlanAdd.action" method="post">
 					    <fieldset>
 				    <legend>所需字段</legend>
+				    	<p>
+							<label class="required">考试名称:</label><br/>
+							<input type="text" id="examName" name="examName" class="required half"/>
+						</p>
+						<p>
+							<label class="required">题库:</label><br/>
+							<select id="qbId" name="qbId" class="required half">
+								<option value="">请选择</option>
+								<s:iterator value="qbList" var="qb">
+									<option value="${qb.qbId}">${qb.qbName}</option>
+								</s:iterator>
+							</select>
+						</p>
 				    	<label class="required" style="color:93BB3A" id="classMsg">类别比例</label>
+				    	<s:iterator value="qcList" var="qc" status="st">
+				    		<p>
+								<label class="required">${qc.qcName}:</label><br/>
+								<input type="text" id="qcRatio" name="qcs[${st}].qcRatio" value="${qc.qcRatio}" class="required minInput"/>%
+								<input type="hidden" id="qcId" name="qcs[${st}].qcId" value="${qc.qcId}" class="required minInput"/>
+							</p>
+				    	</s:iterator>
 			    		<p>
 							<label class="required">政治理论:</label><br/>
 							<input type="text" id="" name="" value="" class="required minInput"/>%
@@ -56,18 +76,21 @@
 						<label class="required" style="color:93BB3A" id="classMsg">题型</label>
 						<p>
 							<label class="required">单项选择题：</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>个
-							<input type="text" id="" name="" value="" class="required minInput"/>分
+							<input type="text" id="singleNum" name="typeList[0].num" class="required minInput"/>个
+							<input type="text" id="singleScore" name="typeList[0].score" class="required minInput"/>分
+							<input type="hidden" id="singleType" name="typeList[0].type" value="0" class="required minInput"/>
 						</p>
 						<p>
 							<label class="required">多项选择题：</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>个
-							<input type="text" id="" name="" value="" class="required minInput"/>分
+							<input type="text" id="multipleNum" name="typeList[1].num" class="required minInput"/>个
+							<input type="text" id=multipleScore"" name="typeList[1].score" value="" class="required minInput"/>分
+							<input type="hidden" id="multipleType" name="typeList[1].type" value="1" class="required minInput"/>
 						</p>
 						<p>
 							<label class="required">判断题：</label><br/>
-							<input type="text" id="" name="" value="" class="required minInput"/>个
-							<input type="text" id="" name="" value="" class="required minInput"/>分
+							<input type="text" id="judgeNum" name="typeList[2].num" class="required minInput"/>个
+							<input type="text" id="judgeScore" name="typeList[2].score" class="required minInput"/>分
+							<input type="hidden" id="judgeType" name="typeList[2].type" value="2" class="required minInput"/>
 						</p>
 						<p class="box">
 							<input type="button" value="生成试卷" id="send" class="btn btn-green big"/>
