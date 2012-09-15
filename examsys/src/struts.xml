@@ -12,4 +12,5 @@
 		<!-- 文件包含-->
         <include file="struts-login.xml" />
         <include file="struts-admin.xml" />
+        <include file="struts-user.xml" />
 </struts>
