@@ -58,7 +58,7 @@ $(function(){
 								window.location.href="pages/admin/exam_list.jsp";
 							}else if(data.result == "commonUser")
 							{
-								window.location.href="pages/user/user_exam_start.jsp";
+								window.location.href="pages/user/userExamList.action";
 							}
 						});
 				 }
