@@ -1,5 +1,8 @@
 package com.sys.exam.service;
 
+import java.util.List;
+
+import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
 
 
@@ -15,7 +18,7 @@ public interface UserExamService
       *  判断试卷开始时间加上考试的时长是否大于当前系统时间，
       *  如果大于自动交卷
       */
-    void CheckExamTime();
+    void updateCheckExamTime();
     
     /**
       * 关于方法的描述：提交用户试卷
@@ -30,6 +33,13 @@ public interface UserExamService
       * @return 
       */
     boolean updateGradeJudging(UserExam ue);
+
+    /**
+      * 关于方法的描述：根据用户获得可用的考试列表
+      * @param user  用户实体
+      * @return 用户考试列表
+      */
+    List<UserExam> getAvaiExam(User user);
 
     
 }

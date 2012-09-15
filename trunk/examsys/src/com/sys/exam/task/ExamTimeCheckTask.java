@@ -39,7 +39,7 @@ public class ExamTimeCheckTask extends TimerTask
         //判断试卷开始时间加上考试的时长是否大于当前系统时间
         //如果大于自动交卷
         LoggerTool.m_logger.info("自动交卷检查");
-        userExamService.CheckExamTime();
+        userExamService.updateCheckExamTime();
         
     }
     /**
