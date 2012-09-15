@@ -58,4 +58,34 @@
 	
 	
 	
+	<bean id="examTimeCheckTask" class="com.sys.exam.task.ExamTimeCheckTask"> 
+		   <property name="userExamService" ref="userExamService"></property>
+		</bean>
+	
+	<bean id="examTimeCheckTimeTask"
+			class="org.springframework.scheduling.timer.ScheduledTimerTask">
+			<property name="timerTask">
+				<ref bean="examTimeCheckTask" />
+			</property>
+			<property name="delay">
+				<value>5000</value>
+			</property>
+			<property name="period">
+				<value>20000</value>
+			</property>
+		</bean>
+		
+		<!-- timer 定义 -->
+		<bean id="pmStatetimer"
+			class="org.springframework.scheduling.timer.TimerFactoryBean">
+			<property name="scheduledTimerTasks">
+				<list>
+					<ref local="examTimeCheckTimeTask" />
+					
+				</list>
+			</property>
+		</bean>
+	
+	
+	
 </beans>
