@@ -50,6 +50,7 @@ function deleteExam(examId){
 					if(data.result == "success"){
 						$.messager.alert("系统消息","删除成功","info");
 						$('#examList').datagrid('reload');
+						$('#examList').datagrid('clearSelections');
 					}else if(data.result != null){
 						$.messager.alert("系统消息",data.result,"error");
 					}
