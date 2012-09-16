@@ -51,6 +51,7 @@ public class ExamServiceImpl implements ExamService
         for (Exam exam : examList)
         {
             ExamModel em = new ExamModel();
+            em.setExamId(exam.getExamId());
             em.setExamName(exam.getExamName());
             em.setExamTime(exam.getExamTime());
             if (null != exam.getUserExams())

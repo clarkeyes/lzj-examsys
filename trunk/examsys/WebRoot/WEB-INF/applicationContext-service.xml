@@ -66,6 +66,7 @@
 	<bean id="userQuestionService"
 		class="com.sys.exam.service.impl.UserQuestionServiceImpl">
 		<property name="managerService" ref="managerService" />
+		<property name="serviceManager" ref="serviceManager"></property>
 	</bean>
 	<bean id="userService"
 		class="com.sys.exam.service.impl.UserServiceImpl">
