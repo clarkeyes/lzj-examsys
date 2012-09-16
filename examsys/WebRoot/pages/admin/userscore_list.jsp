@@ -35,7 +35,7 @@
 		<!-- Wrapper -->
 		<div class="wrapper" >
 			<div class="page-content">
-				<input type="hidden" id="examId" name="examId" value="${examId}"/>
+				<input type="hidden" id="examId" name="examId" value="${param.examId}"/>
 				<table id="userScoreList"></table>
 			</div>
 			
