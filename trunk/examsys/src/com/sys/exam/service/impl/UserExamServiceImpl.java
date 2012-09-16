@@ -185,8 +185,10 @@ public class UserExamServiceImpl implements UserExamService
     {
         List<UserExam> listues = null;
         StringBuffer sbsql = new StringBuffer();
-        sbsql.append("from UserExam ue where ue.ueState=").append(
-                Constant.EXAM_STATE_START).append("and ue.user.userId=")
+        sbsql.append("from UserExam ue where (ue.ueState=").append(
+                Constant.EXAM_STATE_START)
+                .append("or ue.ueState=").append(Constant.EXAM_STATE_GOING)
+                .append(") and ue.user.userId=")
                 .append(user.getUserId());
         listues = managerService.getUserExamDao().find(sbsql.toString());
 
