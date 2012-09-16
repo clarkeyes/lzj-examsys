@@ -2,6 +2,7 @@ package com.sys.exam.service;
 
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.UserGroup;
 
 
@@ -17,6 +18,27 @@ public interface UserGroupService
 	 * @throws Exception
 	 */
 	List<UserGroup> findUgList()throws Exception;
+
+	/**分页查找用户组信息
+	 * @param pager 分页信息
+	 * @return 用户组id、name、userNum
+	 * @throws Exception
+	 */
+	Pager findUgPager(Pager pager)throws Exception;
+
+	/**添加用户组
+	 * @param ugName 组名
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String addUg(String ugName)throws Exception;
+
+	/**删除指定的用户组
+	 * @param ugId 组id
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String deleteUgById(Long ugId)throws Exception;
 
 
 }
