@@ -39,7 +39,9 @@
 	<bean id="addUserScoreAction" scope="prototype" class="com.sys.exam.action.admin.AddUserScoreAction" parent="modelAction"></bean>
 	<!-- 开启选中用户的考试 -->
 	<bean id="startUserExamAction" scope="prototype" class="com.sys.exam.action.admin.StartUserExamAction" parent="modelAction"></bean>
-
+	<!-- 查看考试题目 -->
+	<bean id="examContentAction" scope="prototype" class="com.sys.exam.action.admin.ExamContentAction" parent="modelAction"></bean>
+	
 <!-- 用户管理 -->
 	<!-- 用户列表 -->
 	<bean id="userListAction" scope="prototype" class="com.sys.exam.action.admin.UserListAction" parent="modelAction"></bean>
