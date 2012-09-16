@@ -84,6 +84,9 @@ public class UserQuestionServiceImpl implements UserQuestionService
             listUqTypes.add(ut);
         }// end for
 
+        UserExam userex=managerService.getUserExamDao().get(ueId);
+        userex.setUeState(Constant.EXAM_STATE_GOING);
+        managerService.getUserExamDao().save(userex);
         return listUqTypes;
     }
 
