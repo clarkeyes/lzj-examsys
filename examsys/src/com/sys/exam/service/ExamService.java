@@ -3,9 +3,11 @@ package com.sys.exam.service;
 import java.util.List;
 
 import com.sys.exam.database.Pager;
+import com.sys.exam.database.bean.Exam;
 import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.database.model.QuesType;
 import com.sys.exam.database.model.QcModel;
+import com.sys.exam.database.model.UqType;
 
 
 /**
@@ -39,6 +41,20 @@ public interface ExamService
 	 * @throws Exception
 	 */
 	String deleteExam(Long examId)throws Exception;
+
+	/**查找指定id的考试
+	 * @param examId 考试id
+	 * @return
+	 * @throws Exception
+	 */
+	Exam findExamById(long examId)throws Exception;
+
+	/**查找指定考试id的考试题目
+	 * @param examId 考试id
+	 * @return
+	 * @throws Exception
+	 */
+	List<UqType> findEqTypeList(long examId)throws Exception;
 
    
 
