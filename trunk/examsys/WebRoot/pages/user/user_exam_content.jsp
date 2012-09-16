@@ -51,6 +51,7 @@
 				<div class="text-article">
 					<div>
 						<form id="commitUserAnswer" >
+							<input type="hidden" name="ueId" value="${ue.ueId}"/>
 							<s:iterator value="uqTypeList" var="uqType" status="st">
 								<s:if test="#uqType.type==1">
 									<div>

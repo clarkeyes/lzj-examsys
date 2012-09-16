@@ -16,11 +16,12 @@ import com.sys.exam.service.UserQuestionService;
  */
 public class CommitAnswerAction extends ModelAction {
 	private List<TypeAnswer> taList;
+	private long ueId;
 	@Override
 	public String execute() throws Exception {
 		try {
 			UserQuestionService uqService=serviceManager.getUserQuestionService();
-			String ret=uqService.addUserAnswer(taList);
+			String ret=uqService.addUserAnswer(ueId,taList);
 			if(null==ret){
 				result="success";
 			}else{
@@ -38,6 +39,12 @@ public class CommitAnswerAction extends ModelAction {
 	}
 	public void setTaList(List<TypeAnswer> taList) {
 		this.taList = taList;
+	}
+	public long getUeId() {
+		return ueId;
+	}
+	public void setUeId(long ueId) {
+		this.ueId = ueId;
 	}
 	
 	
