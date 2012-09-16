@@ -1,5 +1,8 @@
 package com.sys.exam.service.impl;
 
+import java.util.List;
+
+import com.sys.exam.database.model.UqType;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserQuestionService;
 
@@ -26,6 +29,12 @@ public class UserQuestionServiceImpl implements UserQuestionService
     public void setManagerService(ManagerService managerService)
     {
         this.managerService = managerService;
-    } 
+    }
+
+	@Override
+	public List<UqType> findUqTypeList(Long ueId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	} 
 
 }

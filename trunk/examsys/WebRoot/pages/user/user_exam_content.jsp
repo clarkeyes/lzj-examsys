@@ -31,56 +31,67 @@
 			<div class="page-content">
 				 <h3 class="title-article">
 					<span class="editarticle">
-						未完成
+						<s:if test="ue.ueState==3">
+							考试进行中
+						</s:if>
+						<s:elseif test="ue.ueState==3">
+							已提交
+						</s:elseif>
 					</span>
 					<strong>
-						基础语言测试
+						考试名称：${ue.exam.examName}
 					</strong>
 					<div class="pub-type">
-						<span class="timestamp">时长：90分钟 </span>
+						<span class="timestamp">考试时长：${ue.exam.examTime}分钟 </span>
 					</div>
 				</h3>
 				<div class="text-article">
 					<div>
 						<form action="">
-							<div>
-								<h3>单项选择题</h3>
-								<p>
-									试题1：<span>基础语言类型分为几种？</span><a href="">标记</a><br/>
-									<input type="radio" name="_answer" id="_answer0" value="8"/>
-									<label>A.2</label><br/>
-									<input type="radio" name="_answer" id="_answer1" value="4"/>
-									<label>B.4</label><br/>
-									<input type="radio" name="_answer" id="_answer2" value="2"/>
-									<label>C.6</label><br/>
-									<input type="radio" name="_answer" id="_answer3" value="1"/>
-									<label>D.8</label>
-								</p>
-							</div>
-							<div>
-								<h3>多项选择题</h3>
-								<p>
-									试题1：<span>基础语言类型分为几种？</span><a href="">标记</a><br/>
-									<input type="checkbox" name="answer1" id="_answer0" value="8"/>
-									<label>A.2</label><br/>
-									<input type="checkbox" name="answer2" id="_answer1" value="4"/>
-									<label>B.4</label><br/>
-									<input type="checkbox" name="answer3" id="_answer2" value="2"/>
-									<label>C.6</label><br/>
-									<input type="checkbox" name="answer4" id="_answer3" value="1"/>
-									<label>D.8</label>
-								</p>
-							</div>
-							<div>
-								<h3>判断题</h3>
-								<p>
-									试题2：<span>浮点型分为float和double两种</span><a href="">标记</a><br/>
-									<input type="radio" name="id_answer" id="id_answer0" value="1"/>
-									<label>对</label><br/>
-									<input type="radio" name="id_answer" id="id_answer1" value="0"/>
-									<label>错</label>
-								</p>
-							</div>
+							<s:iterator value="uqTypeList" var="uqType">
+								<s:if test="#uqType==1">
+									<div>
+										<h3>单项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<s:iterator value="#uqType.uqModelList" var="uqModel" status="singleSt">
+											<p>
+												试题${singleSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
+												<s:iterator value="#uqModel.opList" var="op">
+													<input type="radio" name="answer_${op.optionId}" id="answer" value="${op.optionOrder}"/>
+													<label>${op.optionDes}</label><br/>
+												</s:iterator>
+											</p>
+										</s:iterator>
+									</div>
+								</s:if>
+								<s:elseif test="#uqType==2">
+									<div>
+										<h3>多项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<s:iterator value="#uqType.uqModelList" var="uqModel" status="mulSt">
+											<p>
+												试题${mulSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
+												<s:iterator value="#uqModel.opList" var="op">
+													<input type="checkbox" name="answer_${op.optionId}" id="answer" value="${op.optionOrder}"/>
+													<label>${op.optionDes}</label><br/>
+												</s:iterator>
+											</p>
+										</s:iterator>
+									</div>
+								</s:elseif>
+								<s:elseif test="#uqType==3">
+									<div>
+										<h3>判断题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<s:iterator value="#uqType.uqModelList" var="uqModel" status="judgeSt">
+											<p>
+												试题${judgeSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
+												<s:iterator value="#uqModel.opList" var="op">
+													<input type="radio" name="id_answer" id="id_answer0" value="1"/>
+													<label>${op.optionDes}</label><br/>
+												</s:iterator>
+											</p>
+										</s:iterator>
+									</div>
+								</s:elseif>
+							</s:iterator>
 							<p>
 								<input type="button" value="交卷" id="send" class="btn btn-green big"/>
 							</p>

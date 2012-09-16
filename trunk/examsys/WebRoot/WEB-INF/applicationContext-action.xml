@@ -57,6 +57,9 @@
 	<bean id="deleteUgAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUgAction" parent="modelAction"></bean>
 		
 <!-- 考试用户action -->	
-		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
+	<!-- 用户考试列表 -->
+	<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
+	<!-- 用户考试内容 -->
+	<bean id="userExamContentAction" scope="prototype" class="com.sys.exam.action.user.UserExamContentAction" parent="modelAction"></bean>
 	
 </beans>
