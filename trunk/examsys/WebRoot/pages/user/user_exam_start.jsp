@@ -33,8 +33,7 @@
 			
 			<s:iterator value="listUserExams"  var="lue">
 			
-			<s:form action="userExamContent.action" method="post" id="uecform">
-			<s:hidden value="lue.ueId" name="ueId"></s:hidden>
+			<input type="hidden" name="ueId" value="${lue.ueId}"/>
 			<h3 class="title-article">
 					<span class="editarticle">
 					请注意考场纪律
@@ -46,10 +45,10 @@
 						<span class="timestamp">考试时长：${lue.exam.examTime  }分钟 </span>
 					</div>
 				</h3>
-				</s:form>
+				
 				<div class="wrapper-login" style=" text-align: center;">
 				<p>
-					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam();"/>
+					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam(${lue.ueId});"/>
 				</p>
 				</div>
 			</s:iterator>
