@@ -26,5 +26,14 @@
 			<result name="success" >user_exam_content.jsp</result>
 			<result name="input" >user_exam_content.jsp</result>
 		</action>
+		<!-- 交卷 -->
+		<action name="commitAnswer" class="commitAnswerAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>
