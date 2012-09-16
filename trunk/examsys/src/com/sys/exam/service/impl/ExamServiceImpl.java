@@ -230,8 +230,8 @@ public class ExamServiceImpl implements ExamService
 
 	@Override
 	public Exam findExamById(long examId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	    Exam exam=managerService.getExamDao().get(examId);
+		return exam;
 	}
 
 }
