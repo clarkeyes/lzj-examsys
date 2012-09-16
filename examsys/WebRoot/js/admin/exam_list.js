@@ -14,9 +14,10 @@ $(function(){
 			{field:'examName',title:'名称',width:100},
 			{field:'examTime',title:'时长',width:80},
 			{field:'userNum',title:'人数',width:100},
-			{field:'opt',title:'操作',width:200,align:'left',
+			{field:'opt',title:'操作',width:250,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
-					return 	'<a href="javascript:;" onclick="toImportUserGroup('+rec.examId+');">导入用户组</a>&nbsp;'
+					return 	'<a href="javascript:;" onclick="examContent('+rec.examId+');">查看内容</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="toImportUserGroup('+rec.examId+');">导入用户组</a>&nbsp;'
 					+'|&nbsp;<a href="javascript:;" onclick="checkSocre('+rec.examId+');">查看成绩</a>&nbsp;'
 					+'|&nbsp;<a href="javascript:;" onclick="deleteExam('+rec.examId+');">删除</a>&nbsp;';
 				}
@@ -66,5 +67,10 @@ function toImportUserGroup(examId){
 //查看考试对应的用户成绩
 function checkSocre(examId){
 	window.location="../admin/userscore_list.jsp?examId="+examId;
+	window.event.returnValue=false;
+}
+//查看考试内容
+function examContent(examId){
+	window.location="../admin/examContent.action?examId="+examId;
 	window.event.returnValue=false;
 }
