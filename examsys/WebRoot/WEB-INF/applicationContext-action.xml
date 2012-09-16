@@ -61,5 +61,7 @@
 	<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
 	<!-- 用户考试内容 -->
 	<bean id="userExamContentAction" scope="prototype" class="com.sys.exam.action.user.UserExamContentAction" parent="modelAction"></bean>
+	<!-- 交卷 -->
+	<bean id="commitAnswerAction" scope="prototype" class="com.sys.exam.action.user.CommitAnswerAction" parent="modelAction"></bean>
 	
 </beans>

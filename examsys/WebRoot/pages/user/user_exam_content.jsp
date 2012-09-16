@@ -8,6 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/themes/icon.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate_pack.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/validate_regex.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/user/user_exam_content.js"></script>
   </head>
   
   <body id="top">
@@ -34,7 +37,7 @@
 						<s:if test="ue.ueState==3">
 							考试进行中
 						</s:if>
-						<s:elseif test="ue.ueState==3">
+						<s:elseif test="ue.ueState==4">
 							已提交
 						</s:elseif>
 					</span>
@@ -47,45 +50,48 @@
 				</h3>
 				<div class="text-article">
 					<div>
-						<form action="">
-							<s:iterator value="uqTypeList" var="uqType">
-								<s:if test="#uqType==1">
+						<form id="commitUserAnswer" >
+							<s:iterator value="uqTypeList" var="uqType" status="st">
+								<s:if test="#uqType.type==1">
 									<div>
 										<h3>单项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="singleSt">
 											<p>
+												<input type="hidden" name="taList[${st.index}].uaList[${singleSt.index}].uqId" value="${uqModel.uq.uqId}"/>
 												试题${singleSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
-													<input type="radio" name="answer_${op.optionId}" id="answer" value="${op.optionOrder}"/>
+													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}"/>
 													<label>${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 										</s:iterator>
 									</div>
 								</s:if>
-								<s:elseif test="#uqType==2">
+								<s:elseif test="#uqType.type==2">
 									<div>
 										<h3>多项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="mulSt">
 											<p>
+												<input type="hidden" name="taList[${st.index}].uaList[${mulSt.index}].uqId" value="${uqModel.uq.uqId}"/>
 												试题${mulSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
-												<s:iterator value="#uqModel.opList" var="op">
-													<input type="checkbox" name="answer_${op.optionId}" id="answer" value="${op.optionOrder}"/>
+												<s:iterator value="#uqModel.opList" var="op" status="anSt">
+													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer" value="${op.optionOrder}"/>
 													<label>${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 										</s:iterator>
 									</div>
 								</s:elseif>
-								<s:elseif test="#uqType==3">
+								<s:elseif test="#uqType.type==3">
 									<div>
 										<h3>判断题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="judgeSt">
 											<p>
+												<input type="hidden" name="taList[${st.index}].uaList[${judgeSt.index}].uqId" value="${uqModel.uq.uqId}"/>
 												试题${judgeSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
-												<input type="radio" name="answer_${op.optionId}" id="answer" value="1"/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="1"/>
 												<label>对</label><br/>
-												<input type="radio" name="answer_${op.optionId}" id="answer" value="0"/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="0"/>
 												<label>错</label><br/>
 											</p>
 										</s:iterator>
@@ -93,7 +99,7 @@
 								</s:elseif>
 							</s:iterator>
 							<p>
-								<input type="button" value="交卷" id="send" class="btn btn-green big"/>
+								<input type="submit" value="交卷" id="send" class="btn btn-green big"/>
 							</p>
 							
 						</form>
