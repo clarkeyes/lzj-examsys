@@ -7,6 +7,7 @@ import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.bean.UserQuestion;
+import com.sys.exam.database.model.TypeAnswer;
 import com.sys.exam.database.model.UqModel;
 import com.sys.exam.database.model.UqType;
 import com.sys.exam.service.ManagerService;
@@ -54,7 +55,7 @@ public class UserQuestionServiceImpl implements UserQuestionService
         for (int i = 1; i <= 3; i++)
         {
             ut = new UqType();
-            ut.setType(Constant.QUESTION_SINGLE);
+            ut.setType(i);
             List<UqModel> listUqms = new ArrayList<UqModel>();
             UqModel uqm = null;
             for (UserQuestion uq : listuqs)
@@ -89,5 +90,11 @@ public class UserQuestionServiceImpl implements UserQuestionService
         managerService.getUserExamDao().save(userex);
         return listUqTypes;
     }
+
+	@Override
+	public String addUserAnswer(List<TypeAnswer> taList) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

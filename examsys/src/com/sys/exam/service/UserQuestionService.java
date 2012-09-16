@@ -2,6 +2,7 @@ package com.sys.exam.service;
 
 import java.util.List;
 
+import com.sys.exam.database.model.TypeAnswer;
 import com.sys.exam.database.model.UqType;
 
 /**
@@ -17,6 +18,13 @@ public interface UserQuestionService
 	 * @throws Exception
 	 */
 	List<UqType> findUqTypeList(Long ueId)throws Exception;
+
+	/**用户交卷，保存用户答案，修改考试状态
+	 * @param taList 答案列表
+	 * @return null：成功，其他为失败信息
+	 * @throws Exception
+	 */
+	String addUserAnswer(List<TypeAnswer> taList)throws Exception;
 
    
 
