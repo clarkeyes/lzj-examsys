@@ -47,7 +47,15 @@
 	<bean id="deleteUsersAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUsersAction" parent="modelAction"></bean>
 	<!-- 导入用户 -->
 	<bean id="importUsersAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserAction" parent="modelAction"></bean>
-	
+
+<!-- 用户组 -->
+	<!-- 用户组列表 -->
+	<bean id="userGroupListAction" scope="prototype" class="com.sys.exam.action.admin.UserGroupListAction" parent="modelAction"></bean>
+	<!-- 添加用户组 -->
+	<bean id="addUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUgAction" parent="modelAction"></bean>
+	<!-- 删除用户组 -->
+	<bean id="deleteUgAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUgAction" parent="modelAction"></bean>
+		
 <!-- 考试用户action -->	
 		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
 	
