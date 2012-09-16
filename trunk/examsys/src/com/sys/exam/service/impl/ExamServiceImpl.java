@@ -12,6 +12,7 @@ import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.model.ExamModel;
 import com.sys.exam.database.model.QcModel;
 import com.sys.exam.database.model.QuesType;
+import com.sys.exam.database.model.UqType;
 import com.sys.exam.service.ExamService;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.util.Constant;
@@ -174,5 +175,17 @@ public class ExamServiceImpl implements ExamService
         return ret;
 
     }
+
+	@Override
+	public List<UqType> findEqTypeList(long examId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Exam findExamById(long examId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
