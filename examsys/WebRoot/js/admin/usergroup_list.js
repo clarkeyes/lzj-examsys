@@ -13,7 +13,7 @@ $(function(){
 		columns:[[
 			{field:'ugName',title:'用户组名',width:100},
 			{field:'userNum',title:'人数',width:100},
-			{field:'opt',title:'操作',width:70,align:'left',
+			{field:'opt',title:'操作',width:200,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
 					return 	'<a href="javascript:;" onclick="deleteUserGroup('+rec.ugId+');">删除</a>&nbsp;'
 					+'|&nbsp;<a href="javascript:;" onclick="orgUser('+rec.ugId+');">组织用户</a>&nbsp;';
