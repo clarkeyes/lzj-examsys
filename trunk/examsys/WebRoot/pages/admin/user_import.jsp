@@ -3,11 +3,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>考试列表</title>
+    <title>导入用户</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/themes/gray/easyui.css" />
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/themes/icon.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/local/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/user_import.js"></script>
 	<script type="text/javascript">
 		$(function(){
 		    $("#yhgl").addClass("current");
@@ -37,7 +39,7 @@
 				<section class="column width6 first">
 					<span class="msg" id="message">
 					</span>
-					<form id="addVlanForm"action="vlanAdd.action" method="post">
+					<form id="importUsersForm" method="post">
 					    <fieldset>
 				    <legend>所需字段</legend>
 			    		<p>
@@ -47,10 +49,10 @@
 						<div class="small">说明：Excel文件，文件首行为标题行，需包括账号，姓名。
 						</div>
 						<p class="box">
-							<input type="button" value="导入" id="send" class="btn btn-green big"/>
+							<input type="submit" value="导入" id="send" class="btn btn-green big"/>
 						</p>
 						</fieldset>
-					    
+					 <div id="loading" class="datagrid-mask-msg"></div>   
 					</form>
 				</section>
 			</div>

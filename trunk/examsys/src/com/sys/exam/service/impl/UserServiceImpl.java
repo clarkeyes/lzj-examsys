@@ -3,6 +3,7 @@ package com.sys.exam.service.impl;
 
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserService;
@@ -59,6 +60,24 @@ public class UserServiceImpl implements UserService
         {
             return null;
         }
+	}
+
+	@Override
+	public Pager findUserListByRole(int userRole, Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteUsers(List<Long> userIdList) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addImportUsers(String filePath) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}  
 
 }

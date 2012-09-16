@@ -24,7 +24,7 @@
 			<h1>
 			</h1>
 			<!-- Quick search box -->
-			<form action="" method="get">
+			<form id="userIdForm">
 				 
 			</form>
 		</div>
