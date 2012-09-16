@@ -44,6 +44,7 @@ public class DocTool
         hashCategory.put("4.时事政治（50题）", "时事政治");
         hashCategory.put("1.公安工作（25题）", "公安工作");
         hashCategory.put("2.部队军事工作（115题）", "部队军事工作");
+        hashCategory.put("3.部队政治工作（390题）", "部队政治工作");
         hashCategory.put("4.后勤管理工作（240题）", "后勤管理工作");
         hashCategory.put("5.廉政建设（380题）", "廉政建设");
         hashCategory.put("（三）法律法规（1065题）", "法律法规");
@@ -70,7 +71,7 @@ public class DocTool
         QuestionBaseDao qbd = managerService.getQuestionBaseDao();
         QuestionCategoryDao qcd = managerService.getQuestionCategoryDao();
 
-        QuestionBase qb = qbd.get(1l);
+        QuestionBase qb = qbd.get(4l);
         QuestionCategory qc = null;
         Questions que = null;
         Set<Options> setOptions = new HashSet<Options>();
@@ -164,16 +165,41 @@ public class DocTool
       */
     private void anaOptions(String line, Set<Options> setOptions, Questions que)
     {
-        String[] strs=line.split("\\s+");
         Options opt=null;
-        for (int i = 0; i < strs.length; i++)
+        String regex = "[ABCDEF]\\.";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(line);
+        int or=-1;
+        while (m.find())
         {
+            if (or!=-1)
+            {
+                String strtmp=line.substring(or, m.start()); 
+                opt=new Options();
+                opt.setQuestions(que);
+                opt.setOptionOrder(setOptions.size());
+                opt.setOptionDes(strtmp);
+                setOptions.add(opt);
+                
+            }//end if
+                
+            or=m.start();
+        }// end while
+        if (or!=-1)
+        {
+            String strtmp=line.substring(or);
             opt=new Options();
             opt.setQuestions(que);
             opt.setOptionOrder(setOptions.size());
-            opt.setOptionDes(strs[i]);
+            opt.setOptionDes(strtmp);
             setOptions.add(opt);
-        }//end for
+        }//end if
+        else {
+            System.out.println(line);
+        }//end else
+        
+        
+       
 
     }
 
@@ -185,7 +211,7 @@ public class DocTool
     private boolean isOption(String line)
     {
         boolean ret = false;
-        String regex = "[ABCD]\\..*";
+        String regex = "[ABCDEFGHIJKLMN]\\..*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         if (m.find())
@@ -294,11 +320,11 @@ public class DocTool
     private Integer countAnswer(String group)
     {
         int ret=0;
-        if (group.indexOf("A")!=-1||group.indexOf("√")!=-1)
+        if (group.indexOf("A")!=-1||group.indexOf("×")!=-1)
         {
             ret=ret+1;
         }//end if
-        if (group.indexOf("B")!=-1) {
+        if (group.indexOf("B")!=-1||group.indexOf("√")!=-1) {
             ret=ret+2;
         }//end if
         if (group.indexOf("C")!=-1) {
@@ -367,13 +393,22 @@ public class DocTool
          DocTool td = new DocTool();
          td.analyseQuestionbase("base.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
-//        String regex = "\\[\\s*[易中难]\\s*\\]";
+//        String line="A.2DD         B. 5AA          C.4         D. 3";
+//        String regex = "[ABCDEF]\\.";
 //        Pattern p = Pattern.compile(regex);
-//        Matcher m = p.matcher("1.马克思主义理论的基础是（ C ）。[易]");
-//        System.out.println(m.find());
-//        System.out.println(m.group());
-//        String ddd="66.事物发展的源泉在于（     ） 。";
-//        System.out.println(ddd.indexOf("."));
+//        Matcher m = p.matcher(line);
+//        int or=-1;
+//        while (m.find())
+//        {
+//            System.out.println(m.group());
+//            if (or!=-1)
+//            {
+//                System.out.println(line.substring(or, m.start())); 
+//            }//end if
+//                
+//            or=m.start();
+//        }// end while
+//        System.out.println(line.substring(or)); 
 
     }
 }

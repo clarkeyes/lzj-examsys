@@ -44,13 +44,14 @@ public class UserGroupServiceImpl implements UserGroupService
 
 	@Override
 	public Pager findUgPager(Pager pager) throws Exception {
-		String sql="form UserGroup ug ";
+		String sql="from UserGroup ug ";
 		List<UserGroup> listugs=managerService.getUserGroupDao().find(sql);
 		List<UgModel> listugms=new ArrayList<UgModel>();
 		UgModel ugm=null;
 		for (UserGroup ug : listugs)
         {
 		    ugm=new UgModel();
+		    ugm.setUgId(ug.getUgId());
 		    ugm.setUgName(ug.getUgName());
 		    ugm.setUserNum(ug.getUserGroupRels().size());
 		    listugms.add(ugm);

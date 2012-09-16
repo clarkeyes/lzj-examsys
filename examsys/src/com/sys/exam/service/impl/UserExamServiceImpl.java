@@ -196,8 +196,9 @@ public class UserExamServiceImpl implements UserExamService
     @Override
     public Pager findUserScoreList(Long examId, Pager pager) throws Exception
     {
+        System.out.println(examId);
         Exam exam = managerService.getExamDao().get(examId);
-        String sql = "from UserExam ue where ue.ue_examId=" + examId;
+        String sql = "from UserExam ue where ue.exam.examId=" + examId;
         List<UserExam> listUes = managerService.getUserExamDao().find(sql);
         List<UserScore> listuss = new ArrayList<UserScore>();
         UserScore us = null;
@@ -209,6 +210,7 @@ public class UserExamServiceImpl implements UserExamService
             us.setUeState(getUeState(ue.getUeState()));
             us.setUserAccount(ue.getUser().getUserAccount());
             us.setUserName(ue.getUser().getUserName());
+            listuss.add(us);
         }
         // 分页
         int pageBegin = (pager.getCurrentPage() - 1) * pager.getPageSize();

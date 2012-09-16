@@ -10,6 +10,7 @@ import com.sys.exam.database.bean.UserQuestion;
 import com.sys.exam.database.model.TypeAnswer;
 import com.sys.exam.database.model.UqModel;
 import com.sys.exam.database.model.UqType;
+import com.sys.exam.database.model.UserAnswer;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserQuestionService;
 import com.sys.exam.util.Constant;
@@ -22,6 +23,8 @@ public class UserQuestionServiceImpl implements UserQuestionService
 {
 
     private ManagerService managerService;
+    
+    private ServiceManager serviceManager;
 
     /**
      * @return Returns the managerService.
@@ -93,8 +96,54 @@ public class UserQuestionServiceImpl implements UserQuestionService
 
 	@Override
 	public String addUserAnswer(long ueId,List<TypeAnswer> taList) throws Exception {
-		// TODO Auto-generated method stub
+
+	    for (TypeAnswer ta : taList)
+        {
+            List<UserAnswer>listuas= ta.getUaList();
+            for (UserAnswer ua : listuas)
+            {
+                UserQuestion uq=managerService.getUserQuestionDao().get(ua.getUqId());
+                if (ua.getAnList()==null)
+                {
+                    uq.setUqAnswer(-1);
+                }//end if
+                else {
+                    List<Integer> lista=ua.getAnList();
+                    int result=0;
+                    for (Integer inta : lista)
+                    {
+                        if (null!=inta)
+                        {
+                            result=result+(int)(Math.pow(2.0, Double.valueOf(inta+"")));
+                        }//end if
+                    }
+                    uq.setUqAnswer(result);
+                }//end else
+                managerService.getUserQuestionDao().save(uq);
+            }
+            
+        }
+	    UserExam ueone=managerService.getUserExamDao().get(ueId);
+	    serviceManager.getUserExamService().updateSubUserExam(ueone);
+	    
+	    
 		return null;
 	}
+
+    /**
+     * @return Returns the serviceManager.
+     */
+    public ServiceManager getServiceManager()
+    {
+        return serviceManager;
+    }
+
+    /**
+     * @param serviceManager The serviceManager to set.
+     */
+    public void setServiceManager(ServiceManager serviceManager)
+    {
+        this.serviceManager = serviceManager;
+    }
 
 }
