@@ -83,10 +83,10 @@
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="judgeSt">
 											<p>
 												试题${judgeSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><a href="">标记</a><br/>
-												<s:iterator value="#uqModel.opList" var="op">
-													<input type="radio" name="id_answer" id="id_answer0" value="1"/>
-													<label>${op.optionDes}</label><br/>
-												</s:iterator>
+												<input type="radio" name="answer_${op.optionId}" id="answer" value="1"/>
+												<label>对</label><br/>
+												<input type="radio" name="answer_${op.optionId}" id="answer" value="0"/>
+												<label>错</label><br/>
 											</p>
 										</s:iterator>
 									</div>

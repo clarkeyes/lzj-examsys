@@ -56,6 +56,12 @@ public class Constant{
     /**题库的ID*/
     public static  int QUESTION_BASE_ID=1;
     
+    /***************判断题选项标号****************/
+    /**判断对*/
+    public static final int JUDEG_YES=1;
+    /**判断错*/
+    public static final int JUDGE_NO=0;
+    
     /**考试时长*/
     public static  int EXAM_TIME=90;
     /**日期时间格式*/
