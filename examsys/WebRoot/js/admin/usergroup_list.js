@@ -5,17 +5,18 @@ $(function(){
 		nowrap: false,
 		striped: true,
 		singleSelect:true,
-		url:'',
+		url:'../admin/userGroupList.action',
 		sortName: '',
 		sortOrder: 'asc',
 		remoteSort: false,
-		idField:'',
+		idField:'ugId',
 		columns:[[
-			{field:'name',title:'用户组名',width:100},
-			{field:'num',title:'人数',width:100},
+			{field:'ugName',title:'用户组名',width:100},
+			{field:'userNum',title:'人数',width:100},
 			{field:'opt',title:'操作',width:70,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
-					return 	'';
+					return 	'<a href="javascript:;" onclick="deleteUserGroup('+rec.ugId+');">删除</a>&nbsp;'
+					+'|&nbsp;<a href="javascript:;" onclick="orgUser('+rec.ugId+');">组织用户</a>&nbsp;';
 				}
 			}
 		]],
@@ -27,7 +28,7 @@ $(function(){
 			text:'添加',
 			iconCls:'icon-add ',
 			handler:function(){
-				window.location="usergroup_add.jsp";
+				window.location="../admin/usergroup_add.jsp";
 				window.event.returnValue=false;
 			}
 		}]
@@ -35,3 +36,23 @@ $(function(){
  	});
  
 });
+//删除用户组
+function deleteUserGroup(ugId){
+	$.messager.confirm("系统消息","确认删除？",function(bool)
+	{
+		if(bool){
+			$.post(
+				"../admin/deleteUg.action",
+				{"ugId":ugId},
+				function(data){
+					if(data.result == "success"){
+						$.messager.alert("系统消息","删除成功","info");
+						$('#userGroupList').datagrid('reload');
+						$('#userGroupList').datagrid('clearSelections');
+					}else if(data.result != null){
+						$.messager.alert("系统消息",data.result,"error");
+					}
+			});
+		}
+	});
+}
