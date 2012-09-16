@@ -2,6 +2,7 @@ package com.sys.exam.service.impl;
 
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.UserGroup;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserGroupService;
@@ -36,5 +37,23 @@ public class UserGroupServiceImpl implements UserGroupService
 	public List<UserGroup> findUgList() throws Exception {
 	    List<UserGroup> listUgs=managerService.getUserGroupDao().loadAll();
 		return listUgs;
+	}
+
+	@Override
+	public Pager findUgPager(Pager pager) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addUg(String ugName) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteUgById(Long ugId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
