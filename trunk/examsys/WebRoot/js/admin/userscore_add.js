@@ -24,6 +24,10 @@ $(function(){
 				"../admin/addUserScore.action",
 				$("#addUserScoreForm").serialize(),
 				function(data){
+					if(data.fieldErrors['ueGrade']!=null){
+				        $("#ueGrade").prev().prev().find(".error").remove();//删除以前的提醒元素
+				        $("#ueGrade").prev().prev().append("<label class='error onError'>"+data.fieldErrors['ueGrade']+"</label>");
+		    		}
 					if("success"==data.result){
 						$.messager.alert("系统消息","提交成绩成功!",'info',function(){
 							window.location.href="../admin/userscore_list.jsp?examId="+$("#examId").val();
