@@ -73,7 +73,7 @@ public class ExamServiceImpl implements ExamService
 
 	@Override
 	public String deleteExam(Long examId) throws Exception {
-		// TODO Auto-generated method stub
+		managerService.getExamDao().deleteByKey(examId);
 		return null;
 	}
    
@@ -82,7 +82,7 @@ public class ExamServiceImpl implements ExamService
             List<QuesType> typeList) throws Exception
     {
         String ret = null;
-        // TODO 判断各种题型数量是否超过题库中数量
+        //  判断各种题型数量是否超过题库中数量
         // 创建考试
         Exam exam = new Exam();
         exam.setExamName(examName);

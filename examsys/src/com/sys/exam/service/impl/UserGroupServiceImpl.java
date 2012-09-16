@@ -34,7 +34,7 @@ public class UserGroupServiceImpl implements UserGroupService
 
 	@Override
 	public List<UserGroup> findUgList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	    List<UserGroup> listUgs=managerService.getUserGroupDao().loadAll();
+		return listUgs;
 	}
 }

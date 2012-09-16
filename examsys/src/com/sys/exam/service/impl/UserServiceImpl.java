@@ -1,10 +1,12 @@
 package com.sys.exam.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
+import com.sys.exam.database.model.UserModel;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserService;
 import com.sys.exam.util.EncryptUtil;
@@ -64,13 +66,39 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	public Pager findUserListByRole(int userRole, Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+	    String sql="from User u where u.userRole="+userRole;
+	    List<User> listusers=managerService.getUserDao().find(sql);
+	    List<UserModel> listUms=new ArrayList<UserModel>();
+	    UserModel um=null;
+	    for (User user : listusers)
+        {
+            um=new UserModel();
+            um.setUserAccount(user.getUserAccount());
+            um.setUserId(user.getUserId());
+            um.setUserName(user.getUserName());
+            listUms.add(um);
+        }
+	    
+	    //分页
+	    int pageBegin = (pager.getCurrentPage() - 1) * pager.getPageSize();
+        int pageEnd = pageBegin + pager.getPageSize();
+        int total = listUms.size();
+        if (pageEnd > total)
+            pageEnd = total;
+        Pager p = new Pager(total, pager.getPageSize());
+        p.setElements(listUms.subList(pageBegin, pageEnd));
+	    
+		return p;
 	}
 
 	@Override
 	public String deleteUsers(List<Long> userIdList) throws Exception {
-		// TODO Auto-generated method stub
+	    for (Long long1 : userIdList)
+        {
+	        managerService.getUserDao().deleteByKey(long1);
+        }
+		
 		return null;
 	}
 
