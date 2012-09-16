@@ -1,18 +1,20 @@
 package com.sys.exam.service.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import com.sys.common.logtool.LoggerTool;
 import com.sys.common.system.CommonUtil;
 import com.sys.exam.database.Pager;
+import com.sys.exam.database.bean.Exam;
 import com.sys.exam.database.bean.ExamQuestion;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.bean.UserQuestion;
+import com.sys.exam.database.model.UserScore;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserExamService;
 import com.sys.exam.util.Constant;
@@ -143,26 +145,94 @@ public class UserExamServiceImpl implements UserExamService
 
 	@Override
 	public Pager findUserScoreList(Long examId, Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Exam exam=managerService.getExamDao().get(examId);
+		String sql="from UserExam ue where ue.ue_examId="+examId;
+		List<UserExam> listUes=managerService.getUserExamDao().find(sql);
+		List<UserScore> listuss=new ArrayList<UserScore>();
+		UserScore us=null;
+		for (UserExam ue : listUes)
+        {
+            us=new UserScore();
+            us.setUeGrade(ue.getUeGrade());
+            us.setUeId(ue.getUeId());
+            us.setUeState(getUeState(ue.getUeState()));
+            us.setUserAccount(ue.getUser().getUserAccount());
+            us.setUserName(ue.getUser().getUserName());
+        }
+		//分页
+        int pageBegin = (pager.getCurrentPage() - 1) * pager.getPageSize();
+        int pageEnd = pageBegin + pager.getPageSize();
+        int total = listuss.size();
+        if (pageEnd > total)
+            pageEnd = total;
+        Pager p = new Pager(total, pager.getPageSize());
+        p.setElements(listuss.subList(pageBegin, pageEnd));
+        
+		
+		
+		return p;
 	}
 
-	@Override
+	private String getUeState(Integer ueState)
+    {
+	    String ret="未知";
+        switch (ueState)
+        {
+        case Constant.EXAM_STATE_NEW:
+        {
+            ret="新建";
+            break;
+        }//end case
+        case Constant.EXAM_STATE_START:
+        {
+            ret="开始";
+            break;
+        }//end case
+        case Constant.EXAM_STATE_GOING:
+        {
+            ret="进行中";
+            break;
+        }//end case
+        case Constant.EXAM_STATE_SUB:
+        {
+            ret="交卷";
+            break;
+        }//end case
+        case Constant.EXAM_STATE_OVER:
+        {
+            ret="完成";
+            break;
+        }//end case
+        default:
+            ret="未知";
+            break;
+        }//end switch 
+        return ret;
+    }
+
+    @Override
 	public UserExam findUeById(Long ueId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	    UserExam ue=managerService.getUserExamDao().get(ueId);
+		return ue;
 	}
 
 	@Override
 	public String updateUeGrade(Long ueId, Float ueGrade) throws Exception {
-		// TODO Auto-generated method stub
+	    UserExam ue=managerService.getUserExamDao().get(ueId);
+	    ue.setUeGrade(ueGrade);
+	    managerService.getUserExamDao().update(ue);
 		return null;
 	}
 
 	@Override
 	public String updateUesState(List<Long> ueIdList, int ueState)
 			throws Exception {
-		// TODO Auto-generated method stub
+		for (Long long1 : ueIdList)
+        {
+		    UserExam ue=managerService.getUserExamDao().get(long1);
+		    ue.setUeState(ueState);
+		    managerService.getUserExamDao().update(ue);
+        }
 		return null;
 	}
 }
