@@ -92,7 +92,7 @@ public class UserQuestionServiceImpl implements UserQuestionService
     }
 
 	@Override
-	public String addUserAnswer(List<TypeAnswer> taList) throws Exception {
+	public String addUserAnswer(long ueId,List<TypeAnswer> taList) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
