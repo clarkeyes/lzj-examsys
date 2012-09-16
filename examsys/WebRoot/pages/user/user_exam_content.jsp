@@ -99,9 +99,9 @@
 									</div>
 								</s:elseif>
 							</s:iterator>
-							<p>
-								<input type="submit" value="交卷" id="send" class="btn btn-green big"/>
-							</p>
+							<div style="text-align: center;margin-top: 25px">
+								<input type="submit" value="交卷" id="send" style="width: 200px;height: 60px;font-size:15px" />
+							</div>
 							
 						</form>
 					</div>
