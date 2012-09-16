@@ -28,3 +28,7 @@ $(function(){
 		}
 	});
 });	 
+//标记
+function makeSign(uqId){
+	$("#uq_"+uqId).addClass("uqSign");
+}

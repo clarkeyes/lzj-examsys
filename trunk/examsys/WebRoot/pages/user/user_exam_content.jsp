@@ -59,7 +59,8 @@
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="singleSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${singleSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${singleSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><br/>
+												试题${singleSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.examQuestion.questions.quesDes}</span>
+												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
 													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}"/>
 													<label>${op.optionDes}</label><br/>
@@ -74,7 +75,8 @@
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="mulSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${mulSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${mulSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><br/>
+												试题${mulSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.examQuestion.questions.quesDes}</span>
+												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op" status="anSt">
 													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer" value="${op.optionOrder}"/>
 													<label>${op.optionDes}</label><br/>
@@ -89,7 +91,8 @@
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="judgeSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${judgeSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${judgeSt.count}：<span>${uqModel.uq.examQuestion.questions.quesDes}</span><br/>
+												试题${judgeSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.examQuestion.questions.quesDes}</span>
+												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="1"/>
 												<label>对</label><br/>
 												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="0"/>
