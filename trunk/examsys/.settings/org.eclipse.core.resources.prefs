@@ -1,4 +1,4 @@
-#Sun Sep 16 02:44:05 GMT 2012
+#Sun Sep 16 08:30:07 GMT 2012
 eclipse.preferences.version=1
 encoding//WebRoot/js/admin/exam_add.js=UTF-8
 encoding//WebRoot/js/admin/exam_list.js=UTF-8
@@ -10,6 +10,7 @@ encoding//WebRoot/js/admin/usergroup_list.js=UTF-8
 encoding//WebRoot/js/admin/userscore_add.js=UTF-8
 encoding//WebRoot/js/admin/userscore_list.js=UTF-8
 encoding//WebRoot/js/login/validateLogin.js=UTF-8
+encoding//WebRoot/js/user/user_exam_content.js=UTF-8
 encoding//WebRoot/js/user/user_exam_start.js=UTF-8
 encoding//WebRoot/js/validate_regex.js=UTF-8
 encoding/<project>=UTF-8
