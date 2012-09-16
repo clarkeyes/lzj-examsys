@@ -18,6 +18,7 @@
 	<!-- 获取登录用户名 -->
 	<bean id="headAction" scope="prototype" class="com.sys.exam.action.login.HeadAction" parent="modelAction"></bean>
 <!-- 管理员用户action -->	
+<!-- 考试 -->
 	<!-- 考试列表 -->
 	<bean id="examListAction" scope="prototype" class="com.sys.exam.action.admin.ExamListAction" parent="modelAction"></bean>
 	<!-- 进入添加考试页面 -->
@@ -38,6 +39,14 @@
 	<bean id="addUserScoreAction" scope="prototype" class="com.sys.exam.action.admin.AddUserScoreAction" parent="modelAction"></bean>
 	<!-- 开启选中用户的考试 -->
 	<bean id="startUserExamAction" scope="prototype" class="com.sys.exam.action.admin.StartUserExamAction" parent="modelAction"></bean>
+
+<!-- 用户管理 -->
+	<!-- 用户列表 -->
+	<bean id="userListAction" scope="prototype" class="com.sys.exam.action.admin.UserListAction" parent="modelAction"></bean>
+	<!-- 删除用户 -->
+	<bean id="deleteUsersAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUsersAction" parent="modelAction"></bean>
+	<!-- 导入用户 -->
+	<bean id="importUsersAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserAction" parent="modelAction"></bean>
 	
 <!-- 考试用户action -->	
 		<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>

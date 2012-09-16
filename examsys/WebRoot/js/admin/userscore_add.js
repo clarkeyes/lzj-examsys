@@ -4,8 +4,7 @@ $(function(){
 		rules: {
 			"ueGrade": {
 				required:true,
-				avaiScore:true,
-				rangelength: [1, 25]
+				avaiScore:true
 			}
 		},
 		messages: {

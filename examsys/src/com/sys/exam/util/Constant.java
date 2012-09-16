@@ -60,7 +60,10 @@ public class Constant{
     public static  int EXAM_TIME=90;
     /**日期时间格式*/
     public static  String DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
-   
+    /**存储上传的用户表信息*/
+    public static  final String TEMP_USERfILE="user.xls"; 
+    /**限制上传文件大小的最大值*/
+    public static final long MAXIMUM=10000000000L;
     
     static{
         try
