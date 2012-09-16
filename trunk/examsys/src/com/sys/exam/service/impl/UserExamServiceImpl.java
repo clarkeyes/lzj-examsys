@@ -281,12 +281,20 @@ public class UserExamServiceImpl implements UserExamService
     public String updateUesState(List<Long> ueIdList, int ueState)
             throws Exception
     {
+        String ret=null;
         for (Long long1 : ueIdList)
         {
             UserExam ue = managerService.getUserExamDao().get(long1);
-            ue.setUeState(ueState);
+            if (ue.getUeState()<ueState)
+            {
+                ue.setUeState(ueState);
+            }//end if
+            else {
+                ret="考试完毕的用户不能重新考试";
+            }//end else
+            
             managerService.getUserExamDao().update(ue);
         }
-        return null;
+        return ret;
     }
 }
