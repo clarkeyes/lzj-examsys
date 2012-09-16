@@ -7,11 +7,15 @@ import com.sys.common.logtool.LoggerTool;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.Exam;
 import com.sys.exam.database.bean.ExamQuestion;
+import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.database.bean.Questions;
+import com.sys.exam.database.bean.UserExam;
+import com.sys.exam.database.bean.UserQuestion;
 import com.sys.exam.database.model.ExamModel;
 import com.sys.exam.database.model.QcModel;
 import com.sys.exam.database.model.QuesType;
+import com.sys.exam.database.model.UqModel;
 import com.sys.exam.database.model.UqType;
 import com.sys.exam.service.ExamService;
 import com.sys.exam.service.ManagerService;
@@ -178,8 +182,50 @@ public class ExamServiceImpl implements ExamService
 
 	@Override
 	public List<UqType> findEqTypeList(long examId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	    String sql = "from ExamQuestion eq where uq.exam.examId=" + examId;
+        List<ExamQuestion> listeqs = managerService.getExamQuestionDao().find(
+                sql);
+        List<UqType> listUqTypes = new ArrayList<UqType>();
+
+        sql = "from Options order by questions.quesId ,optionOrder";
+        List<Options> listOptions = managerService.getOptionsDao().find(sql);
+
+        UqType ut = null;
+
+        for (int i = 1; i <= 3; i++)
+        {
+            ut = new UqType();
+            ut.setType(i);
+            List<UqModel> listUqms = new ArrayList<UqModel>();
+            UqModel uqm = null;
+            for (ExamQuestion eq : listeqs)
+            {
+                Questions que = eq.getQuestions();
+                ut.setTypeScore(eq.getEqValue());
+                if (que.getQuesType() == i)
+                {
+                    uqm = new UqModel();
+                    uqm.setExamq(eq);
+                    List<Options> listops = new ArrayList<Options>();
+                    for (Options options : listOptions)
+                    {
+                        if (options.getQuestions().getQuesId() == que
+                                .getQuesId())
+                        {
+                            listops.add(options);
+                        }// end if
+                    }
+                    uqm.setOpList(listops);
+                    listUqms.add(uqm);
+                }// end if
+
+            }
+            ut.setUqModelList(listUqms);
+            ut.setUqNum(listUqms.size());
+            listUqTypes.add(ut);
+        }// end for
+
+        return listUqTypes;
 	}
 
 	@Override
