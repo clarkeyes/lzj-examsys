@@ -182,7 +182,7 @@ public class ExamServiceImpl implements ExamService
 
 	@Override
 	public List<UqType> findEqTypeList(long examId) throws Exception {
-	    String sql = "from ExamQuestion eq where uq.exam.examId=" + examId;
+	    String sql = "from ExamQuestion eq where eq.exam.examId=" + examId;
         List<ExamQuestion> listeqs = managerService.getExamQuestionDao().find(
                 sql);
         List<UqType> listUqTypes = new ArrayList<UqType>();
