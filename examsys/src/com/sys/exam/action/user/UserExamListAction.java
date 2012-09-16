@@ -35,7 +35,6 @@ public class UserExamListAction extends ModelAction {
     	try {
 			
 			listUserExams=examService.getAvaiExam(user);
-			LoggerTool.m_logger.info(listUserExams.size());
 			result="success";
 			return SUCCESS;
 		} catch (Exception e) {
