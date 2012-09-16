@@ -95,6 +95,11 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 查看考试题目 -->
+		<action name="examContent" class="examContentAction">
+			<result name="success">exam_content.jsp</result>
+			<result name="input">exam_content.jsp</result>
+		</action>
 <!-- 用户管理 -->
 		<!-- 用户列表 -->
 		<action name="userList" class="userListAction">
@@ -153,5 +158,6 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		
 	</package>
 </struts>
