@@ -10,7 +10,6 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>
 	<bean id="examDao" class="com.sys.exam.database.impl.ExamDaoImpl" parent="baseDao"/>
-	<bean id="examQuestionDao" class="com.sys.exam.database.impl.ExamQuestionDaoImpl" parent="baseDao"/>
 	<bean id="optionsDao" class="com.sys.exam.database.impl.OptionsDaoImpl" parent="baseDao"/>
 	<bean id="questionBaseDao" class="com.sys.exam.database.impl.QuestionBaseDaoImpl" parent="baseDao"/>
 	<bean id="questionCategoryDao" class="com.sys.exam.database.impl.QuestionCategoryDaoImpl" parent="baseDao"/>
@@ -20,6 +19,10 @@
 	<bean id="userGroupDao" class="com.sys.exam.database.impl.UserGroupDaoImpl" parent="baseDao"/>
 	<bean id="userGroupRelDao" class="com.sys.exam.database.impl.UserGroupRelDaoImpl" parent="baseDao"/>
 	<bean id="userQuestionDao" class="com.sys.exam.database.impl.UserQuestionDaoImpl" parent="baseDao"/>
+	
+	<bean id="examCateRatioDao" class="com.sys.exam.database.impl.ExamCateRatioDaoImpl" parent="baseDao"/>
+	<bean id="examQuesTypeDao" class="com.sys.exam.database.impl.ExamQuesTypeDaoImpl" parent="baseDao"/>
+	<bean id="questionTypeDao" class="com.sys.exam.database.impl.QuestionTypeDaoImpl" parent="baseDao"/>
 	
 
 </beans>
