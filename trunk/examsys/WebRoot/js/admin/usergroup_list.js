@@ -56,3 +56,8 @@ function deleteUserGroup(ugId){
 		}
 	});
 }
+//组织用户
+function orgUser(ugId){
+	window.location="../admin/usergroup_org.jsp?ugId="+ugId;
+	window.event.returnValue=false;
+}

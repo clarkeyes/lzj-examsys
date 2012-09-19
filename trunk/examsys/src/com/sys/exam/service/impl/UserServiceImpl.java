@@ -1,14 +1,23 @@
 package com.sys.exam.service.impl;
 
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
+import com.sys.exam.database.bean.UserGroup;
+import com.sys.exam.database.bean.UserGroupRel;
 import com.sys.exam.database.model.UserModel;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserService;
+import com.sys.exam.util.Constant;
 import com.sys.exam.util.EncryptUtil;
 
 
@@ -104,8 +113,227 @@ public class UserServiceImpl implements UserService
 
 	@Override
 	public String addImportUsers(String filePath) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String flag = null;
+        // 创建对Excel工作簿文件的引用
+        HSSFWorkbook wookbook = new HSSFWorkbook(new FileInputStream(
+        		filePath));
+        // 在Excel文档中，第一张工作表的缺省索引是0
+        // 其语句为：HSSFSheet sheet = workbook.getSheetAt(0);
+        // HSSFSheet sheet = wookbook.getSheet("Sheet2");
+        HSSFSheet sheet = wookbook.getSheetAt(0);
+        // 获取到Excel文件中的所有行数
+        int rows = sheet.getPhysicalNumberOfRows();
+        // 遍历行­
+        List<Integer> rowi = findByRow1(sheet);// 得到账号，昵称，所在的列号数组
+        //判断首行数据是不是按要求写的
+        if (rowi.size() >= 2)
+        {
+            for (int i = 1; i < rows; i++)
+            {
+                // 读取左上端单元格­
+                HSSFRow row = sheet.getRow(i);
+                // 行不为空­
+                if (row != null)
+                {
+                    // 获取到Excel文件中的所有的列­
+                    int cells = row.getPhysicalNumberOfCells();
+                    String value = "";
+                    // 遍历列­
+                    for (int j = 0; j < cells; j++)
+                    {
+                        // 获取到列的值­
+                        HSSFCell cell = row.getCell(j);
+
+                        if (cell != null)
+                        {
+                            cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                            value += cell.toString() + ",";
+                        }
+                    }
+                    // 将数据插入到mysql数据库中­
+                    if (value.contains(","))
+                    {
+                        String[] val = value.split(",");
+                        String userAccount = val[rowi.get(0)].toString();
+                        String userName = val[rowi.get(1)].toString();
+                        // 判断用户名、账号是否符合要求
+                        if (userAccount.matches("\\w{1,25}")
+                                && userName.matches("[\\w|\\u4e00-\\u9fa5]{1,25}"))
+                        {
+                            List<User> userList = managerService.getUserDao().find("from User u where u.userName='"
+                                            + userAccount + "'");
+                            if (userList.size() == 0)
+                            {
+                                User user = new User();
+                                user.setUserAccount(userAccount);
+                                user.setUserName(userName);
+                                user.setUserRole(Constant.USER_USER);
+                                String password = EncryptUtil.md5Encrypt(userAccount);
+                                user.setUserPassword(password);
+                                managerService.getUserDao().save(user);
+                            }
+                        }
+                        else
+                        {
+                            flag = "表格中有数据不符合要求";
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            flag = "表格首行数据错误";
+        }
+        return flag;
 	}  
+	/**
+	 * 关于方法的描述：得到账号，昵称，类别所在的列号数组
+	 * @param sheet
+	 * @return
+	 */
+	    private List<Integer> findByRow1(HSSFSheet sheet) {
+	   	 List<Integer> ret=new ArrayList<Integer>();
+	   	 HSSFRow row = sheet.getRow(0);
+	        if (row != null){
+	        	 // 获取到Excel文件中的所有的列­
+	            int cells = row.getPhysicalNumberOfCells();
+	            String value = "";
+	            // 遍历列­
+	            for (int j = 0; j < cells; j++)
+	            {
+	           	// 获取到列的值­
+	                HSSFCell cell = row.getCell(j);
+	                cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+	                if (cell != null)
+	                {
+	                        value += cell.toString() + ",";
+	                }
+	            }
+	                if (value.contains(","))
+	                {
+	                    String[] val = value.split(",");
+	                    for (int i = 0; i < val.length; i++) {
+							if(val[i].equals("账号"))
+								{
+								ret.add(i);
+								break;
+								}
+						}
+	                    for (int i = 0; i < val.length; i++) {
+	                        if(val[i].equals("姓名"))
+								{
+	                       	 ret.add(i);
+	                       	 break;
+								}    
+						}
+	                }
+	                return ret;
+	            }
+	        return ret;
+		}
+
+	@Override
+	public Pager findInGroupUsers(long ugId, Pager pager) throws Exception {
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("select user from User user,UserGroupRel ugr where user.userId=ugr.user.userId and ugr.userGroup.ugId=");
+		hsql.append(ugId);
+		List<User> userList=managerService.getUserDao().find(hsql.toString());
+		List<UserModel> userModelList=new ArrayList<UserModel>();
+		for(User user:userList){
+			UserModel userModel=new UserModel();
+			userModel.setUserAccount(user.getUserAccount());
+			userModel.setUserId(user.getUserId());
+			userModel.setUserName(user.getUserName());
+			userModelList.add(userModel);
+		}
+		// 分页
+        int pageBegin = (pager.getCurrentPage() - 1) * pager.getPageSize();
+        int pageEnd = pageBegin + pager.getPageSize();
+        int total = userModelList.size();
+        if (pageEnd > total)
+            pageEnd = total;
+        Pager p = new Pager(total, pager.getPageSize());
+        p.setElements(userModelList.subList(pageBegin, pageEnd));
+        return p;
+	}
+
+	@Override
+	public Pager findNotInGroupUsers(long ugId, Pager pager) throws Exception {
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("select user from User user left join fetch UserGroupRel ugr where user.userId=ugr.user.userId and ugr.userGroup.ugId!=");
+		hsql.append(ugId);
+		List<User> userList=managerService.getUserDao().find(hsql.toString());
+		List<UserModel> userModelList=new ArrayList<UserModel>();
+		for(User user:userList){
+			UserModel userModel=new UserModel();
+			userModel.setUserAccount(user.getUserAccount());
+			userModel.setUserId(user.getUserId());
+			userModel.setUserName(user.getUserName());
+			userModelList.add(userModel);
+		}
+		// 分页
+        int pageBegin = (pager.getCurrentPage() - 1) * pager.getPageSize();
+        int pageEnd = pageBegin + pager.getPageSize();
+        int total = userModelList.size();
+        if (pageEnd > total)
+            pageEnd = total;
+        Pager p = new Pager(total, pager.getPageSize());
+        p.setElements(userModelList.subList(pageBegin, pageEnd));
+        return p;
+	}
+
+	@Override
+	public String removeUsers(List<Long> userIdList, long ugId) throws Exception {
+		String ret=null;
+		//组织用户id
+		StringBuilder userIds=new StringBuilder();
+		for(int i=0;i<userIdList.size();i++){
+			userIds.append(userIdList.get(i));
+			if(i!=userIdList.size()-1){
+				userIds.append(",");
+			}
+		}
+		//查找选中用户
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from UserGroupRel ugr where ugr.userGroup.ugId=");
+		hsql.append(ugId);
+		hsql.append(" and ugr.user.userId in (");
+		hsql.append(userIds.toString());
+		hsql.append(")");
+		List<UserGroupRel> ugrList=managerService.getUserGroupRelDao().find(hsql.toString());
+		managerService.getUserGroupRelDao().deleteAll(ugrList);
+		return ret;
+	}
+
+	@Override
+	public String addUsersToUg(List<Long> userIdList, long ugId)
+			throws Exception {
+		String ret=null;
+		//组织用户id
+		StringBuilder userIds=new StringBuilder();
+		for(int i=0;i<userIdList.size();i++){
+			userIds.append(userIdList.get(i));
+			if(i!=userIdList.size()-1){
+				userIds.append(",");
+			}
+		}
+		//查找选中用户
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from User user where user.userId in (");
+		hsql.append(userIds.toString());
+		hsql.append(")");
+		List<User> userList=managerService.getUserDao().find(hsql.toString());
+		UserGroup ug=managerService.getUserGroupDao().get(ugId);
+		List<UserGroupRel> ugrList=new ArrayList<UserGroupRel>();
+		for(User user:userList){
+			UserGroupRel ugr=new UserGroupRel();
+			ugr.setUser(user);
+			ugr.setUserGroup(ug);
+			ugrList.add(ugr);
+		}
+		managerService.getUserGroupRelDao().saveOrUpdateAll(ugrList);
+		return ret;
+	}
 
 }

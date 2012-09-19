@@ -42,6 +42,38 @@ public interface UserService
 	 */
 	String addImportUsers(String filePath)throws Exception;
 
+	/**分页查找指定用户组id的组内用户
+	 * @param ugId 用户组id
+	 * @param pager 分页信息
+	 * @return
+	 * @throws Exception
+	 */
+	Pager findInGroupUsers(long ugId, Pager pager)throws Exception;
+
+	/**分页查找不在指定用户组中的用户
+	 * @param ugId 用户组id
+	 * @param pager 分页信息
+	 * @return
+	 * @throws Exception
+	 */
+	Pager findNotInGroupUsers(long ugId, Pager pager)throws Exception;
+
+	/**删除指定用户组中选中的用户
+	 * @param userIdList 用户id列表
+	 * @param ugId 用户组id
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String removeUsers(List<Long> userIdList, long ugId)throws Exception;
+
+	/**向指定的用户组中添加选中的用户
+	 * @param userIdList 用户id列表
+	 * @param ugId 用户组id
+	 * @return null：成功，其他为错误信息
+	 * @throws Exception
+	 */
+	String addUsersToUg(List<Long> userIdList, long ugId)throws Exception;
+
     
 
 }
