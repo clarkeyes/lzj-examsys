@@ -1,7 +1,6 @@
 package com.sys.exam.service;
 
 import com.sys.exam.database.dao.ExamDao;
-import com.sys.exam.database.dao.ExamQuestionDao;
 import com.sys.exam.database.dao.OptionsDao;
 import com.sys.exam.database.dao.QuestionBaseDao;
 import com.sys.exam.database.dao.QuestionCategoryDao;
@@ -20,10 +19,7 @@ public interface ManagerService
     public ExamDao getExamDao();
    
    
-    /**
-     * @return Returns the examQuestionDao.
-     */
-    public ExamQuestionDao getExamQuestionDao();
+    
     
     /**
      * @return Returns the optionsDao.

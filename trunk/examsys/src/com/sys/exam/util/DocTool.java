@@ -15,6 +15,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.QuestionBase;
 import com.sys.exam.database.bean.QuestionCategory;
+import com.sys.exam.database.bean.QuestionType;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.dao.QuestionBaseDao;
 import com.sys.exam.database.dao.QuestionCategoryDao;
@@ -245,27 +246,32 @@ public class DocTool
         Matcher m4 = p4.matcher(line);
         
 
+        QuestionType qt=new QuestionType();
         if (m1.find())
         {
-            que.setQuesType(1);
+            qt.setQtId(1);
+            que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m1.group()));
             line=line.replace(m1.group(), "（     ） ");
         }// end if
         else if (m2.find())
         {
-            que.setQuesType(2);
+            qt.setQtId(2);
+            que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m2.group()));
             line=line.replace(m2.group(), "（     ） ");
         }// end if
         else if (m3.find())
         {
-            que.setQuesType(3);
+            qt.setQtId(3);
+            que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m3.group()));
             line=line.replace(m3.group(), "（     ） ");
             
         }// end if
         else {
-            que.setQuesType(-1);
+            qt.setQtId(-1);
+            que.setQuestionType(qt);
             que.setQuesAnswer(-1);
             
         }//end else

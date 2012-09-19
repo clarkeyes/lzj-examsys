@@ -1,10 +1,12 @@
 package com.sys.exam.service.impl;
 
+import com.sys.exam.database.dao.ExamCateRatioDao;
 import com.sys.exam.database.dao.ExamDao;
-import com.sys.exam.database.dao.ExamQuestionDao;
+import com.sys.exam.database.dao.ExamQuesTypeDao;
 import com.sys.exam.database.dao.OptionsDao;
 import com.sys.exam.database.dao.QuestionBaseDao;
 import com.sys.exam.database.dao.QuestionCategoryDao;
+import com.sys.exam.database.dao.QuestionTypeDao;
 import com.sys.exam.database.dao.QuestionsDao;
 import com.sys.exam.database.dao.UserDao;
 import com.sys.exam.database.dao.UserExamDao;
@@ -16,7 +18,6 @@ import com.sys.exam.service.ManagerService;
 public class ManagerServiceImpl implements ManagerService
 {
     private ExamDao examDao;
-    private ExamQuestionDao examQuestionDao;
     private OptionsDao optionsDao;
     private QuestionBaseDao questionBaseDao;
     private QuestionCategoryDao questionCategoryDao;
@@ -26,6 +27,52 @@ public class ManagerServiceImpl implements ManagerService
     private UserGroupDao userGroupDao;
     private UserGroupRelDao userGroupRelDao;
     private UserQuestionDao userQuestionDao;
+    private ExamCateRatioDao examCateRatioDao;
+    private ExamQuesTypeDao examQuesTypeDao;
+    private QuestionTypeDao questionTypeDao;
+    
+    /**
+     * @return Returns the examCateRatioDao.
+     */
+    public ExamCateRatioDao getExamCateRatioDao()
+    {
+        return examCateRatioDao;
+    }
+    /**
+     * @param examCateRatioDao The examCateRatioDao to set.
+     */
+    public void setExamCateRatioDao(ExamCateRatioDao examCateRatioDao)
+    {
+        this.examCateRatioDao = examCateRatioDao;
+    }
+    /**
+     * @return Returns the examQuesTypeDao.
+     */
+    public ExamQuesTypeDao getExamQuesTypeDao()
+    {
+        return examQuesTypeDao;
+    }
+    /**
+     * @param examQuesTypeDao The examQuesTypeDao to set.
+     */
+    public void setExamQuesTypeDao(ExamQuesTypeDao examQuesTypeDao)
+    {
+        this.examQuesTypeDao = examQuesTypeDao;
+    }
+    /**
+     * @return Returns the questionTypeDao.
+     */
+    public QuestionTypeDao getQuestionTypeDao()
+    {
+        return questionTypeDao;
+    }
+    /**
+     * @param questionTypeDao The questionTypeDao to set.
+     */
+    public void setQuestionTypeDao(QuestionTypeDao questionTypeDao)
+    {
+        this.questionTypeDao = questionTypeDao;
+    }
     /**
      * @return Returns the examDao.
      */
@@ -40,20 +87,7 @@ public class ManagerServiceImpl implements ManagerService
     {
         this.examDao = examDao;
     }
-    /**
-     * @return Returns the examQuestionDao.
-     */
-    public ExamQuestionDao getExamQuestionDao()
-    {
-        return examQuestionDao;
-    }
-    /**
-     * @param examQuestionDao The examQuestionDao to set.
-     */
-    public void setExamQuestionDao(ExamQuestionDao examQuestionDao)
-    {
-        this.examQuestionDao = examQuestionDao;
-    }
+    
     /**
      * @return Returns the optionsDao.
      */
