@@ -40,28 +40,33 @@
 		<property name="dialect">
 			org.hibernate.dialect.MySQLDialect
 		</property>
-		
-		
-		
-		
+
+
+
 		<mapping
-			resource="com/sys/exam/database/mapping/QuestionCategory.hbm.xml" />
-		<mapping resource="com/sys/exam/database/mapping/Options.hbm.xml" />
+			resource="com/sys/exam/database/mapping/QuestionType.hbm.xml" />
+		<mapping
+			resource="com/sys/exam/database/mapping/Options.hbm.xml" />
 		<mapping
 			resource="com/sys/exam/database/mapping/UserGroup.hbm.xml" />
-		<mapping
-			resource="com/sys/exam/database/mapping/UserQuestion.hbm.xml" />
 		<mapping resource="com/sys/exam/database/mapping/Exam.hbm.xml" />
 		<mapping
 			resource="com/sys/exam/database/mapping/QuestionBase.hbm.xml" />
 		<mapping
-			resource="com/sys/exam/database/mapping/UserGroupRel.hbm.xml" />
-		<mapping resource="com/sys/exam/database/mapping/UserExam.hbm.xml" />
+			resource="com/sys/exam/database/mapping/ExamQuesType.hbm.xml" />
+		<mapping
+			resource="com/sys/exam/database/mapping/UserExam.hbm.xml" />
 		<mapping
 			resource="com/sys/exam/database/mapping/Questions.hbm.xml" />
 		<mapping resource="com/sys/exam/database/mapping/User.hbm.xml" />
 		<mapping
-			resource="com/sys/exam/database/mapping/ExamQuestion.hbm.xml" />
+			resource="com/sys/exam/database/mapping/QuestionCategory.hbm.xml" />
+		<mapping
+			resource="com/sys/exam/database/mapping/UserQuestion.hbm.xml" />
+		<mapping
+			resource="com/sys/exam/database/mapping/UserGroupRel.hbm.xml" />
+		<mapping
+			resource="com/sys/exam/database/mapping/ExamCateRatio.hbm.xml" />
 
 	</session-factory>
 
