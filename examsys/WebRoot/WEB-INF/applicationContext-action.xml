@@ -57,6 +57,14 @@
 	<bean id="addUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUgAction" parent="modelAction"></bean>
 	<!-- 删除用户组 -->
 	<bean id="deleteUgAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUgAction" parent="modelAction"></bean>
+	<!-- 用户组用户 -->
+	<bean id="inGroupUserAction" scope="prototype" class="com.sys.exam.action.admin.InGroupUsersAction" parent="modelAction"></bean>
+	<!-- 非用户组用户 -->
+	<bean id="notInGroupUsersAction" scope="prototype" class="com.sys.exam.action.admin.NotInGroupUsersAction" parent="modelAction"></bean>
+	<!-- 移除用户组用户 -->
+	<bean id="removeUsersAction" scope="prototype" class="com.sys.exam.action.admin.RemoveUsersAction" parent="modelAction"></bean>
+	<!-- 向用户组添加用户 -->
+	<bean id="addUsersToUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUsersToUgAction" parent="modelAction"></bean>
 		
 <!-- 考试用户action -->	
 	<!-- 用户考试列表 -->

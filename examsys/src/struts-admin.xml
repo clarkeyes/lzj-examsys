@@ -158,6 +158,41 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
-		
+		<!-- 用户组中的用户 -->
+		<action name="inGroupUser" class="inGroupUserAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 非用户组中的用户 -->
+		<action name="notInGroupUsers" class="notInGroupUsersAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 移除用户组中的用户 -->
+		<action name="removeUsers" class="removeUsersAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
+		<!-- 向用户组添加用户 -->
+		<action name="addUsersToUg" class="addUsersToUgAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>
