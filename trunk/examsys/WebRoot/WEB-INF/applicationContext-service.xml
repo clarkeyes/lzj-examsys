@@ -18,7 +18,6 @@
 	<bean id="managerService"
 		class="com.sys.exam.service.impl.ManagerServiceImpl">
 		<property name="examDao" ref="examDao" />
-		<property name="examQuestionDao" ref="examQuestionDao" />
 		<property name="optionsDao" ref="optionsDao" />
 		<property name="questionBaseDao" ref="questionBaseDao" />
 		<property name="questionCategoryDao" ref="questionCategoryDao" />
@@ -28,6 +27,11 @@
 		<property name="userGroupDao" ref="userGroupDao" />
 		<property name="userGroupRelDao" ref="userGroupRelDao" />
 		<property name="userQuestionDao" ref="userQuestionDao" />
+		
+		<property name="examCateRatioDao" ref="examCateRatioDao" />
+		<property name="examQuesTypeDao" ref="examQuesTypeDao" />
+		<property name="questionTypeDao" ref="questionTypeDao" />
+		
 	</bean>
 
 
