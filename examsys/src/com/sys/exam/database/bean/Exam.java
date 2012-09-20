@@ -14,6 +14,8 @@ public class Exam implements java.io.Serializable
 
     private long examId;
 
+    private QuestionBase questionBase;
+
     private String examName;
 
     private Integer examTime;
@@ -34,17 +36,21 @@ public class Exam implements java.io.Serializable
     }
 
     /** minimal constructor */
-    public Exam(String examName, Integer examTime, String examCreateTime)
+    public Exam(QuestionBase questionBase, String examName, Integer examTime,
+            String examCreateTime)
     {
+        this.questionBase = questionBase;
         this.examName = examName;
         this.examTime = examTime;
         this.examCreateTime = examCreateTime;
     }
 
     /** full constructor */
-    public Exam(String examName, Integer examTime, String examCreateTime,
-            Set examQuesTypes, Set userExams, Set examCateRatios)
+    public Exam(QuestionBase questionBase, String examName, Integer examTime,
+            String examCreateTime, Set examQuesTypes, Set userExams,
+            Set examCateRatios)
     {
+        this.questionBase = questionBase;
         this.examName = examName;
         this.examTime = examTime;
         this.examCreateTime = examCreateTime;
@@ -63,6 +69,16 @@ public class Exam implements java.io.Serializable
     public void setExamId(long examId)
     {
         this.examId = examId;
+    }
+
+    public QuestionBase getQuestionBase()
+    {
+        return this.questionBase;
+    }
+
+    public void setQuestionBase(QuestionBase questionBase)
+    {
+        this.questionBase = questionBase;
     }
 
     public String getExamName()

@@ -9,6 +9,7 @@ import com.sys.exam.database.bean.Exam;
 import com.sys.exam.database.bean.ExamCateRatio;
 import com.sys.exam.database.bean.ExamQuesType;
 import com.sys.exam.database.bean.Options;
+import com.sys.exam.database.bean.QuestionBase;
 import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.database.bean.QuestionType;
 import com.sys.exam.database.bean.Questions;
@@ -95,6 +96,9 @@ public class ExamServiceImpl implements ExamService
         Exam exam = new Exam();
         exam.setExamName(examName);
         exam.setExamTime(Constant.EXAM_TIME);
+        QuestionBase qb=new QuestionBase();
+        qb.setQbId(qbId);
+        exam.setQuestionBase(qb);
         exam.setExamCreateTime(DateOperator
                 .getCurrentTime(Constant.DATE_FORMAT));
         managerService.getExamDao().save(exam);
@@ -131,73 +135,7 @@ public class ExamServiceImpl implements ExamService
         return ret;
     }
 
-    private void chouti(QuesType qt, List<UserQuestion> eqTotalList,
-            List<QcModel> qcs, Long qbId, Exam exam)
-    {
-        QcModel qcm = null;
-        int shengtimu = qt.getNum();
-        for (int i = 0; i< qcs.size(); i++)
-        {
-            qcm = qcs.get(i);
-            int total = 0;
-            for (int j = i; j < qcs.size(); j++)
-            {
-                total += qcs.get(j).getQcRatio();
-            }// end for
-
-             
-            int yaoqugeshu = (int) ((qcm.getQcRatio() / total) * shengtimu);
-            int addnum=fenleichouti(yaoqugeshu, qcm, eqTotalList, qbId, qt, exam);
-            shengtimu-=addnum;
-        }// end for
-
-    }
-
-    private int fenleichouti(int yaoqugeshu, QcModel qcm,
-            List<UserQuestion> eqTotalList, Long qbId, QuesType qt, Exam exam)
-    {
-        int ret=0;
-        StringBuilder hsql = new StringBuilder();
-        hsql.append("from Questions que where que.quesType=");
-        hsql.append(qt.getType());
-        hsql.append(" and que.questionCategory.qcId=");
-        hsql.append(qcm.getQcId());
-//        hsql.append(" and que.questionBase.qbId=");
-//        hsql.append(qbId);
-        List<Questions> queList = managerService.getQuestionsDao().find(
-                hsql.toString());
-
-        if (queList.size() > yaoqugeshu)
-        {// 抽取
-            int num = queList.size() - 1;
-            for (int i = 0; i < yaoqugeshu; i++)
-            {
-                int rad = (int) (Math.round(Math.random() * num));
-                UserQuestion eq = new UserQuestion();
-                eq.setUqValue(qt.getScore());
-                eq.setQuestions(queList.get(rad));
-                eqTotalList.add(eq);
-                ret++;
-                // 去重
-                queList.remove(rad);
-                num--;
-            }
-        }
-        else
-        {
-            for (Questions que : queList)
-            {
-            	UserQuestion eq = new UserQuestion();
-                eq.setUqValue(qt.getScore());
-                eq.setQuestions(que);
-                eqTotalList.add(eq);
-                ret++;
-            }
-        }
-        
-        return ret;
-
-    }
+   
 
 	@Override
 	public List<UqType> findEqTypeList(long examId) throws Exception {

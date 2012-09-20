@@ -63,10 +63,11 @@ public class UserQuestionServiceImpl implements UserQuestionService
             UqModel uqm = null;
             for (UserQuestion uq : listuqs)
             {
-                Questions que = uq.getExamQuestion().getQuestions();
-                ut.setTypeScore(uq.getExamQuestion().getEqValue());
-                if (que.getQuesType() == i)
+                Questions que = uq.getQuestions();
+                
+                if (que.getQuestionType().getQtId() == i)
                 {
+                    ut.setTypeScore(uq.getUqValue());
                     uqm = new UqModel();
                     uqm.setUq(uq);
                     List<Options> listops = new ArrayList<Options>();
