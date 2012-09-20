@@ -172,14 +172,14 @@ public class UserExamServiceImpl implements UserExamService
     .find(sql);
         for (ExamQuesType eqt : listeqts)
         {
-            chouti(eqt,listuqs,listecrs,exam);
+            chouti(eqt,listuqs,listecrs,exam,uenew);
         }
        
 
     }
     
     private void chouti(ExamQuesType eqt, List<UserQuestion> eqTotalList,
-            List<ExamCateRatio> qcs, Exam exam)
+            List<ExamCateRatio> qcs, Exam exam, UserExam uenew)
     {
         ExamCateRatio qcm = null;
         int shengtimu = eqt.getEqtNum();
@@ -194,14 +194,14 @@ public class UserExamServiceImpl implements UserExamService
 
              
             int yaoqugeshu = (int) ((qcm.getEcrRatio() / total) * shengtimu);
-            int addnum=fenleichouti(yaoqugeshu, qcm, eqTotalList, eqt, exam);
+            int addnum=fenleichouti(yaoqugeshu, qcm, eqTotalList, eqt, exam,uenew);
             shengtimu-=addnum;
         }// end for
 
     }
 
     private int fenleichouti(int yaoqugeshu, ExamCateRatio qcm,
-            List<UserQuestion> eqTotalList, ExamQuesType qt, Exam exam)
+            List<UserQuestion> eqTotalList, ExamQuesType qt, Exam exam, UserExam uenew)
     {
         int ret=0;
         StringBuilder hsql = new StringBuilder();
@@ -223,6 +223,8 @@ public class UserExamServiceImpl implements UserExamService
                 UserQuestion eq = new UserQuestion();
                 eq.setUqValue(qt.getEqtValue());
                 eq.setQuestions(queList.get(rad));
+                eq.setUserExam(uenew);
+                eq.setUqSign(0);
                 eqTotalList.add(eq);
                 ret++;
                 // 去重
