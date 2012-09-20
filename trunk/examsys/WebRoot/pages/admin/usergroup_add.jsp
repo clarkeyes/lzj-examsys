@@ -23,7 +23,7 @@
 <!-- Page title -->
 	<div id="pagetitle">
 		<div class="wrapper">
-			<h1>
+			<h1>添加用户组
 			</h1>
 			<!-- Quick search box -->
 			<form action="" method="get">

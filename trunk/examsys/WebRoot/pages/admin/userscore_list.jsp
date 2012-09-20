@@ -21,7 +21,7 @@
 <!-- Page title -->
 	<div id="pagetitle">
 		<div class="wrapper">
-			<h1>
+			<h1>用户成绩列表
 			</h1>
 			<!-- Quick search box -->
 			<form id="ueIdForm">

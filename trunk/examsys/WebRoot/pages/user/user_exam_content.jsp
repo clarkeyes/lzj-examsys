@@ -19,6 +19,7 @@
 	<div id="pagetitle">
 		<div class="wrapper">
 			<h1>
+			
 			</h1>
 			<!-- Quick search box -->
 			<form action="" method="get">
@@ -55,11 +56,11 @@
 							<s:iterator value="uqTypeList" var="uqType" status="st">
 								<s:if test="#uqType.type==1">
 									<div>
-										<h3>单项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<h3>一、单项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="singleSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${singleSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${singleSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
+												${singleSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
 													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}"/>
@@ -71,11 +72,11 @@
 								</s:if>
 								<s:elseif test="#uqType.type==2">
 									<div>
-										<h3>多项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<h3>二、多项选择题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="mulSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${mulSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${mulSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
+												${mulSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op" status="anSt">
 													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer" value="${op.optionOrder}"/>
@@ -87,11 +88,11 @@
 								</s:elseif>
 								<s:elseif test="#uqType.type==3">
 									<div>
-										<h3>判断题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
+										<h3>三、判断题（共${uqType.uqNum}题，每题${uqType.typeScore}分）</h3>
 										<s:iterator value="#uqType.uqModelList" var="uqModel" status="judgeSt">
 											<p>
 												<input type="hidden" name="taList[${st.index}].uaList[${judgeSt.index}].uqId" value="${uqModel.uq.uqId}"/>
-												试题${judgeSt.count}：<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
+												${judgeSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="1"/>
 												<label>对</label><br/>

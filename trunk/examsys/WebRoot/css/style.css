@@ -1014,7 +1014,7 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 	font-size:1.6em;
 	padding:12px 0;
 	text-shadow:0 -1px 1px #2A7AD2;
-	margin:0;
+	margin:0px 50px;
 	top:0;
 	line-height:1.2em;
 	float:left;
@@ -2471,7 +2471,7 @@ h3{
 	font-weight: bold;
 }
 .page-content{
-	margin:0px 60px 0px 60px;
+	margin:10px 50px;
 }
 h3.title-article {
     background: none repeat scroll 0 0 #F7F7F7;
