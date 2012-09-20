@@ -6,9 +6,11 @@ import java.util.List;
 import com.sys.common.logtool.LoggerTool;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.Exam;
-import com.sys.exam.database.bean.ExamQuestion;
+import com.sys.exam.database.bean.ExamCateRatio;
+import com.sys.exam.database.bean.ExamQuesType;
 import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.QuestionCategory;
+import com.sys.exam.database.bean.QuestionType;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.bean.UserQuestion;
@@ -95,22 +97,41 @@ public class ExamServiceImpl implements ExamService
         exam.setExamTime(Constant.EXAM_TIME);
         exam.setExamCreateTime(DateOperator
                 .getCurrentTime(Constant.DATE_FORMAT));
-        List<ExamQuestion> eqTotalList = new ArrayList<ExamQuestion>();
-
-        // 抽取各种题型的各种分类的题
-        for (QuesType qt : typeList)
-        {
-
-            chouti(qt, eqTotalList, qcs, qbId, exam);
-
-        }
-        // 添加到数据库
         managerService.getExamDao().save(exam);
-        managerService.getExamQuestionDao().saveOrUpdateAll(eqTotalList);
+        
+        List<ExamQuesType> listeqts=new ArrayList<ExamQuesType>();
+        List<ExamCateRatio> listcrs=new ArrayList<ExamCateRatio>();
+        //保存题型比例
+        ExamQuesType eqt=null;
+        for (QuesType qt : typeList) {
+        	eqt=new ExamQuesType();
+        	eqt.setEqtNum(qt.getNum());
+        	eqt.setEqtValue(qt.getScore());
+        	eqt.setExam(exam);
+        	QuestionType qtt=new QuestionType();
+        	qtt.setQtId(qt.getType());
+        	eqt.setQuestionType(qtt);
+        	listeqts.add(eqt);
+		}
+        
+        //保存分类比例
+        ExamCateRatio ecr=null;
+        for (ExamCateRatio ecte : listcrs) {
+        	ecr=new ExamCateRatio();
+        	ecr.setExam(exam);
+        	ecr.setEcrRatio(ecte.getEcrRatio());
+        	ecr.setQuestionCategory(ecte.getQuestionCategory());
+        	listcrs.add(ecr);
+		}
+        
+       
+        // 添加到数据库
+        managerService.getExamQuesTypeDao().saveOrUpdateAll(listeqts);
+        managerService.getExamCateRatioDao().saveOrUpdateAll(listcrs);
         return ret;
     }
 
-    private void chouti(QuesType qt, List<ExamQuestion> eqTotalList,
+    private void chouti(QuesType qt, List<UserQuestion> eqTotalList,
             List<QcModel> qcs, Long qbId, Exam exam)
     {
         QcModel qcm = null;
@@ -133,7 +154,7 @@ public class ExamServiceImpl implements ExamService
     }
 
     private int fenleichouti(int yaoqugeshu, QcModel qcm,
-            List<ExamQuestion> eqTotalList, Long qbId, QuesType qt, Exam exam)
+            List<UserQuestion> eqTotalList, Long qbId, QuesType qt, Exam exam)
     {
         int ret=0;
         StringBuilder hsql = new StringBuilder();
@@ -152,10 +173,9 @@ public class ExamServiceImpl implements ExamService
             for (int i = 0; i < yaoqugeshu; i++)
             {
                 int rad = (int) (Math.round(Math.random() * num));
-                ExamQuestion eq = new ExamQuestion();
-                eq.setEqValue(qt.getScore());
+                UserQuestion eq = new UserQuestion();
+                eq.setUqValue(qt.getScore());
                 eq.setQuestions(queList.get(rad));
-                eq.setExam(exam);
                 eqTotalList.add(eq);
                 ret++;
                 // 去重
@@ -167,10 +187,9 @@ public class ExamServiceImpl implements ExamService
         {
             for (Questions que : queList)
             {
-                ExamQuestion eq = new ExamQuestion();
-                eq.setEqValue(qt.getScore());
+            	UserQuestion eq = new UserQuestion();
+                eq.setUqValue(qt.getScore());
                 eq.setQuestions(que);
-                eq.setExam(exam);
                 eqTotalList.add(eq);
                 ret++;
             }
@@ -182,48 +201,8 @@ public class ExamServiceImpl implements ExamService
 
 	@Override
 	public List<UqType> findEqTypeList(long examId) throws Exception {
-	    String sql = "from ExamQuestion eq where eq.exam.examId=" + examId;
-        List<ExamQuestion> listeqs = managerService.getExamQuestionDao().find(
-                sql);
+	  
         List<UqType> listUqTypes = new ArrayList<UqType>();
-
-        sql = "from Options order by questions.quesId ,optionOrder";
-        List<Options> listOptions = managerService.getOptionsDao().find(sql);
-
-        UqType ut = null;
-
-        for (int i = 1; i <= 3; i++)
-        {
-            ut = new UqType();
-            ut.setType(i);
-            List<UqModel> listUqms = new ArrayList<UqModel>();
-            UqModel uqm = null;
-            for (ExamQuestion eq : listeqs)
-            {
-                Questions que = eq.getQuestions();
-                ut.setTypeScore(eq.getEqValue());
-                if (que.getQuesType() == i)
-                {
-                    uqm = new UqModel();
-                    uqm.setExamq(eq);
-                    List<Options> listops = new ArrayList<Options>();
-                    for (Options options : listOptions)
-                    {
-                        if (options.getQuestions().getQuesId() == que
-                                .getQuesId())
-                        {
-                            listops.add(options);
-                        }// end if
-                    }
-                    uqm.setOpList(listops);
-                    listUqms.add(uqm);
-                }// end if
-
-            }
-            ut.setUqModelList(listUqms);
-            ut.setUqNum(listUqms.size());
-            listUqTypes.add(ut);
-        }// end for
 
         return listUqTypes;
 	}
