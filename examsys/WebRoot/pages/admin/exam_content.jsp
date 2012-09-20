@@ -20,7 +20,7 @@
 <!-- Page title -->
 	<div id="pagetitle">
 		<div class="wrapper">
-			<h1>
+			<h1>试题内容实例
 			</h1>
 			<!-- Quick search box -->
 			<form action="" method="get">
