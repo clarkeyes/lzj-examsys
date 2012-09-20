@@ -16,9 +16,10 @@
         <property name="uqAnswer" type="integer">
             <column name="uqAnswer" />
         </property>
-        <property name="uqQuesId" type="long">
+        <many-to-one name="question" class="com.sys.exam.database.bean.Question" fetch="select">
             <column name="uq_quesId" not-null="true" />
-        </property>
+        </many-to-one>
+        
         <property name="uqSign" type="integer">
             <column name="uqSign" not-null="true" />
         </property>

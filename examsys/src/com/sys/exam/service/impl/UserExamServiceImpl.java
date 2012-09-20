@@ -9,7 +9,6 @@ import com.sys.common.logtool.LoggerTool;
 import com.sys.common.system.CommonUtil;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.Exam;
-import com.sys.exam.database.bean.ExamQuestion;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;

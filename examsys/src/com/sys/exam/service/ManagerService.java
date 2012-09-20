@@ -1,9 +1,12 @@
 package com.sys.exam.service;
 
+import com.sys.exam.database.dao.ExamCateRatioDao;
 import com.sys.exam.database.dao.ExamDao;
+import com.sys.exam.database.dao.ExamQuesTypeDao;
 import com.sys.exam.database.dao.OptionsDao;
 import com.sys.exam.database.dao.QuestionBaseDao;
 import com.sys.exam.database.dao.QuestionCategoryDao;
+import com.sys.exam.database.dao.QuestionTypeDao;
 import com.sys.exam.database.dao.QuestionsDao;
 import com.sys.exam.database.dao.UserDao;
 import com.sys.exam.database.dao.UserExamDao;
@@ -65,5 +68,19 @@ public interface ManagerService
      * @return Returns the userQuestionDao.
      */
     public UserQuestionDao getUserQuestionDao();
+    
+    
+    /**
+     * @return Returns the examCateRatioDao.
+     */
+    public ExamCateRatioDao getExamCateRatioDao();
+    /**
+     * @return Returns the examQuesTypeDao.
+     */
+    public ExamQuesTypeDao getExamQuesTypeDao();
+    /**
+     * @return Returns the questionTypeDao.
+     */
+    public QuestionTypeDao getQuestionTypeDao();
    
 }
