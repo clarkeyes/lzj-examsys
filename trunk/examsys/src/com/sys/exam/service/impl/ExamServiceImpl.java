@@ -120,11 +120,13 @@ public class ExamServiceImpl implements ExamService
         
         //保存分类比例
         ExamCateRatio ecr=null;
-        for (ExamCateRatio ecte : listcrs) {
+        for (QcModel qcm : qcs) {
         	ecr=new ExamCateRatio();
         	ecr.setExam(exam);
-        	ecr.setEcrRatio(ecte.getEcrRatio());
-        	ecr.setQuestionCategory(ecte.getQuestionCategory());
+        	ecr.setEcrRatio(qcm.getQcRatio());
+        	QuestionCategory qctmp=new QuestionCategory();
+        	qctmp.setQcId(qcm.getQcId());
+        	ecr.setQuestionCategory(qctmp);
         	listcrs.add(ecr);
 		}
         

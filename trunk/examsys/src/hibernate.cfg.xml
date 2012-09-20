@@ -10,7 +10,7 @@
 		<property name="connection.username">vmmaster</property>
 		<property name="connection.password">vmmaster</property>
 		<property name="connection.url">
-			jdbc:mysql://221.194.44.8:3306/exambase
+			jdbc:mysql://localhost:3306/exambase
 		</property>
 
 		<property name="connection.driver_class">
