@@ -9,12 +9,14 @@ import com.sys.common.logtool.LoggerTool;
 import com.sys.common.system.CommonUtil;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.Exam;
+import com.sys.exam.database.bean.ExamCateRatio;
+import com.sys.exam.database.bean.ExamQuesType;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
-import com.sys.exam.database.bean.UserGroup;
 import com.sys.exam.database.bean.UserGroupRel;
 import com.sys.exam.database.bean.UserQuestion;
+import com.sys.exam.database.model.QuesType;
 import com.sys.exam.database.model.UserScore;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserExamService;
@@ -100,16 +102,13 @@ public class UserExamServiceImpl implements UserExamService
                     .find(sql);
             for (UserQuestion uq : listUqs)
             {
-                ExamQuestion eq = uq.getExamQuestion();
-                Questions que = eq.getQuestions();
-                if (null != uq.getUqAnswer())
+                Questions que = uq.getQuestions();
+                if (null != que)
                 {
-                    LoggerTool.m_logger.info(que.getQuesAnswer().intValue()
-                            + "::" + uq.getUqAnswer().intValue());
                     if (que.getQuesAnswer().intValue() == uq.getUqAnswer()
                             .intValue())
                     {
-                        igrade += eq.getEqValue();
+                        igrade += uq.getUqValue();
                     }// end if
 
                 }// end if
@@ -132,7 +131,7 @@ public class UserExamServiceImpl implements UserExamService
         List<UserGroupRel> listugrs = managerService.getUserGroupRelDao().find(
                 sql);
         List<UserExam> listues = new ArrayList<UserExam>();
-        List<UserQuestion> listuqs = new ArrayList<UserQuestion>();
+        List<UserQuestion> listUqs=new ArrayList<UserQuestion>();
         UserExam uenew = null;
         for (UserGroupRel ugr : listugrs)
         {
@@ -143,13 +142,12 @@ public class UserExamServiceImpl implements UserExamService
             uenew.setUeState(Constant.EXAM_STATE_NEW);
             uenew.setUser(ugr.getUser());
             listues.add(uenew);
-
-            addQuestionToUserExam(uenew, listuqs, exam);
-
+            addQuestionToUserExam(uenew,listUqs, exam);
+            
         }
 
         managerService.getUserExamDao().saveOrUpdateAll(listues);
-        managerService.getUserQuestionDao().saveOrUpdateAll(listuqs);
+        managerService.getUserQuestionDao().saveOrUpdateAll(listUqs);
 
         return null;
     }
@@ -163,21 +161,91 @@ public class UserExamServiceImpl implements UserExamService
     private void addQuestionToUserExam(UserExam uenew,
             List<UserQuestion> listuqs, Exam exam)
     {
-        String sql = "from ExamQuestion  eq where eq.exam.examId="
+        String sql = "from ExamCateRatio  ecr where ecr.exam.examId="
                 + exam.getExamId();
-        List<ExamQuestion> listeqs = managerService.getExamQuestionDao()
+        List<ExamCateRatio> listecrs = managerService.getExamCateRatioDao()
         .find(sql);
-        UserQuestion uq=null;
-        for (ExamQuestion examQuestion : listeqs)
+        
+        sql = "from ExamQuesType  eqt where eqt.exam.examId="
+            + exam.getExamId();
+    List<ExamQuesType> listeqts = managerService.getExamQuesTypeDao()
+    .find(sql);
+        for (ExamQuesType eqt : listeqts)
         {
-            uq=new UserQuestion();
-            uq.setExamQuestion(examQuestion);
-            uq.setUqSign(0);
-            uq.setUserExam(uenew);
-            listuqs.add(uq);
+            chouti(eqt,listuqs,listecrs,exam);
         }
+       
 
     }
+    
+    private void chouti(ExamQuesType eqt, List<UserQuestion> eqTotalList,
+            List<ExamCateRatio> qcs, Exam exam)
+    {
+        ExamCateRatio qcm = null;
+        int shengtimu = eqt.getEqtNum();
+        for (int i = 0; i< qcs.size(); i++)
+        {
+            qcm = qcs.get(i);
+            int total = 0;
+            for (int j = i; j < qcs.size(); j++)
+            {
+                total += qcs.get(j).getEcrRatio();
+            }// end for
+
+             
+            int yaoqugeshu = (int) ((qcm.getEcrRatio() / total) * shengtimu);
+            int addnum=fenleichouti(yaoqugeshu, qcm, eqTotalList, eqt, exam);
+            shengtimu-=addnum;
+        }// end for
+
+    }
+
+    private int fenleichouti(int yaoqugeshu, ExamCateRatio qcm,
+            List<UserQuestion> eqTotalList, ExamQuesType qt, Exam exam)
+    {
+        int ret=0;
+        StringBuilder hsql = new StringBuilder();
+        hsql.append("from Questions que where que.questionType.qtId=");
+        hsql.append(qt.getQuestionType().getQtId());
+        hsql.append(" and que.questionCategory.qcId=");
+        hsql.append(qcm.getQuestionCategory().getQcId());
+        hsql.append(" and que.questionBase.qbId=");
+        hsql.append(exam.getQuestionBase().getQbId());
+        List<Questions> queList = managerService.getQuestionsDao().find(
+                hsql.toString());
+
+        if (queList.size() > yaoqugeshu)
+        {// 抽取
+            int num = queList.size() - 1;
+            for (int i = 0; i < yaoqugeshu; i++)
+            {
+                int rad = (int) (Math.round(Math.random() * num));
+                UserQuestion eq = new UserQuestion();
+                eq.setUqValue(qt.getEqtValue());
+                eq.setQuestions(queList.get(rad));
+                eqTotalList.add(eq);
+                ret++;
+                // 去重
+                queList.remove(rad);
+                num--;
+            }
+        }
+        else
+        {
+            for (Questions que : queList)
+            {
+                UserQuestion eq = new UserQuestion();
+                eq.setUqValue(qt.getEqtValue());
+                eq.setQuestions(que);
+                eqTotalList.add(eq);
+                ret++;
+            }
+        }
+        
+        return ret;
+
+    }
+    
 
     @Override
     public List<UserExam> getAvaiExam(User user)

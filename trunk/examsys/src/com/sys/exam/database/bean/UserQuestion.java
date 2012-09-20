@@ -9,19 +9,15 @@ public class UserQuestion implements java.io.Serializable
 
     // Fields
 
-  
-
-	private long uqId;
+    private long uqId;
 
     private UserExam userExam;
 
-    private Integer uqAnswer;
-
     private Questions questions;
 
-   
+    private Integer uqAnswer;
 
-	private Integer uqSign;
+    private Integer uqSign;
 
     private float uqValue;
 
@@ -45,27 +41,20 @@ public class UserQuestion implements java.io.Serializable
     }
 
     /** full constructor */
-    public UserQuestion(UserExam userExam, Integer uqAnswer, Questions questions,
-            Integer uqSign, float uqValue, String uqSubjectiveAnswer)
+    public UserQuestion(UserExam userExam, Questions questions,
+            Integer uqAnswer, Integer uqSign, float uqValue,
+            String uqSubjectiveAnswer)
     {
         this.userExam = userExam;
-        this.uqAnswer = uqAnswer;
         this.questions = questions;
+        this.uqAnswer = uqAnswer;
         this.uqSign = uqSign;
         this.uqValue = uqValue;
         this.uqSubjectiveAnswer = uqSubjectiveAnswer;
     }
 
     // Property accessors
-    public Questions getQuestions() {
-  		return questions;
-  	}
 
-  	public void setQuestions(Questions questions) {
-  		this.questions = questions;
-  	}
-  	
-  	
     public long getUqId()
     {
         return this.uqId;
@@ -86,6 +75,16 @@ public class UserQuestion implements java.io.Serializable
         this.userExam = userExam;
     }
 
+    public Questions getQuestions()
+    {
+        return this.questions;
+    }
+
+    public void setQuestions(Questions questions)
+    {
+        this.questions = questions;
+    }
+
     public Integer getUqAnswer()
     {
         return this.uqAnswer;
@@ -95,7 +94,6 @@ public class UserQuestion implements java.io.Serializable
     {
         this.uqAnswer = uqAnswer;
     }
-
 
     public Integer getUqSign()
     {
