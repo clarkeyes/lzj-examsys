@@ -7,19 +7,24 @@ $(function(){
 		},
 		// specifying a submitHandler prevents the default submit, good for the demo
 		submitHandler: function() {
-			$.post(
-				"../user/commitAnswer.action",
-				$("#commitUserAnswer").serialize(),
-				function(data){
-					if("success"==data.result){
-						$.messager.alert("系统消息","提交成功!",'info',function(){
-							window.location.href="../user/userExamList.action";
-						});
-					}else if(null!=data.result){
-						$.messager.alert("系统消息",data.result,"warning");
-					}
+			$.messager.confirm("系统消息","确认交卷？",function(bool)
+			{
+				if(bool){
+					$.post(
+						"../user/commitAnswer.action",
+						$("#commitUserAnswer").serialize(),
+						function(data){
+							if("success"==data.result){
+								$.messager.alert("系统消息","提交成功!",'info',function(){
+									window.location.href="../user/userExamList.action";
+								});
+							}else if(null!=data.result){
+								$.messager.alert("系统消息",data.result,"warning");
+							}
+						}
+					);
 				}
-			);
+			});
 		},
 		// set new class to error-labels to indicate valid fields
 		success: function(label) {
