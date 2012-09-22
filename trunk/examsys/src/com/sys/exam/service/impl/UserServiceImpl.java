@@ -10,6 +10,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import com.sys.common.logtool.LoggerTool;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserGroup;
@@ -160,7 +161,7 @@ public class UserServiceImpl implements UserService
                         if (userAccount.matches("\\w{1,25}")
                                 && userName.matches("[\\w|\\u4e00-\\u9fa5]{1,25}"))
                         {
-                            List<User> userList = managerService.getUserDao().find("from User u where u.userName='"
+                            List<User> userList = managerService.getUserDao().find("from User u where u.userAccount='"
                                             + userAccount + "'");
                             if (userList.size() == 0)
                             {
@@ -261,8 +262,10 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Pager findNotInGroupUsers(long ugId, Pager pager) throws Exception {
 		StringBuilder hsql=new StringBuilder();
-		hsql.append("select user from User as  user left join user.userGroupRels as ugr where ugr.userGroup.ugId is null or ugr.userGroup.ugId!=");
+		hsql.append("select user from User user left join user.userGroupRels ugr where (ugr.userGroup.ugId is null or ugr.userGroup.ugId!=");
 		hsql.append(ugId);
+		hsql.append(") and user.userRole=");
+		hsql.append(Constant.USER_USER);
 		List<User> userList=managerService.getUserDao().find(hsql.toString());
 		List<UserModel> userModelList=new ArrayList<UserModel>();
 		for(User user:userList){
