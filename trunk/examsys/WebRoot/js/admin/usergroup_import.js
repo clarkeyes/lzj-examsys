@@ -3,13 +3,13 @@ $(function(){
 	var validator = $("#importUserGroupForm").validate({
 		rules: {
 			"userGroupId": {
-				required:true,
+				required:true
 			}
 		},
 		messages: {
 			"userGroupId": 
 			{
-				required:"请选择用户组",
+				required:"请选择用户组"
 			}
 		},
 		// the errorPlacement has to take the layout into account
