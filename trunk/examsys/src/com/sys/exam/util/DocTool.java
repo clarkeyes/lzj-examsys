@@ -12,6 +12,7 @@ import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.sys.common.logtool.LoggerTool;
 import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.QuestionBase;
 import com.sys.exam.database.bean.QuestionCategory;
@@ -35,6 +36,8 @@ public class DocTool
     private QuestionsService questionsService;
     
     private OptionsService optionsService;
+    
+    private long qbId=1;
 
     public DocTool()
     {
@@ -72,7 +75,7 @@ public class DocTool
         QuestionBaseDao qbd = managerService.getQuestionBaseDao();
         QuestionCategoryDao qcd = managerService.getQuestionCategoryDao();
 
-        QuestionBase qb = qbd.get(4l);
+        QuestionBase qb = qbd.get(qbId);
         QuestionCategory qc = null;
         Questions que = null;
         Set<Options> setOptions = new HashSet<Options>();
@@ -82,6 +85,8 @@ public class DocTool
 
         String[] strArray = extractor.getParagraphText();
         String str = extractor.getText();
+        
+        int questioncount=0;
         for (int i = 0; i < strArray.length; ++i)
         {
             String line = strArray[i].trim();
@@ -89,16 +94,20 @@ public class DocTool
             // 判断当前行是否是分类行
             if (hashCategory.containsKey(line))
             {
+                if (qc!=null)
+                {
+                    LoggerTool.m_logger.info(qc.getQcName()+":"+questioncount);
+                }//end if
+                
                 List<QuestionCategory> listqcs = null;
                 String valuedb = hashCategory.get(line);
-                System.out.println(valuedb);
+                LoggerTool.m_logger.info(valuedb);
                 listqcs = qcd.find("from QuestionCategory where qcName='"
                         + valuedb + "'");
-                System.out.println(listqcs.size());
                 if (listqcs.size() > 0)
                 {
                     qc = listqcs.get(0);
-                    System.out.println(qc.getQcName());
+                    questioncount=0;
 
                 }// end if
                 else
@@ -116,6 +125,7 @@ public class DocTool
             // 读取分类下的内容判断是否为题，如果是入库。
             if (null != qc)
             {
+                
                 // 判断是不是题目，如果是题目，保存上个题目的信息
                 // 如果不是题目，判断是否已经有题目存在
                 // 没有的话continue
@@ -134,6 +144,7 @@ public class DocTool
                         questionsService.saveQuestion(que);
                         optionsService.saveSet(setOptions);
                         setOptions.clear();
+                        questioncount++;
                     }// end if
                     que = anaLineQuestion(line);
 
@@ -148,14 +159,30 @@ public class DocTool
                         {
                             anaOptions(line, setOptions,que);
                         }// end if
+                        else {
+                            LoggerTool.m_logger.info(line);
+                        }//end else
 
                     }// end if
+                    else {
+                        LoggerTool.m_logger.info(line);
+                    }//end else
 
                 }// end else
 
             }// end if
 
         }
+        if (que!=null&&setOptions!=null&&setOptions.size()!=0)
+        {
+            questionsService.saveQuestion(que);
+            optionsService.saveSet(setOptions);
+            questioncount++;
+            LoggerTool.m_logger.info(qc.getQcName()+":"+questioncount);
+        }//end if
+        
+        
+        
     }
 
     /**
@@ -192,7 +219,7 @@ public class DocTool
             opt=new Options();
             opt.setQuestions(que);
             opt.setOptionOrder(setOptions.size());
-            opt.setOptionDes(strtmp);
+            opt.setOptionDes(strtmp.replaceAll("\\s+", ""));
             setOptions.add(opt);
         }//end if
         else {
@@ -286,7 +313,7 @@ public class DocTool
                 line=line.replaceAll("\\[", " ");
                 line=line.replaceAll("\\]", " ");
                 int index=line.indexOf(".");
-                line=line.substring(index);
+                line=line.substring(index+1);
             }//end if;
             else {
                 que.setQuesDifficulty(-1);

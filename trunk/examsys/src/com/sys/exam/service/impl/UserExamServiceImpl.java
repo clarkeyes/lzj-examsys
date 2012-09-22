@@ -105,7 +105,7 @@ public class UserExamServiceImpl implements UserExamService
             for (UserQuestion uq : listUqs)
             {
                 Questions que = uq.getQuestions();
-                if (null != que)
+                if (null != que&&uq.getUqAnswer()!=null&&uq.getUqAnswer().intValue()!=-1)
                 {
                     if (que.getQuesAnswer().intValue() == uq.getUqAnswer()
                             .intValue())
