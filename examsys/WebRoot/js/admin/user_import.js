@@ -20,10 +20,12 @@ $(function(){
 		submitHandler: function() {
 			//封屏操作
 			$("<div class=\"datagrid-mask\"></div>").css({display:"block",
-	       		width:$(".wrapper-height").width(),height:$(".wrapper-height").height()}).appendTo($(".datagrid-wrap"));
+	       		width:$(".width6").width(),height:$(".width6").height(),
+	       		left:"50px",
+				top:($("#page").height()-$("div.datagrid-mask-msg").outerHeight())/3}).appendTo($(".width6"));
 			$("#loading").html("导入用户，请稍等……").css({display:"block",
-			left:($(".datagrid-wrap").width()-$("div.datagrid-mask-msg").outerWidth())/2,
-			top:($(".datagrid-wrap").height()-$("div.datagrid-mask-msg").outerHeight())/2 });
+			left:($("#page").width()-$("div.datagrid-mask-msg").outerWidth())/2,
+			top:($("#page").height()-$("div.datagrid-mask-msg").outerHeight())/2 });
 			//封屏操作结束
 			$.ajaxFileUpload({    
                  url:'../admin/importUsers.action',    

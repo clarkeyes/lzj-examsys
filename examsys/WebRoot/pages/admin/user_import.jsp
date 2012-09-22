@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/themes/icon.css" />
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.validate_pack.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/js/validate_regex.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/local/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/admin/user_import.js"></script>
 	<script type="text/javascript">
@@ -47,6 +49,8 @@
 							<input type="file" name="userFile" id="userFile" class="half"/>
 						</p>
 						<div class="small">说明：Excel文件，文件首行为标题行，需包括账号，姓名。
+						<br><br>
+						<img src="../../img/userdata.jpg">
 						</div>
 						<p class="box">
 							<input type="submit" value="导入" id="send" class="btn btn-green big"/>

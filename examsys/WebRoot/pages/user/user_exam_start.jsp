@@ -32,11 +32,15 @@
 			<div class="page-content">
 			
 			<s:iterator value="listUserExams"  var="lue">
-			
-			<input type="hidden" name="ueId" value="${lue.ueId}"/>
-			<h3 class="title-article">
+			<s:if test="#lue.ueState==2||#lue.ueState==3">
+				<h3 class="title-article">
 					<span class="editarticle">
-					请注意考场纪律
+					<s:if test="#lue.ueState==2">
+						开始考试请注意考场纪律
+					</s:if>
+					<s:elseif test="#lue.ueState==5">
+						考试进行中
+					</s:elseif>
 					</span>
 					<strong>
 						考试名称：${lue.exam.examName  }
@@ -51,6 +55,25 @@
 					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam(${lue.ueId});"/>
 				</p>
 				</div>
+			</s:if>
+			<s:elseif test="#lue.ueState==4||#lue.ueState==5">
+				<h3 class="title-article">
+					<span class="editarticle">
+					<s:if test="#lue.ueState==4">
+						已提交
+					</s:if>
+					<s:elseif test="#lue.ueState==5">
+						判分完毕
+					</s:elseif>
+					</span>
+					<strong>
+						考试名称：${lue.exam.examName  }
+					</strong>
+					<div class="pub-type">
+						<span class="timestamp">考试时长：${lue.exam.examTime }分钟 </span>
+					</div>
+				</h3>
+			</s:elseif>
 			</s:iterator>
 			
 			

@@ -8,7 +8,7 @@ $(function(){
 				rangelength: [1, 25]
 			},
 			"qbId": {
-				required:true,
+				required:true
 			}
 		},
 		messages: {
@@ -20,7 +20,7 @@ $(function(){
 			},
 			"qbId": 
 			{
-				required:"请选择题库",
+				required:"请选择题库"
 			}
 		},
 		// the errorPlacement has to take the layout into account
@@ -58,7 +58,7 @@ $(function(){
 	});
 });	 
 //验证类别比例、题型数量和分值  
-function validateQcAndQt(){
+/*function validateQcAndQt(){
 	//验证类别比例
 	var regex=/^[0-9]|[1-9][0-9]|100$/;
 	var qcs=$("#addExamForm").find("#qcRatio");
@@ -107,4 +107,4 @@ function validateQcAndQt(){
 		flag=false;
 	}
 	return flag;
-}
+}*/
