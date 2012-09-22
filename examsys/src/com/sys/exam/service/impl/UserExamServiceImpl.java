@@ -110,6 +110,19 @@ public class UserExamServiceImpl implements UserExamService
                     {
                         igrade += uq.getUqValue();
                     }// end if
+                    else {
+                        if (que.getQuestionType().getQtId()==Constant.QUESTION_MULTIPLE)
+                        {
+                            int yhErrorValue=que.getQuesAnswer().intValue()^ uq.getUqAnswer()
+                            .intValue();
+                            int yuNotSel=que.getQuesAnswer().intValue()&yhErrorValue;
+                            if (yhErrorValue==yuNotSel)
+                            {
+                                LoggerTool.m_logger.info(que.getQuesDes()+"+1");
+                                igrade += 1;
+                            }//end if
+                        }//end if
+                    }//end else
 
                 }// end if
             }// end for
@@ -238,6 +251,8 @@ public class UserExamServiceImpl implements UserExamService
             {
                 UserQuestion eq = new UserQuestion();
                 eq.setUqValue(qt.getEqtValue());
+                eq.setUserExam(uenew);
+                eq.setUqSign(0);
                 eq.setQuestions(que);
                 eqTotalList.add(eq);
                 ret++;
@@ -254,10 +269,7 @@ public class UserExamServiceImpl implements UserExamService
     {
         List<UserExam> listues = null;
         StringBuffer sbsql = new StringBuffer();
-        sbsql.append("from UserExam ue where (ue.ueState=").append(
-                Constant.EXAM_STATE_START)
-                .append("or ue.ueState=").append(Constant.EXAM_STATE_GOING)
-                .append(") and ue.user.userId=")
+        sbsql.append("from UserExam ue where  ue.user.userId=")
                 .append(user.getUserId());
         listues = managerService.getUserExamDao().find(sbsql.toString());
 

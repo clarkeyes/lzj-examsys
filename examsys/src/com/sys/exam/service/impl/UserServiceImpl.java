@@ -236,7 +236,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Pager findInGroupUsers(long ugId, Pager pager) throws Exception {
 		StringBuilder hsql=new StringBuilder();
-		hsql.append("select user from User user,UserGroupRel ugr where user.userId=ugr.user.userId and ugr.userGroup.ugId=");
+		hsql.append("select user from User as user left join user.userGroupRels as ugrs where  ugrs.userGroup.ugId=");
 		hsql.append(ugId);
 		List<User> userList=managerService.getUserDao().find(hsql.toString());
 		List<UserModel> userModelList=new ArrayList<UserModel>();
@@ -261,7 +261,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Pager findNotInGroupUsers(long ugId, Pager pager) throws Exception {
 		StringBuilder hsql=new StringBuilder();
-		hsql.append("select user from User user left join fetch UserGroupRel ugr where user.userId=ugr.user.userId and ugr.userGroup.ugId!=");
+		hsql.append("select user from User as  user left join user.userGroupRels as ugr where ugr.userGroup.ugId is null or ugr.userGroup.ugId!=");
 		hsql.append(ugId);
 		List<User> userList=managerService.getUserDao().find(hsql.toString());
 		List<UserModel> userModelList=new ArrayList<UserModel>();
