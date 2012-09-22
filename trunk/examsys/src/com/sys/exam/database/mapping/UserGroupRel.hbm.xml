@@ -10,10 +10,10 @@
             <column name="ugrId" />
             <generator class="native" />
         </id>
-        <many-to-one name="userGroup" class="com.sys.exam.database.bean.UserGroup" fetch="select">
+        <many-to-one name="userGroup" class="com.sys.exam.database.bean.UserGroup" fetch="join">
             <column name="ugr_ugId" not-null="true" />
         </many-to-one>
-        <many-to-one name="user" class="com.sys.exam.database.bean.User" fetch="select">
+        <many-to-one name="user" class="com.sys.exam.database.bean.User" fetch="join">
             <column name="ugr_userId" not-null="true" />
         </many-to-one>
     </class>
