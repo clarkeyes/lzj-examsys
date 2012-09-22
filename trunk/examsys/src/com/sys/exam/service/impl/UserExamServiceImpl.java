@@ -16,7 +16,9 @@ import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.bean.UserGroupRel;
 import com.sys.exam.database.bean.UserQuestion;
+import com.sys.exam.database.model.EqtModel;
 import com.sys.exam.database.model.QuesType;
+import com.sys.exam.database.model.UserExamModel;
 import com.sys.exam.database.model.UserScore;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.UserExamService;
@@ -265,15 +267,36 @@ public class UserExamServiceImpl implements UserExamService
     
 
     @Override
-    public List<UserExam> getAvaiExam(User user)
+    public List<UserExamModel> getAvaiExam(User user)
     {
         List<UserExam> listues = null;
         StringBuffer sbsql = new StringBuffer();
         sbsql.append("from UserExam ue where  ue.user.userId=")
                 .append(user.getUserId());
         listues = managerService.getUserExamDao().find(sbsql.toString());
+        List<UserExamModel> ueModelList=new ArrayList<UserExamModel>();
+        for(UserExam ue:listues){
+        	StringBuilder hsql=new StringBuilder();
+        	hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
+        	hsql.append(ue.getExam().getExamId());
+        	List<ExamQuesType> eqtList=managerService.getExamQuesTypeDao().find(hsql.toString());
+        	List<EqtModel> eqtMList=new ArrayList<EqtModel>();
+        	float totalScore=0f;
+        	for(ExamQuesType eqt:eqtList){
+        		totalScore=totalScore+(eqt.getEqtValue()*eqt.getEqtNum());
+        		EqtModel eqtM=new EqtModel();
+        		eqtM.setTypeName(eqt.getQuestionType().getQtDes());
+        		eqtM.setTypeScore(eqt.getEqtValue()*eqt.getEqtNum());
+        		eqtMList.add(eqtM);
+        	}
+        	UserExamModel ueModel=new UserExamModel();
+        	ueModel.setUe(ue);
+        	ueModel.setEqtList(eqtMList);
+        	ueModel.setTotalScore((int)totalScore);
+        	ueModelList.add(ueModel);
+        }
 
-        return listues;
+        return ueModelList;
     }
 
     @Override
@@ -380,4 +403,27 @@ public class UserExamServiceImpl implements UserExamService
         }
         return ret;
     }
+
+	@Override
+	public UserExamModel findUeMById(Long ueId) throws Exception {
+		UserExam ue=managerService.getUserExamDao().get(ueId);
+		StringBuilder hsql=new StringBuilder();
+    	hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
+    	hsql.append(ue.getExam().getExamId());
+    	List<ExamQuesType> eqtList=managerService.getExamQuesTypeDao().find(hsql.toString());
+    	List<EqtModel> eqtMList=new ArrayList<EqtModel>();
+    	float totalScore=0f;
+    	for(ExamQuesType eqt:eqtList){
+    		totalScore=totalScore+(eqt.getEqtValue()*eqt.getEqtNum());
+    		EqtModel eqtM=new EqtModel();
+    		eqtM.setTypeName(eqt.getQuestionType().getQtDes());
+    		eqtM.setTypeScore(eqt.getEqtValue()*eqt.getEqtNum());
+    		eqtMList.add(eqtM);
+    	}
+    	UserExamModel ueModel=new UserExamModel();
+    	ueModel.setUe(ue);
+    	ueModel.setEqtList(eqtMList);
+    	ueModel.setTotalScore((int)totalScore);
+		return ueModel;
+	}
 }

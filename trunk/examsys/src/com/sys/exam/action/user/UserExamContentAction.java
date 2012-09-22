@@ -17,6 +17,7 @@ import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.bean.UserQuestion;
 import com.sys.exam.database.model.ExamModel;
 import com.sys.exam.database.model.UqType;
+import com.sys.exam.database.model.UserExamModel;
 import com.sys.exam.service.UserExamService;
 import com.sys.exam.service.UserQuestionService;
 import com.sys.exam.util.Constant;
@@ -30,7 +31,7 @@ public class UserExamContentAction extends ModelAction {
     /**TODO*/
     private static final long serialVersionUID = 440514624114109693L;
     private Long ueId;
-    private UserExam ue;
+    private UserExamModel ueM;
     private List<UqType> uqTypeList;
     @Override
     public String execute() throws Exception {
@@ -38,7 +39,7 @@ public class UserExamContentAction extends ModelAction {
         UserExamService ueService=serviceManager.getUserExamService();
         UserQuestionService uqService=serviceManager.getUserQuestionService();
     	try {
-    		ue=ueService.findUeById(ueId);
+    		ueM=ueService.findUeMById(ueId);
     		uqTypeList=uqService.findUqTypeList(ueId);
 			result="success";
 			return SUCCESS;
@@ -54,11 +55,11 @@ public class UserExamContentAction extends ModelAction {
 	public void setUeId(Long ueId) {
 		this.ueId = ueId;
 	}
-	public UserExam getUe() {
-		return ue;
+	public UserExamModel getUeM() {
+		return ueM;
 	}
-	public void setUe(UserExam ue) {
-		this.ue = ue;
+	public void setUeM(UserExamModel ueM) {
+		this.ueM = ueM;
 	}
 	public List<UqType> getUqTypeList() {
 		return uqTypeList;
