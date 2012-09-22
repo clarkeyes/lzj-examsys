@@ -62,7 +62,7 @@ $(document).ready(function(){
 			<div class="wrapper" style="position:relative;">
 				<!-- Title/Logo - can use text instead of image -->
 				<div id="title">
-					青海省公安消防部队选拔考试系统
+					青海省公安消防总队副团职干部双考选拔理论考试系统
 					<!--<span>VEGAGRID</span> demo-->
 				</div>
 				<!-- Top navigation -->

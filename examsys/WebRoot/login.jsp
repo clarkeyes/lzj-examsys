@@ -34,7 +34,7 @@
 				<nav id="menu">
 				<ul class="sf-menu">
 					<li class="current">
-						<a href="#">青海省公安消防部队选拔考试系统</a>
+						<a href="#">青海省公安消防总队副团职干部双考选拔理论考试系统</a>
 					</li>
 				</ul>
 				</nav>
