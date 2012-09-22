@@ -15,6 +15,7 @@ import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
 import com.sys.exam.database.model.ExamModel;
+import com.sys.exam.database.model.UserExamModel;
 import com.sys.exam.service.UserExamService;
 import com.sys.exam.util.Constant;
 
@@ -26,7 +27,7 @@ public class UserExamListAction extends ModelAction {
     
     /**TODO*/
     private static final long serialVersionUID = 440514624114109693L;
-    private List<UserExam> listUserExams=new ArrayList<UserExam>();
+    private List<UserExamModel> listUserExams=new ArrayList<UserExamModel>();
     @Override
     public String execute() throws Exception {
         User user=(User)session.get(Constant.USER);//当前登录用户
@@ -46,14 +47,14 @@ public class UserExamListAction extends ModelAction {
     /**
      * @return Returns the listUserExams.
      */
-    public List<UserExam> getListUserExams()
+    public List<UserExamModel> getListUserExams()
     {
         return listUserExams;
     }
     /**
      * @param listUserExams The listUserExams to set.
      */
-    public void setListUserExams(List<UserExam> listUserExams)
+    public void setListUserExams(List<UserExamModel> listUserExams)
     {
         this.listUserExams = listUserExams;
     }

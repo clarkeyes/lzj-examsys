@@ -5,6 +5,7 @@ import java.util.List;
 import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.User;
 import com.sys.exam.database.bean.UserExam;
+import com.sys.exam.database.model.UserExamModel;
 
 
 /**
@@ -48,7 +49,7 @@ public interface UserExamService
       * @param user  用户实体
       * @return 用户考试列表
       */
-    List<UserExam> getAvaiExam(User user);
+    List<UserExamModel> getAvaiExam(User user);
 
 	/**分页查找指定考试的用户信息、状态、成绩等
 	 * @param examId 考试id
@@ -80,6 +81,13 @@ public interface UserExamService
 	 * @throws Exception
 	 */
 	String updateUesState(List<Long> ueIdList, int ueState)throws Exception;
+
+	/**查找用户考试相关信息
+	 * @param ueId 用户考试id
+	 * @return
+	 * @throws Exception
+	 */
+	UserExamModel findUeMById(Long ueId)throws Exception;
 
     
 }
