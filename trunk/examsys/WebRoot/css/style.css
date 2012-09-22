@@ -467,7 +467,7 @@ fieldset small {
 .column {
 	margin-left:18px;
 	display:block;
-	float:left;
+	/*float:left;*/
 }
 .colgroup {
 	display:block;

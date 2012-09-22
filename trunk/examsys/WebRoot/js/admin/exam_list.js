@@ -16,8 +16,7 @@ $(function(){
 			{field:'userNum',title:'人数',width:100},
 			{field:'opt',title:'操作',width:250,align:'left',
 				formatter:function(value,rec){//rec为一个vlan对象
-					return 	'<a href="javascript:;" onclick="examContent('+rec.examId+');">查看内容</a>&nbsp;'
-					+'|&nbsp;<a href="javascript:;" onclick="toImportUserGroup('+rec.examId+');">导入用户组</a>&nbsp;'
+					return 	'<a href="javascript:;" onclick="toImportUserGroup('+rec.examId+');">导入用户组</a>&nbsp;'
 					+'|&nbsp;<a href="javascript:;" onclick="checkSocre('+rec.examId+');">查看成绩</a>&nbsp;'
 					+'|&nbsp;<a href="javascript:;" onclick="deleteExam('+rec.examId+');">删除</a>&nbsp;';
 				}

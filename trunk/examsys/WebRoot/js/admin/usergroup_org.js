@@ -6,7 +6,7 @@ $(function(){
 		nowrap: false,  //是否只显示一行，即文本过多是否省略部分。
 		striped: true,
 		singleSelect:false,						
-		url:'../admin/inGroupUsers.action',
+		url:'../admin/inGroupUser.action',
 		sortName: 'userId',
 		sortOrder: 'asc',
 		remoteSort: false,
