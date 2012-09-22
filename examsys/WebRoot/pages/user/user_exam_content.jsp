@@ -35,18 +35,22 @@
 			<div class="page-content">
 				 <h3 class="title-article">
 					<span class="editarticle">
-						<s:if test="ue.ueState==3">
+						<s:if test="ueM.ue.ueState==3">
 							考试进行中
 						</s:if>
-						<s:elseif test="ue.ueState==4">
+						<s:elseif test="ueM.ue.ueState==4">
 							已提交
 						</s:elseif>
 					</span>
 					<strong>
-						考试名称：${ue.exam.examName}
+						考试名称：${ueM.ue.exam.examName}
 					</strong>
 					<div class="pub-type">
-						<span class="timestamp">考试时长：${ue.exam.examTime}分钟 </span>
+						<span class="timestamp">考试时长：${ueM.ue.exam.examTime}分钟 </span>&nbsp;
+						<span class="timestamp">卷面分值：${ueM.totalScore}分</span>
+						<s:iterator value="ueM.eqtList" var="eqtM">
+							<span class="timestamp">${eqtM.typeName}(${eqtM.typeScore})分</span>
+						</s:iterator>
 					</div>
 				</h3>
 				<div class="text-article">
