@@ -240,6 +240,7 @@ public class UserExamServiceImpl implements UserExamService
                 eq.setQuestions(queList.get(rad));
                 eq.setUserExam(uenew);
                 eq.setUqSign(0);
+                eq.setUqAnswer(-1);
                 eqTotalList.add(eq);
                 ret++;
                 // 去重
