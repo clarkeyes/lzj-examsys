@@ -262,7 +262,7 @@ public class UserServiceImpl implements UserService
 	@Override
 	public Pager findNotInGroupUsers(long ugId, Pager pager) throws Exception {
 		StringBuilder hsql=new StringBuilder();
-		hsql.append("select user from User user left join user.userGroupRels ugr where (ugr.userGroup.ugId is null or ugr.userGroup.ugId!=");
+		hsql.append("select user from User user where user.userId not in (select ugr.user.userId from UserGroupRel ugr where ugr.userGroup.ugId=");
 		hsql.append(ugId);
 		hsql.append(") and user.userRole=");
 		hsql.append(Constant.USER_USER);
