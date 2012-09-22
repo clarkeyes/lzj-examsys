@@ -31,7 +31,7 @@
             </key>
             <one-to-many class="com.sys.exam.database.bean.UserExam" />
         </set>
-        <set name="userGroupRels" inverse="true">
+        <set name="userGroupRels" inverse="true" fetch="join">
             <key>
                 <column name="ugr_userId" not-null="true" />
             </key>
