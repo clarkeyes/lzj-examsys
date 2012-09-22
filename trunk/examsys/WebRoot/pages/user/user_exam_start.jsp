@@ -31,46 +31,54 @@
 		<div class="wrapper" >
 			<div class="page-content">
 			
-			<s:iterator value="listUserExams"  var="lue">
-			<s:if test="#lue.ueState==2||#lue.ueState==3">
+			<s:iterator value="listUserExams"  var="ueM">
+			<s:if test="#ueM.ue.ueState==2||#ueM.ue.ueState==3">
 				<h3 class="title-article">
 					<span class="editarticle">
-					<s:if test="#lue.ueState==2">
+					<s:if test="#ueM.ue.ueState==2">
 						开始考试请注意考场纪律
 					</s:if>
-					<s:elseif test="#lue.ueState==5">
+					<s:elseif test="#ueM.ue.ueState==3">
 						考试进行中
 					</s:elseif>
 					</span>
 					<strong>
-						考试名称：${lue.exam.examName  }
+						考试名称：${ueM.ue.exam.examName  }
 					</strong>
 					<div class="pub-type">
-						<span class="timestamp">考试时长：${lue.exam.examTime  }分钟 </span>
+						<span class="timestamp">考试时长：${ueM.ue.exam.examTime  }分钟</span>&nbsp;
+						<span class="timestamp">卷面分值：${ueM.totalScore}分</span>
+						<s:iterator value="#ueM.eqtList" var="eqtM">
+							<span class="timestamp">${eqtM.typeName}(${eqtM.typeScore})分</span>
+						</s:iterator>
 					</div>
 				</h3>
 				
 				<div class="wrapper-login" style=" text-align: center;">
 				<p>
-					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam(${lue.ueId});"/>
+					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam(${ueM.ue.ueId});"/>
 				</p>
 				</div>
 			</s:if>
-			<s:elseif test="#lue.ueState==4||#lue.ueState==5">
+			<s:elseif test="#ueM.ue.ueState==4||#ueM.ue.ueState==5">
 				<h3 class="title-article">
 					<span class="editarticle">
-					<s:if test="#lue.ueState==4">
+					<s:if test="#ueM.ue.ueState==4">
 						已提交
 					</s:if>
-					<s:elseif test="#lue.ueState==5">
+					<s:elseif test="#ueM.ue.ueState==5">
 						判分完毕
 					</s:elseif>
 					</span>
 					<strong>
-						考试名称：${lue.exam.examName  }
+						考试名称：${ueM.ue.exam.examName  }
 					</strong>
 					<div class="pub-type">
-						<span class="timestamp">考试时长：${lue.exam.examTime }分钟 </span>
+						<span class="timestamp">考试时长：${ueM.ue.exam.examTime }分钟 </span>&nbsp;
+						<span class="timestamp">卷面分值：${ueM.totalScore}分</span>
+						<s:iterator value="#ueM.eqtList" var="eqtM">
+							<span class="timestamp">${eqtM.typeName}(${eqtM.typeScore})分</span>
+						</s:iterator>
 					</div>
 				</h3>
 			</s:elseif>
