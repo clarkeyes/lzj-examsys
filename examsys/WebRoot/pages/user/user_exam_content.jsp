@@ -96,8 +96,8 @@ $(function(){
 												${singleSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
-													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}" />
-													<label  >${op.optionDes}</label><br/>
+													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer_${op.optionId}" value="${op.optionOrder}" />
+													<label  for="answer_${op.optionId}">${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											</s:if>
@@ -107,8 +107,8 @@ $(function(){
 												${singleSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
-													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}" />
-													<label  >${op.optionDes}</label><br/>
+													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer_${op.optionId}" value="${op.optionOrder}" />
+													<label  for="answer_${op.optionId}">${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											
@@ -128,8 +128,8 @@ $(function(){
 												<span id="uq_${uqModel.uq.uqId}">${mulSt.count}、${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op" status="anSt">
-													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer" value="${op.optionOrder}"/>
-													<label>${op.optionDes}</label><br/>
+													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer_${op.optionId}" value="${op.optionOrder}"/>
+													<label for="answer_${op.optionId}">${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											</s:if>
@@ -139,8 +139,8 @@ $(function(){
 												${mulSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op" status="anSt">
-													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer" value="${op.optionOrder}"/>
-													<label>${op.optionDes}</label><br/>
+													<input type="checkbox" name="taList[${st.index}].uaList[${mulSt.index}].anList[${anSt.index}]" id="answer_${op.optionId}" value="${op.optionOrder}"/>
+													<label for="answer_${op.optionId}">${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											
@@ -161,10 +161,10 @@ $(function(){
 												<input type="hidden" name="taList[${st.index}].uaList[${judgeSt.index}].uqId" value="${uqModel.uq.uqId}"/>
 												${judgeSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
-												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="1"/>
-												<label>对</label><br/>
-												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="0"/>
-												<label>错</label><br/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="judge1_${judgeSt.index}" value="1"/>
+												<label for="judge1_${judgeSt.index}">对</label><br/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="judge2_${judgeSt.index}" value="0"/>
+												<label for="judge2_${judgeSt.index}">错</label><br/>
 											</p>
 											</s:if>
 											<s:else>
@@ -172,10 +172,10 @@ $(function(){
 												<input type="hidden" name="taList[${st.index}].uaList[${judgeSt.index}].uqId" value="${uqModel.uq.uqId}"/>
 												${judgeSt.count}、<span id="uq_${uqModel.uq.uqId}">${uqModel.uq.questions.quesDes}</span>
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
-												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="1"/>
-												<label>对</label><br/>
-												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="answer" value="0"/>
-												<label>错</label><br/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="judge1_${judgeSt.index}" value="1"/>
+												<label for="judge1_${judgeSt.index}">对</label><br/>
+												<input type="radio" name="taList[${st.index}].uaList[${judgeSt.index}].anList[0]" id="judge2_${judgeSt.index}" value="0"/>
+												<label for="judge2_${judgeSt.index}">错</label><br/>
 											</p>
 											</s:else>
 										</s:iterator>
