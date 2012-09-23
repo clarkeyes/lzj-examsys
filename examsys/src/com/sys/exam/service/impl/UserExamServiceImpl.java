@@ -105,26 +105,30 @@ public class UserExamServiceImpl implements UserExamService
             for (UserQuestion uq : listUqs)
             {
                 Questions que = uq.getQuestions();
-                if (null != que&&uq.getUqAnswer()!=null&&uq.getUqAnswer().intValue()!=-1)
+                if (null != que && uq.getUqAnswer() != null
+                        && uq.getUqAnswer().intValue() != -1)
                 {
                     if (que.getQuesAnswer().intValue() == uq.getUqAnswer()
                             .intValue())
                     {
                         igrade += uq.getUqValue();
                     }// end if
-                    else {
-                        if (que.getQuestionType().getQtId()==Constant.QUESTION_MULTIPLE)
+                    else
+                    {
+                        if (que.getQuestionType().getQtId() == Constant.QUESTION_MULTIPLE)
                         {
-                            int yhErrorValue=que.getQuesAnswer().intValue()^ uq.getUqAnswer()
-                            .intValue();
-                            int yuNotSel=que.getQuesAnswer().intValue()&yhErrorValue;
-                            if (yhErrorValue==yuNotSel)
+                            int yhErrorValue = que.getQuesAnswer().intValue()
+                                    ^ uq.getUqAnswer().intValue();
+                            int yuNotSel = que.getQuesAnswer().intValue()
+                                    & yhErrorValue;
+                            if (yhErrorValue == yuNotSel)
                             {
-                                LoggerTool.m_logger.info(que.getQuesDes()+"+1");
+                                LoggerTool.m_logger.info(que.getQuesDes()
+                                        + "+1");
                                 igrade += 1;
-                            }//end if
-                        }//end if
-                    }//end else
+                            }// end if
+                        }// end if
+                    }// end else
 
                 }// end if
             }// end for
@@ -146,7 +150,7 @@ public class UserExamServiceImpl implements UserExamService
         List<UserGroupRel> listugrs = managerService.getUserGroupRelDao().find(
                 sql);
         List<UserExam> listues = new ArrayList<UserExam>();
-        List<UserQuestion> listUqs=new ArrayList<UserQuestion>();
+        List<UserQuestion> listUqs = new ArrayList<UserQuestion>();
         UserExam uenew = null;
         for (UserGroupRel ugr : listugrs)
         {
@@ -157,8 +161,8 @@ public class UserExamServiceImpl implements UserExamService
             uenew.setUeState(Constant.EXAM_STATE_NEW);
             uenew.setUser(ugr.getUser());
             listues.add(uenew);
-            addQuestionToUserExam(uenew,listUqs, exam);
-            
+            addQuestionToUserExam(uenew, listUqs, exam);
+
         }
 
         managerService.getUserExamDao().saveOrUpdateAll(listues);
@@ -179,26 +183,25 @@ public class UserExamServiceImpl implements UserExamService
         String sql = "from ExamCateRatio  ecr where ecr.exam.examId="
                 + exam.getExamId();
         List<ExamCateRatio> listecrs = managerService.getExamCateRatioDao()
-        .find(sql);
-        
+                .find(sql);
+
         sql = "from ExamQuesType  eqt where eqt.exam.examId="
-            + exam.getExamId();
-    List<ExamQuesType> listeqts = managerService.getExamQuesTypeDao()
-    .find(sql);
+                + exam.getExamId();
+        List<ExamQuesType> listeqts = managerService.getExamQuesTypeDao().find(
+                sql);
         for (ExamQuesType eqt : listeqts)
         {
-            chouti(eqt,listuqs,listecrs,exam,uenew);
+            chouti(eqt, listuqs, listecrs, exam, uenew);
         }
-       
 
     }
-    
+
     private void chouti(ExamQuesType eqt, List<UserQuestion> eqTotalList,
             List<ExamCateRatio> qcs, Exam exam, UserExam uenew)
     {
         ExamCateRatio qcm = null;
         int shengtimu = eqt.getEqtNum();
-        for (int i = 0; i< qcs.size(); i++)
+        for (int i = 0; i < qcs.size(); i++)
         {
             qcm = qcs.get(i);
             int total = 0;
@@ -207,18 +210,19 @@ public class UserExamServiceImpl implements UserExamService
                 total += qcs.get(j).getEcrRatio();
             }// end for
 
-             
             int yaoqugeshu = (int) ((qcm.getEcrRatio() / total) * shengtimu);
-            int addnum=fenleichouti(yaoqugeshu, qcm, eqTotalList, eqt, exam,uenew);
-            shengtimu-=addnum;
+            int addnum = fenleichouti(yaoqugeshu, qcm, eqTotalList, eqt, exam,
+                    uenew);
+            shengtimu -= addnum;
         }// end for
 
     }
 
     private int fenleichouti(int yaoqugeshu, ExamCateRatio qcm,
-            List<UserQuestion> eqTotalList, ExamQuesType qt, Exam exam, UserExam uenew)
+            List<UserQuestion> eqTotalList, ExamQuesType qt, Exam exam,
+            UserExam uenew)
     {
-        int ret=0;
+        int ret = 0;
         StringBuilder hsql = new StringBuilder();
         hsql.append("from Questions que where que.questionType.qtId=");
         hsql.append(qt.getQuestionType().getQtId());
@@ -261,40 +265,42 @@ public class UserExamServiceImpl implements UserExamService
                 ret++;
             }
         }
-        
+
         return ret;
 
     }
-    
 
     @Override
     public List<UserExamModel> getAvaiExam(User user)
     {
         List<UserExam> listues = null;
         StringBuffer sbsql = new StringBuffer();
-        sbsql.append("from UserExam ue where  ue.user.userId=")
-                .append(user.getUserId());
+        sbsql.append("from UserExam ue where  ue.user.userId=").append(
+                user.getUserId());
         listues = managerService.getUserExamDao().find(sbsql.toString());
-        List<UserExamModel> ueModelList=new ArrayList<UserExamModel>();
-        for(UserExam ue:listues){
-        	StringBuilder hsql=new StringBuilder();
-        	hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
-        	hsql.append(ue.getExam().getExamId());
-        	List<ExamQuesType> eqtList=managerService.getExamQuesTypeDao().find(hsql.toString());
-        	List<EqtModel> eqtMList=new ArrayList<EqtModel>();
-        	float totalScore=0f;
-        	for(ExamQuesType eqt:eqtList){
-        		totalScore=totalScore+(eqt.getEqtValue()*eqt.getEqtNum());
-        		EqtModel eqtM=new EqtModel();
-        		eqtM.setTypeName(eqt.getQuestionType().getQtDes());
-        		eqtM.setTypeScore(eqt.getEqtValue()*eqt.getEqtNum());
-        		eqtMList.add(eqtM);
-        	}
-        	UserExamModel ueModel=new UserExamModel();
-        	ueModel.setUe(ue);
-        	ueModel.setEqtList(eqtMList);
-        	ueModel.setTotalScore((int)totalScore);
-        	ueModelList.add(ueModel);
+        List<UserExamModel> ueModelList = new ArrayList<UserExamModel>();
+        for (UserExam ue : listues)
+        {
+            StringBuilder hsql = new StringBuilder();
+            hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
+            hsql.append(ue.getExam().getExamId());
+            List<ExamQuesType> eqtList = managerService.getExamQuesTypeDao()
+                    .find(hsql.toString());
+            List<EqtModel> eqtMList = new ArrayList<EqtModel>();
+            float totalScore = 0f;
+            for (ExamQuesType eqt : eqtList)
+            {
+                totalScore = totalScore + (eqt.getEqtValue() * eqt.getEqtNum());
+                EqtModel eqtM = new EqtModel();
+                eqtM.setTypeName(eqt.getQuestionType().getQtDes());
+                eqtM.setTypeScore(eqt.getEqtValue() * eqt.getEqtNum());
+                eqtMList.add(eqtM);
+            }
+            UserExamModel ueModel = new UserExamModel();
+            ueModel.setUe(ue);
+            ueModel.setEqtList(eqtMList);
+            ueModel.setTotalScore((int) totalScore);
+            ueModelList.add(ueModel);
         }
 
         return ueModelList;
@@ -388,43 +394,74 @@ public class UserExamServiceImpl implements UserExamService
     public String updateUesState(List<Long> ueIdList, int ueState)
             throws Exception
     {
-        String ret=null;
+        String ret = null;
         for (Long long1 : ueIdList)
         {
             UserExam ue = managerService.getUserExamDao().get(long1);
-            if (ue.getUeState()<ueState)
+            if (ue.getUeState() < ueState)
             {
                 ue.setUeState(ueState);
-            }//end if
-            else {
-                ret="考试完毕的用户不能重新考试";
-            }//end else
-            
+            }// end if
+            else
+            {
+                ret = "考试完毕的用户不能重新考试";
+            }// end else
+
             managerService.getUserExamDao().update(ue);
         }
         return ret;
     }
 
-	@Override
-	public UserExamModel findUeMById(Long ueId) throws Exception {
-		UserExam ue=managerService.getUserExamDao().get(ueId);
-		StringBuilder hsql=new StringBuilder();
-    	hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
-    	hsql.append(ue.getExam().getExamId());
-    	List<ExamQuesType> eqtList=managerService.getExamQuesTypeDao().find(hsql.toString());
-    	List<EqtModel> eqtMList=new ArrayList<EqtModel>();
-    	float totalScore=0f;
-    	for(ExamQuesType eqt:eqtList){
-    		totalScore=totalScore+(eqt.getEqtValue()*eqt.getEqtNum());
-    		EqtModel eqtM=new EqtModel();
-    		eqtM.setTypeName(eqt.getQuestionType().getQtDes());
-    		eqtM.setTypeScore(eqt.getEqtValue()*eqt.getEqtNum());
-    		eqtMList.add(eqtM);
-    	}
-    	UserExamModel ueModel=new UserExamModel();
-    	ueModel.setUe(ue);
-    	ueModel.setEqtList(eqtMList);
-    	ueModel.setTotalScore((int)totalScore);
-		return ueModel;
-	}
+    @Override
+    public UserExamModel findUeMById(Long ueId) throws Exception
+    {
+        UserExam ue = managerService.getUserExamDao().get(ueId);
+        StringBuilder hsql = new StringBuilder();
+        hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
+        hsql.append(ue.getExam().getExamId());
+        List<ExamQuesType> eqtList = managerService.getExamQuesTypeDao().find(
+                hsql.toString());
+        List<EqtModel> eqtMList = new ArrayList<EqtModel>();
+        float totalScore = 0f;
+        for (ExamQuesType eqt : eqtList)
+        {
+            totalScore = totalScore + (eqt.getEqtValue() * eqt.getEqtNum());
+            EqtModel eqtM = new EqtModel();
+            eqtM.setTypeName(eqt.getQuestionType().getQtDes());
+            eqtM.setTypeScore(eqt.getEqtValue() * eqt.getEqtNum());
+            eqtMList.add(eqtM);
+        }
+
+        int time = getAvaiTime(ue);
+
+        UserExamModel ueModel = new UserExamModel();
+        ueModel.setUe(ue);
+        ueModel.setEqtList(eqtMList);
+        ueModel.setTotalScore((int) totalScore);
+        ueModel.setRemainTime(time);
+        return ueModel;
+    }
+
+    private int getAvaiTime(UserExam ue)
+    {
+        int ret = 0;
+        Date startDate = CommonUtil.getDate(ue.getUeStartTime(),
+                "yyyy/MM/dd HH:mm:ss,SSS");
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startDate);
+        cal.add(Calendar.MINUTE, ue.getExam().getExamTime());
+        Date d = new Date();
+        if (d.compareTo(cal.getTime()) > 0)
+        {
+            ret=0;
+        }// end if
+        else {
+            long rtime=cal.getTimeInMillis()-d.getTime();
+            ret=(int)rtime/(1000*60);
+            
+        }//end else
+
+       
+        return ret;
+    }
 }

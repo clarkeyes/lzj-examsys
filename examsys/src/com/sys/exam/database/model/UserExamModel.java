@@ -14,6 +14,7 @@ import com.sys.exam.database.bean.UserExam;
  */
 public class UserExamModel {
 	private UserExam ue;
+	private int remainTime;
 	private int totalScore;
 	private List<EqtModel> eqtList;
 	public UserExam getUe() {
@@ -34,5 +35,19 @@ public class UserExamModel {
 	public void setEqtList(List<EqtModel> eqtList) {
 		this.eqtList = eqtList;
 	}
+    /**
+     * @return Returns the remainTime.
+     */
+    public int getRemainTime()
+    {
+        return remainTime;
+    }
+    /**
+     * @param remainTime The remainTime to set.
+     */
+    public void setRemainTime(int remainTime)
+    {
+        this.remainTime = remainTime;
+    }
 	
 }
