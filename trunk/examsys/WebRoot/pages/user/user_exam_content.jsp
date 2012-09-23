@@ -97,7 +97,7 @@ $(function(){
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
 													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}" />
-													<label for="answer">${op.optionDes}</label><br/>
+													<label  >${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											</s:if>
@@ -108,7 +108,7 @@ $(function(){
 												<a href="javascript:void(0)" onclick="makeSign(${uqModel.uq.uqId});">标记</a><br/>
 												<s:iterator value="#uqModel.opList" var="op">
 													<input type="radio" name="taList[${st.index}].uaList[${singleSt.index}].anList[0]" id="answer" value="${op.optionOrder}" />
-													<label for="answer">${op.optionDes}</label><br/>
+													<label  >${op.optionDes}</label><br/>
 												</s:iterator>
 											</p>
 											
