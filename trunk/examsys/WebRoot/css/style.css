@@ -718,7 +718,7 @@ fieldset small {
 .wrapper, .wrapper-login {
 	margin:0 auto;
 	text-align:left;
-	width: 990px;
+	width: 900px;
 	
 }
 .wrapper-login {
@@ -727,7 +727,7 @@ fieldset small {
 .wrapper-height {
 	margin:0 auto;
 	text-align:left;
-	width: 990px;
+	width: 900px;
 	height:500px;
 	position:relative;
 	
@@ -1014,7 +1014,7 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 	font-size:1.6em;
 	padding:12px 0;
 	text-shadow:0 -1px 1px #2A7AD2;
-	margin:0px 50px;
+	margin:0;
 	top:0;
 	line-height:1.2em;
 	float:left;
@@ -2471,7 +2471,7 @@ h3{
 	font-weight: bold;
 }
 .page-content{
-	margin:10px 50px;
+	margin:0;
 }
 h3.title-article {
     background: none repeat scroll 0 0 #F7F7F7;
@@ -2480,7 +2480,7 @@ h3.title-article {
     padding: 0.5em 1em 0.5em 1em;
     word-wrap: break-word;
     font-size: 12px;
-    margin:10px 60px 10px 60px;
+    margin:0px 0px;
     word-wrap: break-word;
     font-size: 12px;
 }
@@ -2554,3 +2554,14 @@ h3.title-article span.group {
 .uqSign{
 	color:#ff0000 !important;
 }
+.p123{
+background-color:#FFD1D1
+}
+.timu label{
+font-weight: normal;
+}
+.timu span{
+font-size: 14px;
+}
+
+
