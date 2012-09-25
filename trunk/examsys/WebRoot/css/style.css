@@ -1047,7 +1047,7 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 	background-color:#FFF;
 	*z-index:-1;
 	*position: relative;
-	min-height:500px;
+	min-height:500px;_height:expression((document.documentElement.clientHeight||document.body.clientHeight)>500?"500px":"");
 }
 #page a {
 	color: #329ECC;
@@ -2563,5 +2563,3 @@ font-weight: normal;
 .timu span{
 font-size: 14px;
 }
-
-
