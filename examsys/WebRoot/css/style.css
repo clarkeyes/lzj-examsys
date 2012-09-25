@@ -2483,6 +2483,8 @@ h3.title-article {
     margin:0px 0px;
     word-wrap: break-word;
     font-size: 12px;
+    display: inline-block;
+    width:100%;
 }
 .title-article .editarticle {
     color: #3B5998;
