@@ -19,14 +19,15 @@ $(function(){
 		// specifying a submitHandler prevents the default submit, good for the demo
 		submitHandler: function() {
 			//封屏操作
-			$("<div class=\"datagrid-mask\"></div>").css({display:"block",
+		/*	$("<div class=\"datagrid-mask\"></div>").css({display:"block",
 	       		width:$(".width6").width(),height:$(".width6").height(),
 	       		left:"50px",
 				top:($("#page").height()-$("div.datagrid-mask-msg").outerHeight())/3}).appendTo($(".width6"));
 			$("#loading").html("导入用户，请稍等……").css({display:"block",
 			left:($("#page").width()-$("div.datagrid-mask-msg").outerWidth())/2,
-			top:($("#page").height()-$("div.datagrid-mask-msg").outerHeight())/2 });
+			top:($("#page").height()-$("div.datagrid-mask-msg").outerHeight())/2 });*/
 			//封屏操作结束
+			
 			$.ajaxFileUpload({    
                  url:'../admin/importUsers.action',    
                  secureuri:false,    
