@@ -1069,26 +1069,14 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 /* Footers
 ---------------------------------------------------------------------*/
 
-.footer#bottom {
+#bottom.footer {
 	background-color:#F2F2F2;
 	border-top:4px solid #D9D9D9;
 	color:#999;
 	float:left;
 	font-size:11px;
 	width:100%;
-	background:-webkit-gradient(
-		linear,
-		left bottom,
-		left top,
-		color-stop(0.2, rgb(242,242,242)),
-		color-stop(0.8, rgb(254,254,254))
-	);
-	background: -moz-linear-gradient(
-		center bottom,
-		rgb(242,242,242) 20%,
-		rgb(254,254,254) 80%
-	);
-	padding-bottom:2em;
+	padding-bottom:15px;
 }
 .footer#bottom nav{
 	float:none;
@@ -2564,4 +2552,7 @@ font-weight: normal;
 }
 .timu span{
 font-size: 14px;
+}
+#botm{
+border-top:4px solid #D9D9D9;
 }

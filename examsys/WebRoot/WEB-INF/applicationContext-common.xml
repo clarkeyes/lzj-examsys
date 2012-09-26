@@ -71,7 +71,7 @@
 				<value>5000</value>
 			</property>
 			<property name="period">
-				<value>20000</value>
+				<value>120000</value>
 			</property>
 		</bean>
 		

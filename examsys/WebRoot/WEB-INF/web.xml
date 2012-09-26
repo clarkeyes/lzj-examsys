@@ -3,6 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<session-config> 
+<session-timeout>0</session-timeout> 
+</session-config>
 
 	<!-- 配置Spring2.5 -->
  	<context-param>
