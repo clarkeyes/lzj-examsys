@@ -1,9 +1,10 @@
 <%@page contentType="text/html;charset=utf-8"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <div class="footer" id="bottom">
-	<div>
+	<div >
 		<p align="center">
-			青海省公安消防总队副团职干部双考选拔理论考试系统
+			Copyright (C) 2010-2013, All Rights Reserved <br />
 		</p>
 	</div>
 </div>

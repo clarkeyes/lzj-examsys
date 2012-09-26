@@ -54,10 +54,8 @@
 					</div>
 				</h3>
 				
-				<div class="wrapper-login" style=" text-align: center;">
-				<p>
+				<div class="wrapper-login" style=" text-align: center;margin: 20px 200px;">
 					<input type="button" value="开始考试" id="send" class="btn btn-green big" onclick="startExam(${ueM.ue.ueId});"/>
-				</p>
 				</div>
 			</s:if>
 			<s:elseif test="#ueM.ue.ueState==4||#ueM.ue.ueState==5">
