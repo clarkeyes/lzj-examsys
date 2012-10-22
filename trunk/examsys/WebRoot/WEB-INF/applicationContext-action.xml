@@ -73,5 +73,7 @@
 	<bean id="userExamContentAction" scope="prototype" class="com.sys.exam.action.user.UserExamContentAction" parent="modelAction"></bean>
 	<!-- 交卷 -->
 	<bean id="commitAnswerAction" scope="prototype" class="com.sys.exam.action.user.CommitAnswerAction" parent="modelAction"></bean>
+	<!-- 修改密码 -->
+	<bean id="userPwdAction" scope="prototype" class="com.sys.exam.action.user.UserPwdAction" parent="modelAction"></bean>
 	
 </beans>

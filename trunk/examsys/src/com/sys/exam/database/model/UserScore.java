@@ -6,6 +6,7 @@ public class UserScore {
 	private String userName;
 	private String ueState;
 	private Float ueGrade;
+	private Integer userRole;
 	public Long getUeId() {
 		return ueId;
 	}
@@ -36,5 +37,10 @@ public class UserScore {
 	public void setUeGrade(Float ueGrade) {
 		this.ueGrade = ueGrade;
 	}
-	
+	public Integer getUserRole(){
+		return userRole;
+	}
+	public void setUserRole(Integer userRole){
+		this.userRole=userRole;
+	}
 }

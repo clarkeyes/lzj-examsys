@@ -35,5 +35,14 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 修改密码 -->
+		<action name="userPwd" class="userPwdAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 	</package>
 </struts>

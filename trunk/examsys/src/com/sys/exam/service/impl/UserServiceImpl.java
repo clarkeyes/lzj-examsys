@@ -339,4 +339,12 @@ public class UserServiceImpl implements UserService
 		return ret;
 	}
 
+	@Override
+	public void updatePassword(User user) throws Exception {
+		String password=EncryptUtil.md5Encrypt(user.getUserPassword());
+        user.setUserPassword(password);
+        managerService.getUserDao().update(user);
+		
+	}
+
 }

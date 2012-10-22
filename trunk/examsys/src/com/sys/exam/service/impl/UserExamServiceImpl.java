@@ -323,6 +323,7 @@ public class UserExamServiceImpl implements UserExamService
             us.setUeState(getUeState(ue.getUeState()));
             us.setUserAccount(ue.getUser().getUserAccount());
             us.setUserName(ue.getUser().getUserName());
+            us.setUserRole(ue.getUser().getUserRole());
             listuss.add(us);
         }
         // 分页

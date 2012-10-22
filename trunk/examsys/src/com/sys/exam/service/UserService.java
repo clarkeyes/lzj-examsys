@@ -74,6 +74,12 @@ public interface UserService
 	 */
 	String addUsersToUg(List<Long> userIdList, long ugId)throws Exception;
 
+	/**修改用户密码
+	 * @param user 用户信息
+	 * @throws Exception
+	 */
+	void updatePassword(User user)throws Exception;
+
     
 
 }
