@@ -42,7 +42,7 @@ public class LoginAction extends ModelAction
             if (user!=null)
             {
             	session.put(Constant.USER, user);//存储当前登录用户
-                 if(Constant.USER_MANAGER==user.getUserRole()){
+                 if(Constant.USER_MANAGER==user.getUserRole()||Constant.USER_SPE==user.getUserRole()){
                     result="manager";
                     return "manager";
                 }else  if(Constant.USER_USER==user.getUserRole()){

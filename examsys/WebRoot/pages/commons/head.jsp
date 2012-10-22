@@ -44,13 +44,14 @@ $(document).ready(function(){
  			if(data.userName!=null){
  				$("#headUserName").html(data.userName);
  			}
- 			if(data.userRole==0){//管理员
+ 			if(data.userRole==0||data.userRole==2){//管理员
  				/*var menu='<li id="ks"><a href="<%=request.getContextPath()%>/pages/admin/exam_list.jsp">考试</a></li>'
  				+'<li id="yhgl"><a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a></li>'
  				+'<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>';
  				$("#admin-menu").html(menu);*/
  				$("#admin-menu").show();
  			}
+ 			$("#userRole-hidden").val(data.userRole);
  		}
  	);
  });
@@ -59,6 +60,7 @@ $(document).ready(function(){
 	<body>
 		<!-- Header -->
 		<div class="header" id="top">
+			<input type="hidden" id="userRole-hidden"/>
 			<div class="wrapper" style="position:relative;">
 				<!-- Title/Logo - can use text instead of image -->
 				<div id="title">
@@ -69,6 +71,8 @@ $(document).ready(function(){
 				<div id="topnav">
 					欢迎您
 					<b id="headUserName"></b>
+					<span>|</span>
+					<a href="<%=request.getContextPath()%>/pages/user/user_pwd.jsp">修改密码</a>
 					<span>|</span>
 					<a href="#" id="loginOut">退出</a>
 					<br />
