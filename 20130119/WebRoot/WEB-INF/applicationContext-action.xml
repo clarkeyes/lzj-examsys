@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 用户相关的行为组件 -->
+
+
+<!-- 实例化Action组件 -->
+   <bean id="modelAction" scope="prototype" class="com.sys.exam.action.ModelAction">
+        <property name="serviceManager" ref="serviceManager"></property>
+    </bean>
+    <!-- 用户登录 -->
+	<bean id="loginAction" scope="prototype" class="com.sys.exam.action.login.LoginAction" parent="modelAction"></bean>
+	<!-- 用户退出 -->
+	<bean id="logoutAction" scope="prototype" class="com.sys.exam.action.login.LogoutAction" parent="modelAction"></bean>
+	<!-- 获取登录用户名 -->
+	<bean id="headAction" scope="prototype" class="com.sys.exam.action.login.HeadAction" parent="modelAction"></bean>
+<!-- 管理员用户action -->	
+<!-- 考试 -->
+	<!-- 考试列表 -->
+	<bean id="examListAction" scope="prototype" class="com.sys.exam.action.admin.ExamListAction" parent="modelAction"></bean>
+	<!-- 进入添加考试页面 -->
+	<bean id="toExamAddAction" scope="prototype" class="com.sys.exam.action.admin.ToExamAddAction" parent="modelAction"></bean>
+	<!-- 添加考试 -->
+	<bean id="addExamAction" scope="prototype" class="com.sys.exam.action.admin.AddExamAction" parent="modelAction"></bean>
+	<!-- 删除考试 -->
+	<bean id="deleteExamAction" scope="prototype" class="com.sys.exam.action.admin.DeleteExamAction" parent="modelAction"></bean>
+	<!-- 进入导入用户组界面 -->
+	<bean id="toImportUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ToImportUserGroupAction" parent="modelAction"></bean>
+	<!-- 导入用户组 -->
+	<bean id="importUserGroupAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserGroupAction" parent="modelAction"></bean>
+	<!-- 查看考试用户成绩列表 -->
+	<bean id="userScoreListAction" scope="prototype" class="com.sys.exam.action.admin.UserScoreListAction" parent="modelAction"></bean>
+	<!-- 进入输入成绩界面 -->
+	<bean id="toUserScoreAddAction" scope="prototype" class="com.sys.exam.action.admin.ToUserScoreAddAction" parent="modelAction"></bean>
+	<!-- 输入成绩 -->
+	<bean id="addUserScoreAction" scope="prototype" class="com.sys.exam.action.admin.AddUserScoreAction" parent="modelAction"></bean>
+	<!-- 开启选中用户的考试 -->
+	<bean id="startUserExamAction" scope="prototype" class="com.sys.exam.action.admin.StartUserExamAction" parent="modelAction"></bean>
+	<!-- 查看考试题目 -->
+	<bean id="examContentAction" scope="prototype" class="com.sys.exam.action.admin.ExamContentAction" parent="modelAction"></bean>
+	
+<!-- 用户管理 -->
+	<!-- 用户列表 -->
+	<bean id="userListAction" scope="prototype" class="com.sys.exam.action.admin.UserListAction" parent="modelAction"></bean>
+	<!-- 删除用户 -->
+	<bean id="deleteUsersAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUsersAction" parent="modelAction"></bean>
+	<!-- 导入用户 -->
+	<bean id="importUsersAction" scope="prototype" class="com.sys.exam.action.admin.ImportUserAction" parent="modelAction"></bean>
+
+<!-- 用户组 -->
+	<!-- 用户组列表 -->
+	<bean id="userGroupListAction" scope="prototype" class="com.sys.exam.action.admin.UserGroupListAction" parent="modelAction"></bean>
+	<!-- 添加用户组 -->
+	<bean id="addUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUgAction" parent="modelAction"></bean>
+	<!-- 删除用户组 -->
+	<bean id="deleteUgAction" scope="prototype" class="com.sys.exam.action.admin.DeleteUgAction" parent="modelAction"></bean>
+	<!-- 用户组用户 -->
+	<bean id="inGroupUserAction" scope="prototype" class="com.sys.exam.action.admin.InGroupUsersAction" parent="modelAction"></bean>
+	<!-- 非用户组用户 -->
+	<bean id="notInGroupUsersAction" scope="prototype" class="com.sys.exam.action.admin.NotInGroupUsersAction" parent="modelAction"></bean>
+	<!-- 移除用户组用户 -->
+	<bean id="removeUsersAction" scope="prototype" class="com.sys.exam.action.admin.RemoveUsersAction" parent="modelAction"></bean>
+	<!-- 向用户组添加用户 -->
+	<bean id="addUsersToUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUsersToUgAction" parent="modelAction"></bean>
+		
+<!-- 考试用户action -->	
+	<!-- 用户考试列表 -->
+	<bean id="userExamListAction" scope="prototype" class="com.sys.exam.action.user.UserExamListAction" parent="modelAction"></bean>
+	<!-- 用户考试内容 -->
+	<bean id="userExamContentAction" scope="prototype" class="com.sys.exam.action.user.UserExamContentAction" parent="modelAction"></bean>
+	<!-- 交卷 -->
+	<bean id="commitAnswerAction" scope="prototype" class="com.sys.exam.action.user.CommitAnswerAction" parent="modelAction"></bean>
+	<!-- 修改密码 -->
+	<bean id="userPwdAction" scope="prototype" class="com.sys.exam.action.user.UserPwdAction" parent="modelAction"></bean>
+	
+</beans>

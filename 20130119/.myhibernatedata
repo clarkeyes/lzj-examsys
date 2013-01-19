@@ -1,0 +1,22 @@
+#
+#Wed Sep 12 16:52:59 GMT 2012
+genBasicCompId=true
+sessionFactoryName=com.sys.exam.dao.HibernateSessionFactory
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=false
+keyGenerator=native
+libInstallFolder=WebRoot/WEB-INF/lib
+addLibs2Project=false
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=/examsys/hibernate.reveng.xml
+configFile=/examsys/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=false

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="userGroupId">
+		<field-validator type="required">
+		    <param name="trim">true</param>
+			<message>请选择用户组</message>
+		</field-validator>
+	</field>
+	
+</validators>
+
+
+ 

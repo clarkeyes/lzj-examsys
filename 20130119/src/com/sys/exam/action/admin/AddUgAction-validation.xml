@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>
+	<field name="ugName">
+		<field-validator type="requiredstring">
+		    <param name="trim">true</param>
+			<message>请输入用户组名</message>
+		</field-validator>
+		<field-validator type="regex">
+		    <param name="expression"><![CDATA[([\w|\u4e00-\u9fa5]{1,25})]]></param>
+			<message>用户组名只能是数字、字母、下划线和汉字，且长度小于25</message>
+		</field-validator>
+		
+	</field>
+</validators>
+
+
+ 
