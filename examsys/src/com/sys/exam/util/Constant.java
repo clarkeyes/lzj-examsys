@@ -65,7 +65,7 @@ public class Constant{
     public static final int JUDGE_NO=0;
     
     /**考试时长*/
-    public static  int EXAM_TIME=90;
+    public static  int EXAM_TIME=60;
     /**日期时间格式*/
     public static  String DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
     /**存储上传的用户表信息*/
