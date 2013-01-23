@@ -37,23 +37,16 @@ public class DocTool
     
     private OptionsService optionsService;
     
-    private long qbId=1;
+    private long qbId=5;
 
     public DocTool()
     {
-        hashCategory.put("1.马克思列宁主义（250题）", "马克思列宁主义");
-        hashCategory.put("2.毛泽东思想（100题）", "毛泽东思想");
-        hashCategory.put("3.中国特色社会主义理论体系、党的路线方针政策（350题）",
-                "中国特色社会主义理论体系和党的路线方针政策");
-        hashCategory.put("4.时事政治（50题）", "时事政治");
-        hashCategory.put("1.公安工作（25题）", "公安工作");
-        hashCategory.put("2.部队军事工作（115题）", "部队军事工作");
-        hashCategory.put("3.部队政治工作（390题）", "部队政治工作");
-        hashCategory.put("4.后勤管理工作（240题）", "后勤管理工作");
-        hashCategory.put("5.廉政建设（380题）", "廉政建设");
-        hashCategory.put("（三）法律法规（1065题）", "法律法规");
-        hashCategory.put("（四）领导科学（135题）", "领导科学");
-        hashCategory.put("（五）信息化应用（250题）", "信息化应用");
+        hashCategory.put("常用公文写作（10%）", "常用公文写作");
+        hashCategory.put("法律法规15%", "法律法规");
+        hashCategory.put("公安理论与部队建设30%","公安理论和部队建设");
+        hashCategory.put("领导科学15%", "领导科学");
+        hashCategory.put("信息化应用10%", "信息化应用");
+        hashCategory.put("政治理论20%", "政治理论");
 
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext-*.xml");
@@ -160,12 +153,17 @@ public class DocTool
                             anaOptions(line, setOptions,que);
                         }// end if
                         else {
-                            LoggerTool.m_logger.info(line);
+                        	if(!"".equals(line.trim())){
+                        		LoggerTool.m_logger.info(line);
+                        	}
                         }//end else
 
                     }// end if
                     else {
-                        LoggerTool.m_logger.info(line);
+                    	if(!"".equals(line.trim())){
+                    		LoggerTool.m_logger.info(line);
+                    	}
+                        
                     }//end else
 
                 }// end else
@@ -279,21 +277,18 @@ public class DocTool
             qt.setQtId(1);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m1.group()));
-            line=line.replace(m1.group(), "（     ） ");
         }// end if
         else if (m2.find())
         {
             qt.setQtId(2);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m2.group()));
-            line=line.replace(m2.group(), "（     ） ");
         }// end if
         else if (m3.find())
         {
             qt.setQtId(3);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m3.group()));
-            line=line.replace(m3.group(), "（     ） ");
             
         }// end if
         else {
@@ -303,28 +298,8 @@ public class DocTool
             
         }//end else
         
-        try
-        {
-            if (m4.find())
-            {
-                String yiyi=m4.group();
-                que.setQuesDifficulty(coDify(yiyi));
-                line=line.replaceAll(yiyi, " ");
-                line=line.replaceAll("\\[", " ");
-                line=line.replaceAll("\\]", " ");
-                int index=line.indexOf(".");
-                line=line.substring(index+1);
-            }//end if;
-            else {
-                que.setQuesDifficulty(-1);
-            }//end else
-        }//end try 
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }//end catch
-        
-        
+        line=line.split("。")[0];
+        que.setQuesDifficulty(-1);
         que.setQuesDes(line);
         
         
@@ -410,7 +385,7 @@ public class DocTool
     private boolean isQuestion(String line)
     {
         boolean ret = false;
-        String regex = "\\d+\\..*[（\\(]\\s*([ABCDEFGHIJKLMN√×]*).*[易中难]";
+        String regex = ".*[。？]\\s*[（\\(]\\s*[ABCDEFGHIJKLMN√×]*\\s*[）\\)].*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         if (m.find())
@@ -424,7 +399,9 @@ public class DocTool
     public static void main(String[] args) throws Exception
     {
          DocTool td = new DocTool();
-         td.analyseQuestionbase("base.doc");
+//         boolean ret=td.isQuestion("公民通过言论自由表达的内容受法律的保护，不受非法干预，所以公民享有的言论自由是绝对的。（ × ）");
+//         System.out.println(ret);
+         td.analyseQuestionbase("test.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
 //        String line="A.2DD         B. 5AA          C.4         D. 3";
 //        String regex = "[ABCDEF]\\.";
