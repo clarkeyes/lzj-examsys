@@ -37,7 +37,7 @@ public class DocTool
     
     private OptionsService optionsService;
     
-    private long qbId=5;
+    private long qbId=6;
 
     public DocTool()
     {
@@ -277,18 +277,21 @@ public class DocTool
             qt.setQtId(1);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m1.group()));
+            line=line.replace(m1.group(), "");
         }// end if
         else if (m2.find())
         {
             qt.setQtId(2);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m2.group()));
+            line=line.replace(m2.group(), "");
         }// end if
         else if (m3.find())
         {
             qt.setQtId(3);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m3.group()));
+            line=line.replace(m3.group(), "");
             
         }// end if
         else {
@@ -298,7 +301,7 @@ public class DocTool
             
         }//end else
         
-        line=line.split("。")[0];
+        
         que.setQuesDifficulty(-1);
         que.setQuesDes(line);
         
@@ -401,7 +404,7 @@ public class DocTool
          DocTool td = new DocTool();
 //         boolean ret=td.isQuestion("公民通过言论自由表达的内容受法律的保护，不受非法干预，所以公民享有的言论自由是绝对的。（ × ）");
 //         System.out.println(ret);
-         td.analyseQuestionbase("test.doc");
+         td.analyseQuestionbase("test2g.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
 //        String line="A.2DD         B. 5AA          C.4         D. 3";
 //        String regex = "[ABCDEF]\\.";
