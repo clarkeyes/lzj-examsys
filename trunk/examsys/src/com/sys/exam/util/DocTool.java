@@ -37,16 +37,14 @@ public class DocTool
     
     private OptionsService optionsService;
     
-    private long qbId=6;
+    private long qbId=7;
 
     public DocTool()
     {
-        hashCategory.put("常用公文写作（10%）", "常用公文写作");
-        hashCategory.put("法律法规15%", "法律法规");
-        hashCategory.put("公安理论与部队建设30%","公安理论和部队建设");
-        hashCategory.put("领导科学15%", "领导科学");
-        hashCategory.put("信息化应用10%", "信息化应用");
-        hashCategory.put("政治理论20%", "政治理论");
+        hashCategory.put("基础理论1、18.75%", "基础理论");
+        hashCategory.put("消防监督2、(25) 31.25%", "消防监督");
+        hashCategory.put("灭火救援3、(25) 31.25%", "灭火救援");
+        hashCategory.put("常用消防法律法规4、(15) 18.75%", "常用消防法律法规");
 
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext-*.xml");
@@ -153,17 +151,12 @@ public class DocTool
                             anaOptions(line, setOptions,que);
                         }// end if
                         else {
-                        	if(!"".equals(line.trim())){
-                        		LoggerTool.m_logger.info(line);
-                        	}
+                            LoggerTool.m_logger.info(line);
                         }//end else
 
                     }// end if
                     else {
-                    	if(!"".equals(line.trim())){
-                    		LoggerTool.m_logger.info(line);
-                    	}
-                        
+                        LoggerTool.m_logger.info(line);
                     }//end else
 
                 }// end else
@@ -277,21 +270,21 @@ public class DocTool
             qt.setQtId(1);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m1.group()));
-            line=line.replace(m1.group(), "");
+            line=line.replace(m1.group(), "（     ） ");
         }// end if
         else if (m2.find())
         {
             qt.setQtId(2);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m2.group()));
-            line=line.replace(m2.group(), "");
+            line=line.replace(m2.group(), "（     ） ");
         }// end if
         else if (m3.find())
         {
             qt.setQtId(3);
             que.setQuestionType(qt);
             que.setQuesAnswer(countAnswer(m3.group()));
-            line=line.replace(m3.group(), "");
+            line=line.replace(m3.group(), "（     ） ");
             
         }// end if
         else {
@@ -301,8 +294,29 @@ public class DocTool
             
         }//end else
         
+        try
+        {
+            if (m4.find())
+            {
+                String yiyi=m4.group();
+                que.setQuesDifficulty(coDify(yiyi));
+                line=line.replaceAll(yiyi, " ");
+                line=line.replaceAll("\\[", " ");
+                line=line.replaceAll("\\]", " ");
+                int index=line.indexOf(".");
+                line=line.substring(index+1);
+            }//end if;
+            else {
+                que.setQuesDifficulty(-1);
+            }//end else
+        }//end try 
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }//end catch
         
-        que.setQuesDifficulty(-1);
+        int index=line.indexOf(".");
+        line=line.substring(index+1);
         que.setQuesDes(line);
         
         
@@ -388,7 +402,7 @@ public class DocTool
     private boolean isQuestion(String line)
     {
         boolean ret = false;
-        String regex = ".*[。？]\\s*[（\\(]\\s*[ABCDEFGHIJKLMN√×]*\\s*[）\\)].*";
+        String regex = "\\d+\\..*[（\\(]\\s*([ABCDEFGHIJKLMN√×]*).*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         if (m.find())
@@ -402,9 +416,7 @@ public class DocTool
     public static void main(String[] args) throws Exception
     {
          DocTool td = new DocTool();
-//         boolean ret=td.isQuestion("公民通过言论自由表达的内容受法律的保护，不受非法干预，所以公民享有的言论自由是绝对的。（ × ）");
-//         System.out.println(ret);
-         td.analyseQuestionbase("test2g.doc");
+         td.analyseQuestionbase("test2z.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
 //        String line="A.2DD         B. 5AA          C.4         D. 3";
 //        String regex = "[ABCDEF]\\.";
