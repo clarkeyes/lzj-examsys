@@ -23,60 +23,29 @@
 
 	</head>
 	<body>
-		<!-- Header -->
-		<div class="header" id="top">
-			<div class="wrapper-login">
-				<!-- Title/Logo - can use text instead of image -->
-				<div id="title">
-					<!--<span>VEGAGRID</span> demo-->
-				</div>
-				<!-- Main navigation -->
-				<nav id="menu">
-				<ul class="sf-menu">
-					<li class="current">
-						<a href="#">青海省公安消防总队副团职干部双考选拔理论考试系统</a>
-					</li>
-				</ul>
-				</nav>
-				<!-- End of Main navigation -->
-				<!-- Aside links -->
-				<div style="margin-left: 205px; margin-top: 5px;">
-				</div>
-				<!-- End of Aside links -->
-			</div>
-		</div>
-		<!-- End of Header -->
-		<!-- Page title -->
-		<div id="pagetitle">
-			
-		</div>
-		<!-- End of Page title -->
+		
 
 		<!-- Page content -->
-		<div id="page">
+		<div id="page" >
 			<!-- Wrapper -->
-			<div class="wrapper-login">
+			<div class="wrapper" style="position:relative; background: url('img/bg.jpg') no-repeat;height: 760px;width: 1024px;">
 				<!-- Login form -->
-				<section class="full">
-
-				<h6>&nbsp;</h6>
-				
-				<div class="box box-info" id="message">
-				<span style="margin-left:-20px;margin-top:5px;"><img src="img/information.png"/></span><span style="margin-left:10px;">请输入用户名和密码</span>
+				<div style="position: absolute;top: 350px;left:460px;width: 310px">
+				<div  id="message">
 				</div>
 				<form id="loginForm" name="loginForm" method="post">
 
 					<div>
-						<label class="required" style="font-size: 12px">
+						<label class="required" style="font-size: 14px">
 							&nbsp;用户名:
 						</label>
 						<label class="error" id="userNameError"></label>
 						<br />
-						<input type="text" name="loginuser.userAccount" id="userAccount"
+						<input  type="text" name="loginuser.userAccount" id="userAccount"
 							class="full" />
 					</div>
 					<div>
-						<label class="required" style="font-size: 12px">
+						<label class="required" style="font-size: 14px">
 							&nbsp;密码:
 						</label>
 						<label class="error" id="passwordError"></label>
@@ -87,19 +56,19 @@
 					<div class="clear">
 						&nbsp;
 					</div>
-					<table style="text-align: center">
+					<table style="text-align: center;">
 						<tr>
 							<td>
-								<div class="btn btn-green big" id="sub" style="background-color: #6AB620">
-									登录
+								<div  id="sub" style="position:relative; font-size:14px;font-weight:bold; cursor: pointer;background: url('img/bgbtn.png') no-repeat;width: 80px;height: 37px">
+									<span style="position:relative;top:9px" >登录</span>
 								</div>
 							</td>
 							<td style="width: 10px;">&nbsp;
 								
 							</td>
 							<td>
-								<div class="btn btn-green big" id="res">
-									重置
+								<div id="res" style="position:relative; font-size:14px;font-weight:bold; cursor: pointer;background: url('img/bgbtn.png') no-repeat;width: 80px;height: 37px" >
+									<span style="position:relative;top:9px" >重置</span>
 								</div>
 							</td>
 						</tr>
@@ -108,21 +77,12 @@
 						&nbsp;
 					</div>
 				</form>
+				</div>
 
-				</section>
 				<!-- End of login form -->
 
 			</div>
 			<!-- End of Wrapper -->
 		</div>
-		<!-- Page footer -->
-		<div class="footer" id="bottom">
-			<div class="wrapper-login">
-				<p align="center">
-					青海省公安消防部队选拔考试系统
-				</p>
-			</div>
-		</div>
-		<!-- End of Page footer -->
 	</body>
 </html>
