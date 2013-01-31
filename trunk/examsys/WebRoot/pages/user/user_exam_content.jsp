@@ -146,6 +146,7 @@ $(function(){
 										</div>
 									</s:if>
 									<s:elseif test="#uqType.type==2">
+									<s:if test="#uqType.uqNum!=0">
 										<div>
 											<a name="multiple"></a>
 											<div style="height: 60px; overflow: hidden;">
@@ -202,8 +203,10 @@ $(function(){
 
 											</s:iterator>
 										</div>
+										</s:if>
 									</s:elseif>
 									<s:elseif test="#uqType.type==3">
+										<s:if test="#uqType.uqNum!=0">
 										<div>
 											<a name="judgment"></a>
 											<div style="height: 60px; overflow: hidden;">
@@ -266,8 +269,10 @@ $(function(){
 														<br />
 													</p>
 												</s:else>
+												
 											</s:iterator>
 										</div>
+										</s:if>
 									</s:elseif>
 								</s:iterator>
 								<div style="text-align: center; margin-top: 25px">
