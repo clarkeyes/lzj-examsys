@@ -28,7 +28,7 @@
 		<!-- Page content -->
 		<div id="page" >
 			<!-- Wrapper -->
-			<div class="wrapper" style="position:relative; background: url('img/bglb.jpg') no-repeat;height: 652px;width: 890px;">
+			<div class="wrapper" style="position:relative; background: url('img/zsjs.jpg') no-repeat;height: 652px;width: 890px;">
 				<!-- Login form -->
 				<div style="position: absolute;top: 280px;left:400px;width: 310px">
 				<div  id="message">
