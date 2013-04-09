@@ -22,15 +22,15 @@
         <![endif]-->
 
 	</head>
-	<body>
+	<body style="background-color: #fff">
 		
 
 		<!-- Page content -->
 		<div id="page" >
 			<!-- Wrapper -->
-			<div class="wrapper" style="position:relative; background: url('img/bg.jpg') no-repeat;height: 760px;width: 1024px;">
+			<div class="wrapper" style="position:relative; background: url('img/bglb.jpg') no-repeat;height: 652px;width: 890px;">
 				<!-- Login form -->
-				<div style="position: absolute;top: 350px;left:460px;width: 310px">
+				<div style="position: absolute;top: 280px;left:400px;width: 310px">
 				<div  id="message">
 				</div>
 				<form id="loginForm" name="loginForm" method="post">
