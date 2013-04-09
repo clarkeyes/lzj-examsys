@@ -37,14 +37,11 @@ public class DocTool
     
     private OptionsService optionsService;
     
-    private long qbId=7;
+    private long qbId=1;
 
     public DocTool()
     {
-        hashCategory.put("基础理论1、18.75%", "基础理论");
-        hashCategory.put("消防监督2、(25) 31.25%", "消防监督");
-        hashCategory.put("灭火救援3、(25) 31.25%", "灭火救援");
-        hashCategory.put("常用消防法律法规4、(15) 18.75%", "常用消防法律法规");
+        hashCategory.put("一、单选题（共100题）", "安全知识竞赛");
 
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext-*.xml");
@@ -164,10 +161,16 @@ public class DocTool
             }// end if
 
         }
-        if (que!=null&&setOptions!=null&&setOptions.size()!=0)
+        if (que!=null)
         {
+        	que.setOptionses(setOptions);
+            que.setQuestionBase(qb);
+            que.setQuestionCategory(qc);
             questionsService.saveQuestion(que);
-            optionsService.saveSet(setOptions);
+            if(setOptions!=null&&setOptions.size()!=0){
+            	optionsService.saveSet(setOptions);
+            }
+            
             questioncount++;
             LoggerTool.m_logger.info(qc.getQcName()+":"+questioncount);
         }//end if
@@ -185,7 +188,7 @@ public class DocTool
     private void anaOptions(String line, Set<Options> setOptions, Questions que)
     {
         Options opt=null;
-        String regex = "[ABCDEF]\\.";
+        String regex = "[ABCDEFG]\\、";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         int or=-1;
@@ -230,7 +233,7 @@ public class DocTool
     private boolean isOption(String line)
     {
         boolean ret = false;
-        String regex = "[ABCDEFGHIJKLMN]\\..*";
+        String regex = "[ABCDEFGHIJKLMN]、.*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         if (m.find())
@@ -303,7 +306,7 @@ public class DocTool
                 line=line.replaceAll(yiyi, " ");
                 line=line.replaceAll("\\[", " ");
                 line=line.replaceAll("\\]", " ");
-                int index=line.indexOf(".");
+                int index=line.indexOf("、");
                 line=line.substring(index+1);
             }//end if;
             else {
@@ -315,7 +318,7 @@ public class DocTool
             e.printStackTrace();
         }//end catch
         
-        int index=line.indexOf(".");
+        int index=line.indexOf("、");
         line=line.substring(index+1);
         que.setQuesDes(line);
         
@@ -402,7 +405,7 @@ public class DocTool
     private boolean isQuestion(String line)
     {
         boolean ret = false;
-        String regex = "\\d+\\..*[（\\(]\\s*([ABCDEFGHIJKLMN√×]*).*";
+        String regex = "\\d+、.*[（\\(]\\s*([ABCDEFGHIJKLMN√×]*).*";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(line);
         if (m.find())
@@ -416,7 +419,7 @@ public class DocTool
     public static void main(String[] args) throws Exception
     {
          DocTool td = new DocTool();
-         td.analyseQuestionbase("test2z.doc");
+         td.analyseQuestionbase("zsjs.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
 //        String line="A.2DD         B. 5AA          C.4         D. 3";
 //        String regex = "[ABCDEF]\\.";
