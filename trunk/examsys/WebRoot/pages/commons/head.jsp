@@ -64,7 +64,7 @@ $(document).ready(function(){
 			<div class="wrapper" style="position:relative;">
 				<!-- Title/Logo - can use text instead of image -->
 				<div id="title">
-					西宁支队执勤岗位练兵网上考试系统
+					西宁支队条令条例暨安全知识网上竞赛
 					<!--<span>VEGAGRID</span> demo-->
 				</div>
 				<!-- Top navigation -->
