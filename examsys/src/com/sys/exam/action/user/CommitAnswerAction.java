@@ -17,16 +17,14 @@ import com.sys.exam.service.UserQuestionService;
 public class CommitAnswerAction extends ModelAction {
 	private List<TypeAnswer> taList;
 	private long ueId;
+	/**成绩*/
+	private float ueGrade;
 	@Override
 	public String execute() throws Exception {
 		try {
 			UserQuestionService uqService=serviceManager.getUserQuestionService();
-			String ret=uqService.addUserAnswer(ueId,taList);
-			if(null==ret){
-				result="success";
-			}else{
-				result=ret;
-			}
+			ueGrade=uqService.addUserAnswer(ueId,taList);
+			result="success";
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,6 +43,12 @@ public class CommitAnswerAction extends ModelAction {
 	}
 	public void setUeId(long ueId) {
 		this.ueId = ueId;
+	}
+	public float getUeGrade() {
+		return ueGrade;
+	}
+	public void setUeGrade(float ueGrade) {
+		this.ueGrade = ueGrade;
 	}
 	
 	

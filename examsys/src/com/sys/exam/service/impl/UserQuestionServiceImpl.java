@@ -96,7 +96,7 @@ public class UserQuestionServiceImpl implements UserQuestionService
     }
 
 	@Override
-	public String addUserAnswer(long ueId,List<TypeAnswer> taList) throws Exception {
+	public float addUserAnswer(long ueId,List<TypeAnswer> taList) throws Exception {
 
 	    for (TypeAnswer ta : taList)
         {
@@ -128,7 +128,7 @@ public class UserQuestionServiceImpl implements UserQuestionService
 	    serviceManager.getUserExamService().updateSubUserExam(ueone);
 	    
 	    
-		return null;
+		return ueone.getUeGrade();
 	}
 
     /**
