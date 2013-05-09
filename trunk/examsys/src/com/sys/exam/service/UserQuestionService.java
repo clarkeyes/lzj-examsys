@@ -22,10 +22,10 @@ public interface UserQuestionService
 	/**用户交卷，保存用户答案，修改考试状态
 	 * @param ueId 用户考试id
 	 * @param taList 答案列表
-	 * @return null：成功，其他为失败信息
+	 * @return 成绩
 	 * @throws Exception
 	 */
-	String addUserAnswer(long ueId, List<TypeAnswer> taList)throws Exception;
+	float addUserAnswer(long ueId, List<TypeAnswer> taList)throws Exception;
 
    
 
