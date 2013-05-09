@@ -17,7 +17,7 @@ $(function(){
 						$("#commitUserAnswer").serialize(),
 						function(data){
 							if("success"==data.result){
-								$.messager.alert("系统消息","提交成功!",'info',function(){
+								$.messager.alert("系统消息","提交成功! 得分："+data.ueGrade+"分",'info',function(){
 									window.location.href="../user/userExamList.action";
 								});
 							}else if(null!=data.result){
