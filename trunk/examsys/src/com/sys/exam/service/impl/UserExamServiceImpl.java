@@ -157,7 +157,6 @@ public class UserExamServiceImpl implements UserExamService
             uenew = new UserExam();
             uenew.setExam(exam);
             uenew.setUeGrade(0);
-            uenew.setUeStartTime(CommonUtil.getCurrentTime());
             uenew.setUeState(Constant.EXAM_STATE_NEW);
             uenew.setUser(ugr.getUser());
             listues.add(uenew);
@@ -417,6 +416,10 @@ public class UserExamServiceImpl implements UserExamService
     public UserExamModel findUeMById(Long ueId) throws Exception
     {
         UserExam ue = managerService.getUserExamDao().get(ueId);
+        if(null==ue.getUeStartTime()){
+        	ue.setUeStartTime(CommonUtil.getCurrentTime());
+            managerService.getUserExamDao().update(ue);
+        }
         StringBuilder hsql = new StringBuilder();
         hsql.append("from ExamQuesType eqt where eqt.exam.examId=");
         hsql.append(ue.getExam().getExamId());
