@@ -20,6 +20,7 @@ import com.sys.exam.database.bean.QuestionType;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.dao.QuestionBaseDao;
 import com.sys.exam.database.dao.QuestionCategoryDao;
+import com.sys.exam.listener.SprListener;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.OptionsService;
 import com.sys.exam.service.QuestionCategoryService;
@@ -37,23 +38,24 @@ public class DocTool
     
     private OptionsService optionsService;
     
-    private long qbId=1;
+    private long qbId;
 
-    public DocTool()
+    public DocTool(long qbId,String qcName)
     {
-        hashCategory.put("一、单选题（共100题）", "安全知识竞赛");
+        hashCategory.put("一、单选题（共100题）", qcName);
 
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                "applicationContext-*.xml");
-        managerService = (ManagerService) context.getBean("managerService");
-        questionCategoryService = (QuestionCategoryService) context
+//        ApplicationContext context = new ClassPathXmlApplicationContext(
+//                "applicationContext-*.xml");
+        managerService = (ManagerService) SprListener.getBean("managerService");
+        questionCategoryService = (QuestionCategoryService) SprListener
                 .getBean("questionCategoryService");
 
-        questionsService = (QuestionsService) context
+        questionsService = (QuestionsService) SprListener
                 .getBean("questionsService");
         
-        optionsService=(OptionsService) context
+        optionsService=(OptionsService) SprListener
         .getBean("optionsService");
+        this.qbId=qbId;
 
     }
 
@@ -78,7 +80,7 @@ public class DocTool
         for (int i = 0; i < strArray.length; ++i)
         {
             String line = strArray[i].trim();
-//            System.out.println(line);
+            System.out.println(line);
             // 判断当前行是否是分类行
             if (hashCategory.containsKey(line))
             {
@@ -104,6 +106,7 @@ public class DocTool
                     qcnew.setQcName(valuedb);
                     qcnew.setQcRatio(0);
                     questionCategoryService.saveOne(qcnew);
+                    qc=qcnew;
 
                 }// end else
                 continue;
@@ -418,7 +421,7 @@ public class DocTool
 
     public static void main(String[] args) throws Exception
     {
-         DocTool td = new DocTool();
+         DocTool td = new DocTool(1L,"dd");
          td.analyseQuestionbase("zsjs.doc");
         // String regex="\\d+\\..*[（\\(][ABCD√×][）,\\)].*\\[[易中难]\\]";
 //        String line="A.2DD         B. 5AA          C.4         D. 3";

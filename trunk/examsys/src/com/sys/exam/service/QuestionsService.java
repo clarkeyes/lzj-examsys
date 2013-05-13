@@ -12,6 +12,16 @@ public interface QuestionsService
 
     void saveQuestion(Questions que);
 
+	/**
+	  * 关于方法的描述：添加题目文件中的题目，和题目分类
+	  * @param storeFileName 题目文件路径
+	  * @param qcName 分类
+	  * @param qbId 题库id
+	  * @return
+	  * @throws Exception 
+	  */
+	String addQue(String storeFileName, String qcName, long qbId)throws Exception;
+
     
 
 }
