@@ -1,10 +1,16 @@
 package com.sys.exam.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.QuestionBase;
+import com.sys.exam.database.bean.Questions;
+import com.sys.exam.database.model.QueBaseModel;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionBaseService;
+import com.sys.exam.util.Constant;
+import com.sys.exam.util.DocTool;
 
 
 /**
@@ -38,6 +44,61 @@ public class QuestionBaseServiceImpl implements QuestionBaseService
 		hsql.append("from QuestionBase qb");
 		List<QuestionBase> qbList=managerService.getQuestionBaseDao().find(hsql.toString());
 		return qbList;
+	}
+
+	@Override
+	public Pager findQbmList(Pager pager) throws Exception {
+		StringBuilder qbHsql=new StringBuilder();
+		qbHsql.append("from QuestionBase qb");
+		Pager p=managerService.getQuestionBaseDao().getPager(qbHsql.toString(), pager.getCurrentPage(), pager.getPageSize());
+		List<QuestionBase> qbList=p.getElements();
+		List<QueBaseModel> qbmList=new ArrayList<QueBaseModel>();
+		for(int i=0;i<qbList.size();i++){
+			QuestionBase qb=qbList.get(i);
+			QueBaseModel qbm=new QueBaseModel();
+			qbm.setQbId(qb.getQbId());
+			qbm.setQbName(qb.getQbName());
+			StringBuilder radioHsql=new StringBuilder();
+			radioHsql.append("from Questions que where que.questionType.qtId=");
+			radioHsql.append(Constant.QUESTION_SINGLE);
+			radioHsql.append(" and que.questionBase.qbId=");
+			radioHsql.append(qb.getQbId());
+			List<Questions> radioQueList=managerService.getQuestionsDao().find(radioHsql.toString());
+			qbm.setRadioNum(radioQueList.size());
+			StringBuilder judgeHsql=new StringBuilder();
+			judgeHsql.append("from Questions que where que.questionType.qtId=");
+			judgeHsql.append(Constant.QUESTION_JUDGE);
+			judgeHsql.append(" and que.questionBase.qbId=");
+			judgeHsql.append(qb.getQbId());
+			List<Questions> judgeQueList=managerService.getQuestionsDao().find(judgeHsql.toString());
+			qbm.setJudgeNum(judgeQueList.size());
+			StringBuilder checkHsql=new StringBuilder();
+			checkHsql.append("from Questions que where que.questionType.qtId=");
+			checkHsql.append(Constant.QUESTION_MULTIPLE);
+			checkHsql.append(" and que.questionBase.qbId=");
+			checkHsql.append(qb.getQbId());
+			List<Questions> checkQueList=managerService.getQuestionsDao().find(checkHsql.toString());
+			qbm.setCheckNum(checkQueList.size());
+			qbmList.add(qbm);
+		}
+		p.setElements(qbmList);
+		return p;
+	}
+
+	@Override
+	public String addQueBase(String queBaseName)
+			throws Exception {
+		String ret=null;
+		QuestionBase queBase=new QuestionBase();
+		queBase.setQbName(queBaseName);
+		managerService.getQuestionBaseDao().save(queBase);
+		return ret;
+	}
+
+	@Override
+	public void deleteQb(long qbId) throws Exception {
+		managerService.getQuestionBaseDao().deleteByKey(qbId);
+		
 	}
 
 }

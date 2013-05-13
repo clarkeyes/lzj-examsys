@@ -1,8 +1,11 @@
 package com.sys.exam.service.impl;
 
+import com.sys.exam.database.bean.QuestionBase;
+import com.sys.exam.database.bean.QuestionCategory;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.service.ManagerService;
 import com.sys.exam.service.QuestionsService;
+import com.sys.exam.util.DocTool;
 
 
 /**
@@ -36,5 +39,13 @@ public class QuestionsServiceImpl implements QuestionsService
         managerService.getQuestionsDao().save(que);
         
     }
+
+	@Override
+	public String addQue(String storeFileName, String qcNam,long qbId) throws Exception {
+		String ret=null;
+		DocTool docTool=new DocTool(qbId,qcNam);
+		docTool.analyseQuestionbase(storeFileName);
+		return ret;
+	}
 
 }

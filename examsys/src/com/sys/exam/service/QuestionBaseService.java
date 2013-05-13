@@ -2,6 +2,7 @@ package com.sys.exam.service;
 
 import java.util.List;
 
+import com.sys.exam.database.Pager;
 import com.sys.exam.database.bean.QuestionBase;
 
 
@@ -17,6 +18,29 @@ public interface QuestionBaseService
 	 * @throws Exception
 	 */
 	List<QuestionBase> findQbList()throws Exception;
+
+	/**
+	  * 关于方法的描述：分页获取题库列表及题库中各题型的数量
+	  * @param pager 分页信息
+	  * @return
+	  * @throws Exception 
+	  */
+	Pager findQbmList(Pager pager)throws Exception;
+
+	/**
+	  * 关于方法的描述：添加题库，解析题目文件，添加题目
+	  * @param storeFileName
+	  * @return
+	  * @throws Exception 
+	  */
+	String addQueBase(String storeFileName)throws Exception;
+
+	/**
+	  * 关于方法的描述：删除指定题库
+	  * @param qbId 题库id
+	  * @throws Exception 
+	  */
+	void deleteQb(long qbId)throws Exception;
 
    
 

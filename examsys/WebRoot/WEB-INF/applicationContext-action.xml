@@ -65,6 +65,15 @@
 	<bean id="removeUsersAction" scope="prototype" class="com.sys.exam.action.admin.RemoveUsersAction" parent="modelAction"></bean>
 	<!-- 向用户组添加用户 -->
 	<bean id="addUsersToUgAction" scope="prototype" class="com.sys.exam.action.admin.AddUsersToUgAction" parent="modelAction"></bean>
+<!-- 题库管理 -->
+	<!-- 题库列表 -->
+	<bean id="queBaseListAction" scope="prototype" class="com.sys.exam.action.admin.QueBaseListAction" parent="modelAction"></bean>
+	<!-- 添加题库 -->
+	<bean id="addQueBaseAction" scope="prototype" class="com.sys.exam.action.admin.AddQueBaseAction" parent="modelAction"></bean>
+	<!-- 添加题目 -->
+	<bean id="importQueAction" scope="prototype" class="com.sys.exam.action.admin.ImportQueAction" parent="modelAction"></bean>
+	<!-- 删除题库 -->
+	<bean id="deleteQbAction" scope="prototype" class="com.sys.exam.action.admin.DeleteQbAction" parent="modelAction"></bean>
 		
 <!-- 考试用户action -->	
 	<!-- 用户考试列表 -->
