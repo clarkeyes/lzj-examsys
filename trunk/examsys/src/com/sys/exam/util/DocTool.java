@@ -80,7 +80,7 @@ public class DocTool
         for (int i = 0; i < strArray.length; ++i)
         {
             String line = strArray[i].trim();
-            System.out.println(line);
+            //System.out.println(line);
             // 判断当前行是否是分类行
             if (hashCategory.containsKey(line))
             {

@@ -1,12 +1,14 @@
-#Mon May 13 07:24:40 GMT 2013
+#Thu May 16 14:00:28 GMT 2013
 eclipse.preferences.version=1
 encoding//WebRoot/js/admin/exam_add.js=UTF-8
 encoding//WebRoot/js/admin/exam_list.js=UTF-8
 encoding//WebRoot/js/admin/que_import.js=UTF-8
 encoding//WebRoot/js/admin/quebase_add.js=UTF-8
 encoding//WebRoot/js/admin/quebase_list.js=UTF-8
+encoding//WebRoot/js/admin/user_add.js=UTF-8
 encoding//WebRoot/js/admin/user_import.js=UTF-8
 encoding//WebRoot/js/admin/user_list.js=UTF-8
+encoding//WebRoot/js/admin/user_public_list.js=UTF-8
 encoding//WebRoot/js/admin/usergroup_add.js=UTF-8
 encoding//WebRoot/js/admin/usergroup_import.js=UTF-8
 encoding//WebRoot/js/admin/usergroup_list.js=UTF-8

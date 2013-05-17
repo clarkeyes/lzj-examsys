@@ -80,6 +80,14 @@ public interface UserService
 	 */
 	void updatePassword(User user)throws Exception;
 
+	/**
+	  * 关于方法的描述：判断用户是否存在，不存在添加用户
+	  * @param user 用户信息
+	  * @return null：成功，其他为错误信息
+	  * @throws Exception 
+	  */
+	String addUser(User user)throws Exception;
+
     
 
 }

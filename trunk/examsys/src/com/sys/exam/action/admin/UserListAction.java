@@ -25,6 +25,8 @@ public class UserListAction extends ModelAction {
     /**一页容纳的记录条数*/
     private int rows = 10;
     private int total;
+    /**用户角色*/
+    private int userRole;
     private List<UserModel> userList=new ArrayList<UserModel>();
     @Override
     public String execute() throws Exception {
@@ -33,7 +35,7 @@ public class UserListAction extends ModelAction {
 			Pager pager=new Pager();
 			pager.setCurrentPage(page);
 			pager.setPageSize(rows);
-			pager=userService.findUserListByRole(Constant.USER_USER,pager);
+			pager=userService.findUserListByRole(userRole,pager);
 			total=pager.getTotalRows();
 			userList=pager.getElements();
 			return SUCCESS;
@@ -69,6 +71,12 @@ public class UserListAction extends ModelAction {
 	}
 	public void setUserList(List<UserModel> userList) {
 		this.userList = userList;
+	}
+	public int getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(int userRole) {
+		this.userRole = userRole;
 	}
     
 }
