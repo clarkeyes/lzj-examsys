@@ -347,4 +347,24 @@ public class UserServiceImpl implements UserService
 		
 	}
 
+	@Override
+	public String addUser(User user) throws Exception {
+		// 判断用户是否存在
+		String ret=null;
+		StringBuilder hsql=new StringBuilder();
+		hsql.append("from User u where u.userAccount='");
+		hsql.append(user.getUserAccount());
+		hsql.append("'");
+		List<User> userList=managerService.getUserDao().find(hsql.toString());
+		if(null!=userList&&userList.size()>0){
+			ret="账号已存在，请重新输入";
+		}else{
+			//密码加密
+			String password=EncryptUtil.md5Encrypt(user.getUserPassword());
+			user.setUserPassword(password);
+			managerService.getUserDao().save(user);
+		}
+		return ret;
+	}
+
 }

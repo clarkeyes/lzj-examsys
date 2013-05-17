@@ -130,6 +130,15 @@
    	            <param name="root">result</param>
    	        </result>
 	    </action>
+	    <!-- 添加用户 -->
+		<action name="addUser" class="addUserAction">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+			</result>
+			<result name="input" type="json">
+                <param name="ignoreHierarchy">false</param>
+            </result>
+		</action>
 <!-- 用户组 -->
 		<!-- 用户组列表 -->
 		<action name="userGroupList" class="userGroupListAction">
@@ -194,6 +203,7 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+<!-- 题库管理 -->
 		<!-- 题库列表 -->
 		<action name="queBaseList" class="queBaseListAction">
 			<result name="success" type="json">
@@ -232,5 +242,6 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		
 	</package>
 </struts>

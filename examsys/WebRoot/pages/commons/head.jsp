@@ -85,7 +85,14 @@ $(document).ready(function(){
 						<ul class="sf-menu" id="admin-menu">
 							<li id="ks"><a href="<%=request.getContextPath()%>/pages/admin/exam_list.jsp">考试</a></li>
 							<li id="tkgl"><a href="<%=request.getContextPath()%>/pages/admin/quebase_list.jsp">题库管理</a></li>
-							<li id="yhgl"><a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a></li>
+							<li id="yhgl">
+								<a href="<%=request.getContextPath()%>/pages/admin/user_list.jsp">用户管理</a>
+								<ul>
+									<li>
+										<a href="<%=request.getContextPath()%>/pages/admin/user_public_list.jsp">测试用户</a>
+									</li>
+								</ul>
+							</li>
 							<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>
 						</ul>
 					</div>

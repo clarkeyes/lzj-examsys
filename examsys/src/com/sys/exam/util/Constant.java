@@ -33,6 +33,8 @@ public class Constant{
     public static final int USER_USER=1;
     /**特殊管理员*/
     public static final int USER_SPE=2;
+    /**公共测试用户*/
+    public static final int USER_PUBLIC=3;
     
     /***************考试状态****************/
     /**考试新建状态，用户不能开始考试*/

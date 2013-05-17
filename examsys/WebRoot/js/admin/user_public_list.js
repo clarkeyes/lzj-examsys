@@ -1,6 +1,6 @@
 $(function(){
-    $('#userList').datagrid({
-		title:'用户列表',
+    $('#userPublicList').datagrid({
+		title:'测试用户列表',
 		height:470,
 		nowrap: false,
 		striped: true,
@@ -20,13 +20,13 @@ $(function(){
 		pagination:true,  //分页功能
 		rownumbers:true,  //行号
 		pageSize:10,      //设置每页有几条记录
-		queryParams:{"userRole":"1"},
+		queryParams:{"userRole":"3"},
 		toolbar:[{
 			id:'btnadd',
-			text:'导入用户',
-			iconCls:'icon_import ',
+			text:'添加用户',
+			iconCls:'icon-add ',
 			handler:function(){
-				window.location="user_import.jsp";
+				window.location="user_add.jsp";
 				window.event.returnValue=false;
 			}
 		},'-',{
@@ -34,7 +34,7 @@ $(function(){
 			text:'删除',
 			iconCls:'icon_delete',
 			handler:function(){
-				var row = $('#userList').datagrid('getSelected');
+				var row = $('#userPublicList').datagrid('getSelected');
 				if(row)
 				{
 					$.messager.confirm("系统消息","确认删除选中用户？",function(bool)
@@ -48,18 +48,18 @@ $(function(){
 								function(data){
 									if(data.result == "success"){
 										$.messager.alert("系统消息","删除成功","info");
-										$('#userList').datagrid('reload');
-										$('#userList').datagrid('clearSelections');
+										$('#userPublicList').datagrid('reload');
+										$('#userPublicList').datagrid('clearSelections');
 									}else if(null!=data.result){
 										$.messager.alert("系统消息",data.result,"warning");
 									}
 							});
-							$('#userList').parent().find("div .datagrid-header-check").children("input[type='checkbox']").eq(0).attr("checked", false);
+							$('#userPublicList').parent().find("div .datagrid-header-check").children("input[type='checkbox']").eq(0).attr("checked", false);
 						}
 					});
 				}else{
 					$.messager.alert("系统消息","请先选择删除的用户","warning");
-					$('#userList').parent().find("div .datagrid-header-check").children("input[type='checkbox']").eq(0).attr("checked", false);
+					$('#userPublicList').parent().find("div .datagrid-header-check").children("input[type='checkbox']").eq(0).attr("checked", false);
 				}
 			}
 		}]
@@ -69,7 +69,7 @@ $(function(){
 });
 //form中插入隐藏id
 function insertSelectId(){
-	var rows = $("#userList").datagrid("getSelections");
+	var rows = $("#userPublicList").datagrid("getSelections");
 	var size = rows.length;
 	var param = "";
 	for(var i = 0;i <size;i++)
