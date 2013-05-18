@@ -45,7 +45,7 @@ public class LoginAction extends ModelAction
                  if(Constant.USER_MANAGER==user.getUserRole()||Constant.USER_SPE==user.getUserRole()){
                     result="manager";
                     return "manager";
-                }else  if(Constant.USER_USER==user.getUserRole()){
+                }else  if(Constant.USER_USER==user.getUserRole()||Constant.USER_PUBLIC==user.getUserRole()){
                     result="commonUser";
                     return "commonUser";
                 }

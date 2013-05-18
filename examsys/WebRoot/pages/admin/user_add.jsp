@@ -53,11 +53,11 @@
 						</p>
 						<p>
 							<label class="required">密码:</label><br/>
-							<input type="text" id="userPassword" name="user.userPassword" class="required half"/>
+							<input type="password" id="userPassword" name="user.userPassword" class="required half"/>
 						</p>
 						<p>
 							<label class="required">确认密码:</label><br/>
-							<input type="text" id="rePassword" name="rePassword" class="required half"/>
+							<input type="password" id="rePassword" name="rePassword" class="required half"/>
 						</p>
 						<p>
 							<label class="required">角色:</label><br/>

@@ -84,10 +84,11 @@ public interface UserExamService
 
 	/**查找用户考试相关信息
 	 * @param ueId 用户考试id
+	 * @param reStart 重考标志:1，查看答案：2
 	 * @return
 	 * @throws Exception
 	 */
-	UserExamModel findUeMById(Long ueId)throws Exception;
+	UserExamModel findUeMById(Long ueId, int reStart)throws Exception;
 
     
 }

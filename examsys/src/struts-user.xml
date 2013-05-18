@@ -44,5 +44,10 @@
                 <param name="ignoreHierarchy">false</param>
             </result>
 		</action>
+		<!-- 试题答案 -->
+		<action name="checkAnswer" class="checkAnswerAction">
+			<result name="success" >user_exam_answer.jsp</result>
+			<result name="input" >user_exam_answer.jsp</result>
+		</action>
 	</package>
 </struts>

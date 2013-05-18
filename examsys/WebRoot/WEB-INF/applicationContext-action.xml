@@ -86,5 +86,7 @@
 	<bean id="commitAnswerAction" scope="prototype" class="com.sys.exam.action.user.CommitAnswerAction" parent="modelAction"></bean>
 	<!-- 修改密码 -->
 	<bean id="userPwdAction" scope="prototype" class="com.sys.exam.action.user.UserPwdAction" parent="modelAction"></bean>
+	<!-- 试题答案 -->
+	<bean id="checkAnswerAction" scope="prototype" class="com.sys.exam.action.user.CheckAnswerAction" parent="modelAction"></bean>
 	
 </beans>

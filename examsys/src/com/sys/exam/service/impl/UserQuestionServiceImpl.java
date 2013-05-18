@@ -3,6 +3,7 @@ package com.sys.exam.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sys.common.system.CommonUtil;
 import com.sys.exam.database.bean.Options;
 import com.sys.exam.database.bean.Questions;
 import com.sys.exam.database.bean.UserExam;
@@ -89,9 +90,6 @@ public class UserQuestionServiceImpl implements UserQuestionService
             listUqTypes.add(ut);
         }// end for
 
-        UserExam userex=managerService.getUserExamDao().get(ueId);
-        userex.setUeState(Constant.EXAM_STATE_GOING);
-        managerService.getUserExamDao().save(userex);
         return listUqTypes;
     }
 

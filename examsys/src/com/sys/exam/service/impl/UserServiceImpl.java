@@ -264,8 +264,11 @@ public class UserServiceImpl implements UserService
 		StringBuilder hsql=new StringBuilder();
 		hsql.append("select user from User user where user.userId not in (select ugr.user.userId from UserGroupRel ugr where ugr.userGroup.ugId=");
 		hsql.append(ugId);
-		hsql.append(") and user.userRole=");
+		hsql.append(") and user.userRole in (");
 		hsql.append(Constant.USER_USER);
+		hsql.append(",");
+		hsql.append(Constant.USER_PUBLIC);
+		hsql.append(")");
 		List<User> userList=managerService.getUserDao().find(hsql.toString());
 		List<UserModel> userModelList=new ArrayList<UserModel>();
 		for(User user:userList){
