@@ -9,6 +9,11 @@
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath()%>/js/user/user_exam_start.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#pks").addClass("current");
+		});
+	</script>
   </head>
   
   <body id="top">
@@ -79,6 +84,12 @@
 						</s:iterator>
 					</div>
 				</h3>
+				<s:if test="#session.user.userRole==3">
+					<div class="wrapper-login" style=" text-align: center;margin: 20px 200px;">
+						<input type="button" value="重新考试" id="send" class="btn btn-green big" onclick="restartExam(${ueM.ue.ueId},1);"/>
+						<input type="button" value="查看答案" id="send" class="btn btn-green big" onclick="checkAnswer(${ueM.ue.ueId},2);"/>
+					</div>
+				</s:if>
 			</s:elseif>
 			</s:iterator>
 			

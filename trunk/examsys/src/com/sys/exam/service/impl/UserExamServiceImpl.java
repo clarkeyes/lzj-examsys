@@ -413,11 +413,12 @@ public class UserExamServiceImpl implements UserExamService
     }
 
     @Override
-    public UserExamModel findUeMById(Long ueId) throws Exception
+    public UserExamModel findUeMById(Long ueId, int reStart) throws Exception
     {
         UserExam ue = managerService.getUserExamDao().get(ueId);
-        if(null==ue.getUeStartTime()){
+        if(null==ue.getUeStartTime()||1==reStart){
         	ue.setUeStartTime(CommonUtil.getCurrentTime());
+        	ue.setUeState(Constant.EXAM_STATE_GOING);
             managerService.getUserExamDao().update(ue);
         }
         StringBuilder hsql = new StringBuilder();

@@ -28,6 +28,7 @@
 //-->
 $(document).ready(function(){
 	$("#admin-menu").hide();
+	$("#public-menu").hide();
 	//用户退出登录
 	 $('#loginOut').click(function() {
 	     $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function(r) {
@@ -50,6 +51,8 @@ $(document).ready(function(){
  				+'<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>';
  				$("#admin-menu").html(menu);*/
  				$("#admin-menu").show();
+ 			}else if(data.userRole==3){
+ 				$("#public-menu").show();
  			}
  			$("#userRole-hidden").val(data.userRole);
  		}
@@ -94,6 +97,9 @@ $(document).ready(function(){
 								</ul>
 							</li>
 							<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>
+						</ul>
+						<ul class="sf-menu" id="public-menu">
+							<li id="pks"><a href="<%=request.getContextPath()%>/pages/user/userExamList.action">考试</a></li>
 						</ul>
 					</div>
 				
