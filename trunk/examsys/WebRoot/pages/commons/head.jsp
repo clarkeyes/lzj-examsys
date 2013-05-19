@@ -10,14 +10,17 @@
 		<script type="text/javascript" src="<%=request.getContextPath()%>/js/local/easyui-lang-zh_CN.js"></script>
 		<!-- Internet Explorer Fixes -->
 		<!--[if IE]>
-		<link rel="stylesheet" type="text/css" media="all" href="/vmmaster/css/ie.css"/>
+		<link rel="stylesheet" type="text/css" media="all" href="/examsys/css/ie.css"/>
+		<style type="text/css">
+	       body { behavior:url("/examsys/js/csshover.htc"); }
+	       </style>
 		<![endif]-->
 
 		<!--[if lt IE 8]>
         <script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
         <script type="text/javascript">
 		    window.onload=function (){
-				document.getElementById("title_img").src="/vmmaster/img/logo_ie.png";
+				document.getElementById("title_img").src="/examsys/img/logo_ie.png";
 			}
         </script>
         <![endif]-->
@@ -98,11 +101,12 @@ $(document).ready(function(){
 							</li>
 							<li id="yhz"><a href="<%=request.getContextPath()%>/pages/admin/usergroup_list.jsp">用户组</a></li>
 						</ul>
+					</div>
+				 	<div id="menu" class="page-content">
 						<ul class="sf-menu" id="public-menu">
 							<li id="pks"><a href="<%=request.getContextPath()%>/pages/user/userExamList.action">考试</a></li>
 						</ul>
-					</div>
-				
+					</div> 
 				<!-- End of Main navigation -->
 				<!-- Aside links -->
 				<aside>

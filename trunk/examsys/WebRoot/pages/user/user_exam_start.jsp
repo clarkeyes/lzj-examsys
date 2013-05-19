@@ -72,6 +72,11 @@
 					<s:elseif test="#ueM.ue.ueState==5">
 						判分完毕
 					</s:elseif>
+					<s:if test="#session.user.userRole==3">
+						<span>
+							<a onclick="checkAnswer(${ueM.ue.ueId},2);" href="javascript:void(0)";>查看答案</a>
+						</span>
+					</s:if>
 					</span>
 					<strong>
 						考试名称：${ueM.ue.exam.examName  }
@@ -86,8 +91,8 @@
 				</h3>
 				<s:if test="#session.user.userRole==3">
 					<div class="wrapper-login" style=" text-align: center;margin: 20px 200px;">
-						<input type="button" value="重新考试" id="send" class="btn btn-green big" onclick="restartExam(${ueM.ue.ueId},1);"/>
-						<input type="button" value="查看答案" id="send" class="btn btn-green big" onclick="checkAnswer(${ueM.ue.ueId},2);"/>
+						<input type="button" value="重新考试" id="send" class="btn btn-green big" 
+						onclick="restartExam(${ueM.ue.ueId},1);"/>
 					</div>
 				</s:if>
 			</s:elseif>

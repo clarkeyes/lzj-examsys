@@ -50,7 +50,7 @@
 						</p>
 			    		<p>
 							<label class="required">题目文件:</label><br/>
-							<input type="file" id="queBaseFile" name="queBaseFile" class="required minInput"/>
+							<input type="file" id="queBaseFile" name="queBaseFile" class="required half"/>
 						</p>
 						<p class="box">
 							<input type="submit" value="添加" id="addExamButton" class="btn btn-green big"/>
