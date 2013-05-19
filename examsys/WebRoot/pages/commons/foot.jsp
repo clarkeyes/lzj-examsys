@@ -4,7 +4,9 @@
 <div class="footer" id="bottom">
 	<div >
 		<p align="center">
-			Copyright (C) 2010-2013, All Rights Reserved <br />
+			Copyright (C) 2010-2013, All Rights Reserved 
+			<br /><br />
+			
 		</p>
 	</div>
 </div>
