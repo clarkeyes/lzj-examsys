@@ -42,7 +42,7 @@ public class DocTool
 
     public DocTool(long qbId,String qcName)
     {
-        hashCategory.put("一、单选题（共100题）", qcName);
+        hashCategory.put(qcName, qcName);
 
 //        ApplicationContext context = new ClassPathXmlApplicationContext(
 //                "applicationContext-*.xml");
